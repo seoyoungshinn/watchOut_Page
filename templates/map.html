@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Insert title here</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
+    <script src="./static/tmap.js" type="text/javascript"></script>
+
+	<style>
+
+		@keyframes watch {
+			0%{transform: translate(0);}
+			20%{transform: translate(-2px,2px);}
+			40%{transform: translate(-2px,-2px);}
+			60%{transform: translate(2px,2px);}
+			80%{transform: translate(2px,-2px);}
+			100%{transform: translate(0);}
+		}
+		.RunningAnimation{
+			width : 70px;
+			height : 70px;
+			background:100% no-repeat;
+			animation: watch 0.3s linear infinite both;
+			animation-play-state: running;
+		}
+
+		.PausedAnimation{
+			width : 70px;
+			height : 70px;
+			animation-play-state: paused;
+		}
+
+		#header {
+		background-color:#DCDCDC;
+		height:70px;
+		display: flex;
+    	justify-content: space-between;
+		}
+
+		#nav {
+		background-color:	#FDF5E6;
+		color:black;
+		width:300px;
+		height: 1000px;
+		float:left;
+		}
+
+		#section {
+		width:700px;
+		float:left;
+		padding:10px;
+		}
+
+	  </style>
+</head>
+<body bgcolor="	#F0F8FF">
+	<script type = "text/javascript">
+		mqttConnection();
+
+		function setDisplay(){
+			if($('input:radio[id=rM]').is(':checked')){
+				$('#realMap1').css('display','block');
+				$('#finalMap').css('display','none');
+
+			}else if ($('input:radio[id=fM]').is(':checked')) {
+				 $('#finalMap').css('display','block');
+				 $('#realMap1').css('display','none');
+
+			}
+			else if ($('input:radio[id=both]').is(':checked')) {
+				 $('#finalMap').css('display','block');
+				 $('#realMap1').css('display','block');
+
+			}
+		}
+	</script>
+
+	<div id="header">
+		<h2>Monitoring System</h2> 
+		<h3 style = "float:right; margin-right:7px;">네모 by 아리아리</h3>	
+	</div>
+
+	<div id="nav">
+		<img id ="img" class = "PausedAnimation" src="{{ url_for('static',filename = 'image/watch.png')}}" style="float: right;" alt="watch">
+		<h2>Message</h2>
+		<div id = "topic"></div>
+	</div>
+
+	<div id="section">
+		<h2>Map</h2>
+		<div>
+		<input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
+		<input id = "rM" type="radio" name="myname" onclick="setDisplay()" value = "30">여러 경로
+		<input id = "fM" type="radio" name="myname" onclick="setDisplay()" value = "3">현재 위치
+		</div>
+
+		<div id="realMap1"></div>		
+		<div id = "finalMap"></div>
+	</div>
+
+</body>
+</html>
