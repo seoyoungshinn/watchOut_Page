@@ -7,7 +7,7 @@
 
         //Tmap지도 관련 변수
         var index = 0;
-        var startMap,resMap;
+        var fourMap,resMap;
         var markers = []; 
 
         /*------------------MQTT--------------------*/ 
@@ -64,24 +64,28 @@
 
                         $('input:radio[name=myname]').prop('checked',false);
 
-                        $('#realMap1').css('display','block');
-				        $('#finalMap').css('display','block');
+                        $('#fourMap').css('display','block');
+				        $('#resMap').css('display','block');
 
-                       var realMap1 =  document.getElementById("realMap1");
-                       realMap1.removeChild( realMap1.firstChild ); 
-                       var finalMap =  document.getElementById("finalMap");
-                        finalMap.removeChild( finalMap.firstChild ); 
+                       var fMap =  document.getElementById("fourMap");
+                       var rMap =  document.getElementById("resMap");
+                       fMap.innerHTML = '';
+                       rMap.innerHTML = '';
 
                         break;
                     }
                     else if (msg.payloadString == "out"){
-                        var realMap1 =  document.getElementById("realMap1");
-                        realMap1.removeChild( realMap1.firstChild ); 
-                        var finalMap =  document.getElementById("finalMap");
-                        finalMap.removeChild( finalMap.firstChild ); 
+                        var fMap =  document.getElementById("fourMap");
+                       var rMap =  document.getElementById("resMap");
+                       fMap.innerHTML = '';
+                       rMap.innerHTML = '';
+
                         document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
                         break;
                     }
+
+                   
+
 
                     var arr_lat = [];
                     var arr_lon = [];
@@ -93,11 +97,11 @@
                         arr_lat[i] = box[0];
                         arr_lon[i] = box[1];
                     }
-                    drawRealMap(arr_lat,arr_lon);
-
-                    document.getElementById("both").checked= true;
-
-                    break;
+                   fourMap =  drawFourMap(arr_lat,arr_lon);
+                   document.getElementById("both").checked= true;
+                   document.getElementById("btn").innerHTML +='<div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;"><button onclick="MapType(\'ROAD\')">ROAD</button><button onclick="MapType(\'HYBRID\')">HYBRID</button></div>';
+                    
+                     break;
                     
 
                 //알고리즘으로 고른 경로
@@ -115,8 +119,9 @@
                     resMap = drawResMap(lat_res,lon_res);
                     addStartEndMarker(lat_res,lon_res,resMap);
                     document.getElementById("topic").innerHTML += "알고리즘으로 선택된 길과 현재위치를 볼려면 라디오 버튼을 클릭하세요" + '</span><br/>';
-               
+                
                     break;
+
 
                
                 case "now":  
@@ -169,7 +174,7 @@
     /*------------Tmap 지도------------*/ 
 
         //경로 4가지 그리는 지도
-        function drawRealMap(arr_lat,arr_lon){  
+        function drawFourMap(arr_lat,arr_lon){  
             var lat1 = arr_lat[0].split(",");
             var lon1 = arr_lon[0].split(",");      
             
@@ -177,7 +182,7 @@
             var latitude =  lat1[i];
             var longitude = lon1[i];
 
-           var map = new Tmapv2.Map("realMap1",  
+           var map = new Tmapv2.Map("fourMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
                 width: "890px", 
@@ -208,6 +213,8 @@
                 });
             }
 
+            return map;
+
         } 
 
         //최종경로 + 현재 위치 찍는 지도
@@ -217,7 +224,7 @@
             var latitude =  lat[i];
             var longitude = lon[i];
 
-            var map = new Tmapv2.Map("finalMap",  
+            var map = new Tmapv2.Map("resMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
                 width: "890px", 
@@ -296,6 +303,16 @@
 	    markers = [];
     }
 
+    //지도타입 변경 함수
+    function MapType(type){
+        if("HYBRID" == type){
+            fourMap.setMapType(Tmapv2.Map.MapType.HYBRID);
+            resMap.setMapType(Tmapv2.Map.MapType.HYBRID);
+        }else if("ROAD" == type){
+            fourMap.setMapType(Tmapv2.Map.MapType.ROAD);
+            resMap.setMapType(Tmapv2.Map.MapType.ROAD);
+        }
+    }
 
     //워치이미지 모션관련 함수
     function Running(){

@@ -1,8 +1,9 @@
         //MQTT관련 변수
         var mqtt; 
       var reconnectTimeout = 2000;
-      //var host = "15.165.174.55"
-        var host = "172.20.10.6"
+      
+      var host = "15.165.174.55"
+       // var host = "172.20.10.6"
       var port = 9001;
       var isConnected = false;
 
