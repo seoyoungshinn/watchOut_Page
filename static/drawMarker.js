@@ -1,4 +1,5 @@
         //MQTT관련 변수
+        //커밋
         var mqtt; 
 		var reconnectTimeout = 2000;
 		var host = "15.165.174.55"
