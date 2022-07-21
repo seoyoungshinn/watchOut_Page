@@ -20,7 +20,9 @@
             subscribe("vibe");
             subscribe("route");
             subscribe("route_res");
-            subscribe("now");           
+            subscribe("now");
+            subscribe("saftyScore");
+                      
 		}
 		
 		function onFailure(message){
