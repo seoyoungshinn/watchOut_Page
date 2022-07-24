@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/map')
 def hello_world():
-    return redirect('map.html')
+    return render_template('map.html')
     
 @app.route('/')
 def welcome():
