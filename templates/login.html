@@ -7,9 +7,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../static/login.css">
+    <script language="javascript">
+        // 쿠키를 설정합니다.
+        function setCookie (name, value, expires)
+        {
+            document.cookie = name + "=" + escape (value)
+                                        +  "; path=/; expires="
+                                        + expires.toGMTString();
+        }
+         
+        // 인자로 주어진 name에 해당하는 쿠키 값을 리턴합니다.
+        function getCookie(name)
+        {
+           var search = name + "="
+        
+           if (document.cookie.length > 0)
+           { 
+              offset = document.cookie.indexOf(search)
+             
+              if (offset != -1)
+              { 
+                  offset += search.length
+        
+                  end = document.cookie.indexOf(";", offset)
+        
+                  if (end == -1)
+                    end = document.cookie.length
+               
+                 return unescape(document.cookie.substring(offset, end))
+              }
+          }
+        
+          return "";
+        }
+        function saveIDPWD(form)
+        {
+           var expdate = new Date();
+          
+           // 쿠키의 만료 시간 설정, ID/PWD 저장을 선택한 경우는 현재 시간으로 부터
+           // 30일후로 설정하고, 그렇지않을 경우는 현재 시간 보다 이전으로 설정하여
+           // 쿠키가 삭제되도록합니다.
+           // 만료시간은 millisecond로 설정합니다.
+           if (form.remember.checked)
+              expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
+           else
+              expdate.setTime(expdate.getTime() - 1);
+        
+           setCookie("MYID", form.email.value, expdate);
+           setCookie("MYPWD", form.password.value, expdate);
+        }
+         
+        // 페이지 로딩 시에 쿠키에 저장되어 있는 ID/PWD를 읽어와 설정합니다.
+        // 쿠키의 존재여부를 체크하는 논리식의 값을 form.checksaveid.checked 에 설정합니다.
+        function checkSave(form)
+        {
+           form.remember.checked = ((form.email.value = getCookie("MYID")) != "");
+           form.remember.checked = ((form.password.value = getCookie("MYPWD")) != "");
+        }
+        
+        </script>
 </head>
-<body>
+<body onLoad="checkSave(document.loginform)">
     <div class="wrap">
         <div class="login">
             <h2>watch_Out!</h2>
@@ -18,25 +77,27 @@
             <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
             <li><a href=""><i class="fab fa-twitter"></i></a></li>
             </div>
-            <div class="login_id">
-                <h4>E-mail</h4>
-                <input type="email" name="" id="email" placeholder="watch@out.com">
-            </div>
-            <div class="login_pw">
-                <h4>Password</h4>
-                <input type="password" name="" id="password" placeholder="watchout1234">
-            </div>
-            <div class="login_etc">
-                <div class="checkbox">
-                <input type="checkbox" name="" id=""> Remember Me?
+            <form name="loginform">
+                <div class="login_id">
+                    <h4>E-mail</h4>
+                    <input type="email" name="email" id="email" placeholder="watch@out.com" >
                 </div>
-                
-            </div>
-            <div class="submit">
-                <h5>
-                    <input type="submit" id="loginButton" value="We'll be your eyes"> "" 
-                </h5 >
-            </div>
+                <div class="login_pw">
+                    <h4>Password</h4>
+                    <input type="password" name="" id="password" placeholder="watchout1234">
+                </div>
+                <div class="login_etc">
+                    <div class="checkbox">
+                    <input type="checkbox" name="remember" id="remember" onClick="saveIDPWD(this.form)"> Remember Me?
+                    </div>
+                    
+                </div>
+                <div class="submit">
+                    <h5>
+                        <input type="submit" id="loginButton" value="We'll be your eyes"> 
+                    </h5 >
+             </div>
+        </form>
         </div>
     </div>
     <script type="module">
@@ -72,19 +133,26 @@
             signInWithEmailAndPassword(auth, signInEmail, signInPassword)
                 .then((userCredential) => {
                     // Signed in
+                    console.log('로그인 성공')
                     console.log(userCredential)
                     const user = userCredential.user;
+                    window.location.href = '/map'
                     // ...
                 })
                 .catch((error) => {
                     console.log('로그인 실패')
-                    console.log(email.value,password)
+                    console.log(email.value,password.value)
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    window.location.href = '/map'
                 });
 
         })
         console.log(app)
+
       </script>
+
+
+
 </body>
 </html>

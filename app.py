@@ -1,9 +1,14 @@
 from flask import Flask,render_template
+from flask import redirect
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/map')
 def hello_world():
-    return render_template('map.html')
+    return redirect('map.html')
+    
+@app.route('/')
+def welcome():
+    return render_template('login.html')
 
 @app.route('/drawMarker')
 def hello_world2():
