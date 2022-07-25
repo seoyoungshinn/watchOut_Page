@@ -11,7 +11,7 @@
 	src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	<style>
 
-		@keyframes watch {
+		/* @keyframes watch {
 			0%{transform: translate(0);}
 			20%{transform: translate(-2px,2px);}
 			40%{transform: translate(-2px,-2px);}
@@ -31,7 +31,7 @@
 			width : 70px;
 			height : 70px;
 			animation-play-state: paused;
-		}
+		} */
 
 		#header {
 		background-color:#DCDCDC;
@@ -81,7 +81,7 @@
 	</div>
 
 	<div id="nav">
-		<img id ="img" class = "PausedAnimation" src="{{ url_for('static',filename = 'image/watch.png')}}" style="float: right;" alt="watch">
+		<!-- <img id ="img" class = "PausedAnimation" src="{{ url_for('static',filename = 'image/watch.png')}}" style="float: right;" alt="watch"> -->
 		<h2>Message</h2>
 		<div id = "topic"></div>
 	</div>
@@ -89,15 +89,20 @@
 	<div id="section">
 		<h2>Map</h2>
 		<div>
-			<input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
+			
+		<input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
 		<input id = "fM" type="radio" name="myname" onclick="setDisplay()" value = "30">여러 경로
 		<input id = "rM" type="radio" name="myname" onclick="setDisplay()" value = "3">현재 위치
 		</div>
-		<div id = "btn"></div>
-		<div id="fourMap">
-		</div>		
-		<div id = "resMap" >
-		</div>
+
+		<!--심박수-->
+		<div id = "heartDiv"></div> 
+		<!--위도 경도 바꾸는 버튼-->
+		<div id = "btn"></div> 
+		<!--4경로 지도-->
+		<div id="fourMap"></div>		
+		<!--알고리즘으로 고른 지도-->
+		<div id = "resMap" ></div>
 	</div>
 
 </body>

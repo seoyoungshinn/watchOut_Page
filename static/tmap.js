@@ -127,7 +127,7 @@
                
                 case "now":  
                 var arr_now = msg.payloadString.split(','); 
-
+                    console.log(msg.payloadString);
                 //현재위치 갱신
                 addCurrentMarker(resMap,arr_now[0],arr_now[1]);
 
@@ -135,8 +135,10 @@
                 nowHeartRate = arr_now[2];
                 if(nowHeartRate != exHeartRate){
                     exHeartRate = nowHeartRate;
-                    
+                    addHeartRate(nowHeartRate)
                 }
+               
+
                 break;
 
             }
@@ -326,8 +328,7 @@
 
     //심박수 갱신
     function addHeartRate(heartRate){
-        document.getElementById("heartDiv").innerHTML = ' ';
-        document.getElementById("heartDiv").innerHTML += heartRate;
+        document.getElementById("heartDiv").innerHTML = heartRate;
     }
 
     // //워치이미지 모션관련 함수
