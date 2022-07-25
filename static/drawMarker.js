@@ -146,7 +146,7 @@
                
                 case "now":  
 
-                //console.log("now " + msg.payloadString);
+                console.log("now " + msg.payloadString);
                 var arr_now = msg.payloadString.split(','); 
 
                 addCurrentMarker(resMap,arr_now[0],arr_now[1]);

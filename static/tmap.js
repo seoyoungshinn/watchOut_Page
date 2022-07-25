@@ -9,6 +9,8 @@
         var index = 0;
         var fourMap,resMap;
         var markers = []; 
+        var exHeartRate = 0;
+        var nowHeartRate = 0;
 
         /*------------------MQTT--------------------*/ 
 		function onConnect(){
@@ -43,20 +45,20 @@
                     document.getElementById("topic").innerHTML += msg.payloadString + '</span><br/>';
                 break;
 
-                case "vibe":
-                    if(msg.payloadString == "start"){
-                        Running();
-                        document.getElementById("topic").innerHTML += "방향을 찾는 중입니다" + '</span><br/>';
-                    }
-                    else if(msg.payloadString =="end"){
-                        Paused();
-                        document.getElementById("topic").innerHTML += "방향을 찾았습니다" + '</span><br/>';
-                    }
-                    else if(msg.payloadString =="stop"){
-                        Paused();
-                    }
+                // case "vibe":
+                //     if(msg.payloadString == "start"){
+                //         Running();
+                //         document.getElementById("topic").innerHTML += "방향을 찾는 중입니다" + '</span><br/>';
+                //     }
+                //     else if(msg.payloadString =="end"){
+                //         Paused();
+                //         document.getElementById("topic").innerHTML += "방향을 찾았습니다" + '</span><br/>';
+                //     }
+                //     else if(msg.payloadString =="stop"){
+                //         Paused();
+                //     }
 
-                break;
+               // break;
 
               
 
@@ -87,14 +89,11 @@
                     }
 
                    
-
-
                     var arr_lat = [];
                     var arr_lon = [];
                     var split = msg.payloadString.split("!"); 
 
                     for(var i = 0 ; i < split.length ; i++){
-                        //box = [];
                         var box = split[i].split("/")
                         arr_lat[i] = box[0];
                         arr_lon[i] = box[1];
@@ -129,7 +128,15 @@
                 case "now":  
                 var arr_now = msg.payloadString.split(','); 
 
+                //현재위치 갱신
                 addCurrentMarker(resMap,arr_now[0],arr_now[1]);
+
+                //심박수 갱신
+                nowHeartRate = arr_now[2];
+                if(nowHeartRate != exHeartRate){
+                    exHeartRate = nowHeartRate;
+                    
+                }
                 break;
 
             }
@@ -316,14 +323,21 @@
         }
     }
 
-    //워치이미지 모션관련 함수
-    function Running(){
-        document.getElementById('img').className='RunningAnimation';
+
+    //심박수 갱신
+    function addHeartRate(heartRate){
+        document.getElementById("heartDiv").innerHTML = ' ';
+        document.getElementById("heartDiv").innerHTML += heartRate;
     }
 
-    function Paused(){
-        document.getElementById('img').className='PausedAnimation';
-    }
+    // //워치이미지 모션관련 함수
+    // function Running(){
+    //     document.getElementById('img').className='RunningAnimation';
+    // }
+
+    // function Paused(){
+    //     document.getElementById('img').className='PausedAnimation';
+    // }
 
    
      
