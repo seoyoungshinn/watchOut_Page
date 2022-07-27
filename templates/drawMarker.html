@@ -53,6 +53,15 @@
       padding:10px;
       }
 
+      table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td{
+            padding: 10px 10px;
+            border: 1px solid #000;
+        }
+
      </style>
 </head>
 <body> 
@@ -135,7 +144,62 @@
 
       <div id="map_div"></div>
 
-      <div id="realMap1">midPoint</div>      
+      <div id="realMap1">midPoint</div> 
+      <div id = "saftyTables"></div>
+      <!-- <table class="type" border = "1">
+         <thead>
+           <tr>
+             <th>타입</th>
+             <th>분기점</th>
+             <th>엘베</th>
+             <th>횡단보도</th>
+             <th>교량</th>
+             <th>터널</th>
+             <th>고가도로</th>
+             <th>육교</th>
+             <th>지하보도</th>
+             <th>계단</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>개수</td>
+             <td id = "turnPoint"></td>
+             <td id = "elevator"></td>
+             <td id = "crossWalkCount">2-4</td>
+             <td id = "bridge">2-5</td>
+             <td id = "turnnels">2-6</td>
+             <td id = "highroad">2-7</td>
+             <td id = "overPasses" >2-8</td>
+             <td id = "underPasses" >2-9</td>
+             <td id = "stairs">2-10</td>
+           </tr>
+         </tbody>
+         </table>     
+
+
+         <table class="road" border = "1">
+            <thead>
+              <tr>
+                <th>도로타입</th>
+                <th>횡단보도</th>
+                <th>21번</th>
+                <th>22번</th>
+                <th>23번</th>
+                <th>24번</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>미터</td>
+                <td id = "crossWalkLength"></td>
+                <td id = "roadTypeLength1"></td>
+                <td id = "roadTypeLength2">2-4</td>
+                <td id = "roadTypeLength3">2-5</td>
+                <td id = "roadTypeLength4">2-6</td>
+              </tr>
+            </tbody>
+            </table>      -->
       <div id = "finalMap">그냥</div>
    </div>
 

@@ -196,7 +196,7 @@
            var map = new Tmapv2.Map("fourMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px", 
+                width: "700px", //크기바꾸는곳
                 height: "400px",
                 zoom: 14,
                 draggable: false
@@ -238,7 +238,7 @@
             var map = new Tmapv2.Map("resMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px", 
+                width: "890px",  //크기바꾸는 곳
                 height: "400px",
                 zoom: 15,
                 draggable: true

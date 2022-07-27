@@ -19,10 +19,10 @@
 
             subscribe("des");
          subscribe("topic");
-            subscribe("vibe");
-            //subscribe("route");
+            //subscribe("vibe");
+    
             subscribe("route_res");
-            subscribe("now");     
+            subscribe("saftyScore");   
             subscribe("midpoint");      
       }
       
@@ -34,7 +34,31 @@
       function onMessageArrived(msg){
             switch(msg.destinationName){
 
-                
+                //4가지경로 점수
+                case "saftyScore":
+                   // console.log(msg.payloadString);
+                    var split = msg.payloadString.split("!");
+                    var safty = []; 
+                    for(var i = 0 ; i<split.length ; i++){
+                        var s1 = split[i].split("(");
+                        var s2 = s1[1].split(")");
+                        safty[i] = s2[0];
+                    }
+                  
+                    var route1 = safty[0].split(","); 
+                    var route2 = safty[1].split(","); 
+                    var route3 = safty[2].split(","); 
+                    var route4 = safty[3].split(","); 
+                    // var route = [];
+                    // for(var i = 0 ; i < 4 ; i++){
+                    //     var temp = safty[i].split(",");
+                    //     var route = temp[i].split
+                    //     route.push(temp[i].split)
+                    // }
+                    
+                    splitParams(route1);
+
+                    break;
                 case "des":            
                 document.getElementById("topic").innerHTML += '목적지: ' + msg.payloadString + '</span><br/>';
                 break;
@@ -129,7 +153,7 @@
                     var lat_res = [];
                     var lon_res = [];
                     
-                    console.log(msg.payloadString);
+                    //console.log(msg.payloadString);
                     var split =[];
                     split = msg.payloadString.split('/');
 
@@ -216,46 +240,46 @@
             }
         }
         //경로 4가지 그리는 지도
-        function drawRealMap(arr_lat,arr_lon){  
-            var lat1 = arr_lat[0].split(",");
-            var lon1 = arr_lon[0].split(",");      
+        // function drawRealMap(arr_lat,arr_lon){  
+        //     var lat1 = arr_lat[0].split(",");
+        //     var lon1 = arr_lon[0].split(",");      
             
-            var i = Math.floor((lat1.length/2)); 
-            var latitude =  lat1[i];
-            var longitude = lon1[i];
+        //     var i = Math.floor((lat1.length/2)); 
+        //     var latitude =  lat1[i];
+        //     var longitude = lon1[i];
 
-           var map = new Tmapv2.Map("realMap1",  
-            {
-                center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px", 
-                height: "400px",
-                zoom: 14,
-                draggable: false
-            });
+        //    var map = new Tmapv2.Map("realMap1",  
+        //     {
+        //         center: new Tmapv2.LatLng(latitude,longitude),
+        //         width: "700px", 
+        //         height: "300px",
+        //         zoom: 14,
+        //         draggable: false
+        //     });
             
-            for(var j = 0 ; j < arr_lat.length ; j++ ){
-                var line_lat = [];
-                var line_lon = [];
+        //     for(var j = 0 ; j < arr_lat.length ; j++ ){
+        //         var line_lat = [];
+        //         var line_lon = [];
 
-                line_lat = arr_lat[j].split(",");
-                line_lon = arr_lon[j].split(",");
+        //         line_lat = arr_lat[j].split(",");
+        //         line_lon = arr_lon[j].split(",");
 
-                var ar_line = [];
-                var color = ["#00FFFF","#FF1493", "#2F4F4F", "#ADFF2F"];
+        //         var ar_line = [];
+        //         var color = ["#00FFFF","#FF1493", "#2F4F4F", "#ADFF2F"];
 
-                for (var k = 0; k < line_lat.length; k++) {
-                var startPt = new Tmapv2.LatLng(line_lat[k],line_lon[k]);
-                ar_line.push(startPt);
-             }
-                var polyline = new Tmapv2.Polyline({
-                path: ar_line, 
-                strokeColor: color[j],
-                strokeWeight: 5,
-                map: map
-                });
-            }
+        //         for (var k = 0; k < line_lat.length; k++) {
+        //         var startPt = new Tmapv2.LatLng(line_lat[k],line_lon[k]);
+        //         ar_line.push(startPt);
+        //      }
+        //         var polyline = new Tmapv2.Polyline({
+        //         path: ar_line, 
+        //         strokeColor: color[j],
+        //         strokeWeight: 5,
+        //         map: map
+        //         });
+        //     }
 
-        } 
+        // } 
 
         //최종경로 + 현재 위치 찍는 지도
         function drawResMap(lat,lon){        
@@ -267,7 +291,7 @@
             var map = new Tmapv2.Map("realMap1",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px", 
+                width: "700px", 
                 height: "400px",
                 zoom: 15,
                 draggable: true
@@ -382,6 +406,98 @@
 
     function Paused(){
         document.getElementById('img').className='PausedAnimation';
+    }
+
+    function splitParams(saftyparams){
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            var res = saftyparams[i].substring(saftyparams[i].indexOf("=")+1);
+        }
+
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        // Adding the entire table to the body tag
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = "타입";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = "분기점";
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML = "엘베";
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = "횡단보도";
+        let heading_5 = document.createElement('th');
+        heading_5.innerHTML = "교량";
+        let heading_6 = document.createElement('th');
+        heading_6.innerHTML = "터널";
+        let heading_7 = document.createElement('th');
+        heading_7.innerHTML = "고가도로";
+        let heading_8 = document.createElement('th');
+        heading_8.innerHTML = "육교";
+        let heading_9 = document.createElement('th');
+        heading_9.innerHTML = "지하보도";
+        let heading_10 = document.createElement('th');
+        heading_10.innerHTML = "계단";
+
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+        row_1.appendChild(heading_5);
+        row_1.appendChild(heading_6);
+        row_1.appendChild(heading_7);
+        row_1.appendChild(heading_8);
+        row_1.appendChild(heading_9);
+        row_1.appendChild(heading_10);
+        thead.appendChild(row_1);
+
+
+        // Creating and adding data to second row of the table
+        let row_2 = document.createElement('tr');
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "개수";
+        for(var i = 0 ; i < saftyparams.length ; i++){
+            let row_2_data =  document.createElement('td');
+            row_2_data.innerHTML = saftyparams[i];
+            row_2.appendChild(row_2_data);
+        }
+
+        let row_2_data_2 = document.createElement('td');
+        row_2_data_2.innerHTML = res[1];
+        let row_2_data_3 = document.createElement('td');
+        row_2_data_3.innerHTML = res[2];
+        let row_2_data_4 = document.createElement('td');
+        row_2_data_4.innerHTML = res[3];
+        let row_2_data_5 = document.createElement('td');
+        row_2_data_5.innerHTML = "Netflix";
+        let row_2_data_6 = document.createElement('td');
+        row_2_data_6.innerHTML = "Netflix";
+        let row_2_data_7 = document.createElement('td');
+        row_2_data_7.innerHTML = "Netflix";
+        let row_2_data_8 = document.createElement('td');
+        row_2_data_8.innerHTML = "Netflix";
+        let row_2_data_9 = document.createElement('td');
+        row_2_data_9.innerHTML = "Netflix";
+        let row_2_data_10 = document.createElement('td');
+        row_2_data_10.innerHTML = "Netflix";
+
+        row_2.appendChild(row_2_data_1);
+        row_2.appendChild(row_2_data_2);
+        row_2.appendChild(row_2_data_3);
+        row_2.appendChild(row_2_data_4);
+        row_2.appendChild(row_2_data_5);
+        row_2.appendChild(row_2_data_6);
+        row_2.appendChild(row_2_data_7);
+        row_2.appendChild(row_2_data_8);
+        row_2.appendChild(row_2_data_9);
+        row_2.appendChild(row_2_data_10);
+        tbody.appendChild(row_2);
+
     }
 
    
