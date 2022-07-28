@@ -36,28 +36,16 @@
 
                 //4가지경로 점수
                 case "saftyScore":
-                   // console.log(msg.payloadString);
+                    console.log(msg.payloadString);
                     var split = msg.payloadString.split("!");
                     var safty = []; 
                     for(var i = 0 ; i<split.length ; i++){
                         var s1 = split[i].split("(");
                         var s2 = s1[1].split(")");
                         safty[i] = s2[0];
+                        drawTurnTables(i,safty[i].split(",")); //4개 표
+                        drawRoadTables(i,safty[i].split(","));
                     }
-                  
-                    var route1 = safty[0].split(","); 
-                    var route2 = safty[1].split(","); 
-                    var route3 = safty[2].split(","); 
-                    var route4 = safty[3].split(","); 
-                    // var route = [];
-                    // for(var i = 0 ; i < 4 ; i++){
-                    //     var temp = safty[i].split(",");
-                    //     var route = temp[i].split
-                    //     route.push(temp[i].split)
-                    // }
-                    
-                    splitParams(route1);
-
                     break;
                 case "des":            
                 document.getElementById("topic").innerHTML += '목적지: ' + msg.payloadString + '</span><br/>';
@@ -66,6 +54,7 @@
                 //출력되는 메시지
                 case "topic":  
                     document.getElementById("topic").innerHTML += msg.payloadString + '</span><br/>';
+                  
                 break;
 
                 case "vibe":
@@ -92,21 +81,25 @@
 
                         $('input:radio[name=myname]').prop('checked',false);
 
-                        $('#realMap1').css('display','block');
-                    $('#finalMap').css('display','block');
+                        $('#fourMap').css('display','block');
+				        $('#resMap').css('display','block');
 
-                       var realMap1 =  document.getElementById("realMap1");
-                       realMap1.removeChild( realMap1.firstChild ); 
-                       var finalMap =  document.getElementById("finalMap");
-                        finalMap.removeChild( finalMap.firstChild ); 
+                       var fMap =  document.getElementById("fourMap");
+                       var rMap =  document.getElementById("resMap");
+                       var sTables =  document.getElementById("saftyTables");
+                       fMap.innerHTML = '';
+                       rMap.innerHTML = '';
+                       sTables.innerHTML = '';
 
                         break;
                     }
                     else if (msg.payloadString == "out"){
-                        var realMap1 =  document.getElementById("realMap1");
-                        realMap1.removeChild( realMap1.firstChild ); 
-                        var finalMap =  document.getElementById("finalMap");
-                        finalMap.removeChild( finalMap.firstChild ); 
+                        var fMap =  document.getElementById("fourMap");
+                       var rMap =  document.getElementById("resMap");
+                       var sTables =  document.getElementById("saftyTables");
+                       fMap.innerHTML = '';
+                       rMap.innerHTML = '';
+                       sTables.innerHTML = '';
                         document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
                         break;
                     }
@@ -408,11 +401,9 @@
         document.getElementById('img').className='PausedAnimation';
     }
 
-    function splitParams(saftyparams){
-        for(var i = 0 ; i < saftyparams.length ; i ++){
-            var res = saftyparams[i].substring(saftyparams[i].indexOf("=")+1);
-        }
-
+    function drawTurnTables(index,saftyparams){
+       
+        //TurnTypeTables
         let table = document.createElement('table');
         let thead = document.createElement('thead');
         let tbody = document.createElement('tbody');
@@ -420,11 +411,11 @@
         table.appendChild(thead);
         table.appendChild(tbody);
 
-        // Adding the entire table to the body tag
+
         document.getElementById('saftyTables').appendChild(table);
         let row_1 = document.createElement('tr');
         let heading_1 = document.createElement('th');
-        heading_1.innerHTML = "타입";
+        heading_1.innerHTML = index+1+"번";
         let heading_2 = document.createElement('th');
         heading_2.innerHTML = "분기점";
         let heading_3 = document.createElement('th');
@@ -455,50 +446,78 @@
         row_1.appendChild(heading_9);
         row_1.appendChild(heading_10);
         thead.appendChild(row_1);
+        
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        }
 
-
-        // Creating and adding data to second row of the table
         let row_2 = document.createElement('tr');
         let row_2_data_1 = document.createElement('td');
         row_2_data_1.innerHTML = "개수";
-        for(var i = 0 ; i < saftyparams.length ; i++){
+        row_2.appendChild(row_2_data_1);
+
+        for(var i = 1 ; i < 10 ; i++){
             let row_2_data =  document.createElement('td');
             row_2_data.innerHTML = saftyparams[i];
             row_2.appendChild(row_2_data);
         }
-
-        let row_2_data_2 = document.createElement('td');
-        row_2_data_2.innerHTML = res[1];
-        let row_2_data_3 = document.createElement('td');
-        row_2_data_3.innerHTML = res[2];
-        let row_2_data_4 = document.createElement('td');
-        row_2_data_4.innerHTML = res[3];
-        let row_2_data_5 = document.createElement('td');
-        row_2_data_5.innerHTML = "Netflix";
-        let row_2_data_6 = document.createElement('td');
-        row_2_data_6.innerHTML = "Netflix";
-        let row_2_data_7 = document.createElement('td');
-        row_2_data_7.innerHTML = "Netflix";
-        let row_2_data_8 = document.createElement('td');
-        row_2_data_8.innerHTML = "Netflix";
-        let row_2_data_9 = document.createElement('td');
-        row_2_data_9.innerHTML = "Netflix";
-        let row_2_data_10 = document.createElement('td');
-        row_2_data_10.innerHTML = "Netflix";
-
-        row_2.appendChild(row_2_data_1);
-        row_2.appendChild(row_2_data_2);
-        row_2.appendChild(row_2_data_3);
-        row_2.appendChild(row_2_data_4);
-        row_2.appendChild(row_2_data_5);
-        row_2.appendChild(row_2_data_6);
-        row_2.appendChild(row_2_data_7);
-        row_2.appendChild(row_2_data_8);
-        row_2.appendChild(row_2_data_9);
-        row_2.appendChild(row_2_data_10);
         tbody.appendChild(row_2);
 
     }
+
+    function drawRoadTables(index,saftyparams){
+       
+        //TurnTypeTables
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = index+1+"번";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = "횡단보도";
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML = "차도 인도 분리";
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = "차도+인도";
+        let heading_5 = document.createElement('th');
+        heading_5.innerHTML = "보행자도로";
+        let heading_6 = document.createElement('th');
+        heading_6.innerHTML = "쾌적X 도로";
+
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+        row_1.appendChild(heading_5);
+        row_1.appendChild(heading_6);
+
+        thead.appendChild(row_1);
+        
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        }
+
+        let row_2 = document.createElement('tr');
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "미터";
+        row_2.appendChild(row_2_data_1);
+
+        for(var i = 10 ; i < 15 ; i++){ //횡단보도거리~25번
+            let row_2_data =  document.createElement('td');
+            row_2_data.innerHTML = saftyparams[i];
+            row_2.appendChild(row_2_data);
+        }
+        tbody.appendChild(row_2);
+
+    }
+
 
    
      

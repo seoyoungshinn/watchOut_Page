@@ -11,28 +11,6 @@
 	src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	<style>
 
-		/* @keyframes watch {
-			0%{transform: translate(0);}
-			20%{transform: translate(-2px,2px);}
-			40%{transform: translate(-2px,-2px);}
-			60%{transform: translate(2px,2px);}
-			80%{transform: translate(2px,-2px);}
-			100%{transform: translate(0);}
-		}
-		.RunningAnimation{
-			width : 70px;
-			height : 70px;
-			background:100% no-repeat;
-			animation: watch 0.3s linear infinite both;
-			animation-play-state: running;
-		}
-
-		.PausedAnimation{
-			width : 70px;
-			height : 70px;
-			animation-play-state: paused;
-		} */
-
 		#header {
 		background-color:#DCDCDC;
 		height:70px;
@@ -54,6 +32,15 @@
 		padding:10px;
 		}
 
+		table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td{
+           
+            border: 1px solid #000;
+        }
+
 	  </style>
 </head>
 <body bgcolor="	#F0F8FF">
@@ -62,15 +49,18 @@
 		function setDisplay(){
 			if($('input:radio[id=fM]').is(':checked')){
 				$('#fourMap').css('display','block');
+				$('#saftyTables').css('display','block');
 				$('#resMap').css('display','none');
 
 			}else if ($('input:radio[id=rM]').is(':checked')) {
 				 $('#resMap').css('display','block');
 				 $('#fourMap').css('display','none');
+				 $('#saftyTables').css('display','none');
 			}
 			else if ($('input:radio[id=both]').is(':checked')) {
 				 $('#fourMap').css('display','block');
 				 $('#resMap').css('display','block');
+				 $('#saftyTables').css('display','block');
 			}
 		}
 	</script>
@@ -100,7 +90,8 @@
 		<!--위도 경도 바꾸는 버튼-->
 		<div id = "btn"></div> 
 		<!--4경로 지도-->
-		<div id="fourMap"></div>		
+		<div id="fourMap"></div>
+		<div id = "saftyTables"></div> <!--테이블들-->		
 		<!--알고리즘으로 고른 지도-->
 		<div id = "resMap" ></div>
 	</div>
