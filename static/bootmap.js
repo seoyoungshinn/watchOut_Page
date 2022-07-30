@@ -384,5 +384,123 @@
         document.getElementById('img').className='PausedAnimation';
     }
 
+    //테이블그리는 함수
+    function drawTurnTables(index,saftyparams){
+       
+        //TurnTypeTables
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = index+1+"번";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = "분기점";
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML = "엘베";
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = "횡단보도";
+        let heading_5 = document.createElement('th');
+        heading_5.innerHTML = "교량";
+        let heading_6 = document.createElement('th');
+        heading_6.innerHTML = "터널";
+        let heading_7 = document.createElement('th');
+        heading_7.innerHTML = "고가도로";
+        let heading_8 = document.createElement('th');
+        heading_8.innerHTML = "육교";
+        let heading_9 = document.createElement('th');
+        heading_9.innerHTML = "지하보도";
+        let heading_10 = document.createElement('th');
+        heading_10.innerHTML = "계단";
+
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+        row_1.appendChild(heading_5);
+        row_1.appendChild(heading_6);
+        row_1.appendChild(heading_7);
+        row_1.appendChild(heading_8);
+        row_1.appendChild(heading_9);
+        row_1.appendChild(heading_10);
+        thead.appendChild(row_1);
+        
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        }
+
+        let row_2 = document.createElement('tr');
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "개수";
+        row_2.appendChild(row_2_data_1);
+
+        for(var i = 1 ; i < 10 ; i++){
+            let row_2_data =  document.createElement('td');
+            row_2_data.innerHTML = saftyparams[i];
+            row_2.appendChild(row_2_data);
+        }
+        tbody.appendChild(row_2);
+
+    }
+
+    function drawRoadTables(index,saftyparams){
+       
+        //TurnTypeTables
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = index+1+"번";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = "횡단보도";
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML = "차도 인도 분리";
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = "차도+인도";
+        let heading_5 = document.createElement('th');
+        heading_5.innerHTML = "보행자도로";
+        let heading_6 = document.createElement('th');
+        heading_6.innerHTML = "쾌적X 도로";
+
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+        row_1.appendChild(heading_5);
+        row_1.appendChild(heading_6);
+
+        thead.appendChild(row_1);
+        
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        }
+
+        let row_2 = document.createElement('tr');
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "미터";
+        row_2.appendChild(row_2_data_1);
+
+        for(var i = 10 ; i < 15 ; i++){ //횡단보도거리~25번
+            let row_2_data =  document.createElement('td');
+            row_2_data.innerHTML = saftyparams[i];
+            row_2.appendChild(row_2_data);
+        }
+        tbody.appendChild(row_2);
+
+    }
+   
    
      
