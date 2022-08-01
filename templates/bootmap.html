@@ -56,19 +56,30 @@
     	justify-content: space-between;
 		} */
 
-		#message {
+		/* #message {
 		background-color:#FDF5E6;
 		color:black;
 		width:300px;
 		height:1000px;
 		float:left;
-		}
+		} */
 
-		#section {
-		width:800px;
+		/* #section {
+		width:890px;
 		float:right;
 		padding:10px;
-		}
+		} */
+
+		table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+		th, td{
+           
+		   border: 1px solid #000;
+		   font-size: 20px;
+	   	}
 
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
@@ -91,7 +102,7 @@
 			}
 		}
 	</script>
-	<header>
+	<header style>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 		<div class="container-fluid">
 		  <a class="navbar-brand" href="#">Watch Out!</a>
@@ -110,6 +121,7 @@
 				<a class="nav-link" href="#">Feedback</a>
 			  </li>
 			</ul>
+			<a>접속상태는??!?!</a>
 		  </div>
 		</div>
 	</nav>
@@ -170,14 +182,12 @@
 
 		<div class="container marketing">
     	<div class="row featurette">
-      		<div class="col-md-5" style="width:250px;">
-				<div id="massege" style="float:left; background-color:#FDF5E6; width:230px; height:600px;">
+				<div id="massege" style="float:left; background-color:#FDF5E6; width:250px; height:600px; overflow-y: auto;">
 					<h2>Message</h2>
-					<div id = "topic" style="overflow: auto;"></div>
+					<div id = "topic"></div>
 				</div>
-			</div>
-			<div class="col-md-5" style="width:700px;">
-				<div id="section" style="width:700px; float:left; padding:10px;">
+			<!-- </div> -->
+				<div id="section" style="width:890px; height:600px; float:left; padding:10px;">
 					<h2>Map</h2>
 					<div>
 					<input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
@@ -194,7 +204,7 @@
 					<!--알고리즘으로 고른 지도-->
 					<div id = "resMap" ></div>
 				</div>
-			</div>
+			<!-- </div> -->
     	</div>
 
 		<hr class="featurette-divider">

@@ -196,8 +196,8 @@
            var map = new Tmapv2.Map("fourMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "700px", //크기바꾸는곳
-                height: "400px",
+                width: "890px", //크기바꾸는곳
+                height: "500px",
                 zoom: 14,
                 draggable: false
             });
@@ -239,7 +239,7 @@
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
                 width: "890px",  //크기바꾸는 곳
-                height: "400px",
+                height: "500px",
                 zoom: 15,
                 draggable: true
             });
