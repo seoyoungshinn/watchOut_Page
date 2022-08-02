@@ -89,20 +89,6 @@
 <body bgcolor="	#F0F8FF">
 	<script type = "text/javascript">
 		mqttConnection();
-		function setDisplay(){
-			if($('input:radio[id=fM]').is(':checked')){
-				$('#fourMap').css('display','block');
-				$('#resMap').css('display','none');
-
-			}else if ($('input:radio[id=rM]').is(':checked')) {
-				 $('#resMap').css('display','block');
-				 $('#fourMap').css('display','none');
-			}
-			else if ($('input:radio[id=both]').is(':checked')) {
-				 $('#fourMap').css('display','block');
-				 $('#resMap').css('display','block');
-			}
-		}
 	</script>
 	<header style>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -123,7 +109,7 @@
 				<a class="nav-link" href="#">Feedback</a>
 			  </li>
 			</ul>
-			<a><div id = "state">접속상태:</div></a>
+			<a><div id = "state">아직</div></a>
 		  </div>
 		</div>
 	</nav>
@@ -198,8 +184,6 @@
 					<!--심박수-->
 					<div id = "heartDiv"></div> 
 					</div>
-			
-					
 					<!--위도 경도 바꾸는 버튼-->
 					<div id = "btn"></div> 
 					<!--4경로 지도-->

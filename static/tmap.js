@@ -16,7 +16,7 @@
         /*------------------MQTT--------------------*/ 
 		function onConnect(){
 			console.log("접속 완료");
-            document.getElementById("state").innerHTML = '접속완료';
+            document.getElementById("state").innerHTML = '접속 완료';
 			isConnected = true;
 
             subscribe("des");
@@ -30,11 +30,19 @@
 		}
 		
 		function onFailure(message){
-            document.getElementById("state").innerHTML = '접속실패';
+            document.getElementById("state").innerHTML = '접속 실패';
 			console.log("접속 실패");
 			setTimeout( mqttConnection,reconnectTimeout);
 		}
-		
+        
+        function onConnectionLost(responseObject) { 
+			console.log("접속 끊김");
+            document.getElementById("state").innerHTML = '접속 끊김';
+			if (responseObject.errorCode !== 0) {
+				console.log("접속 끊긴 이유:" + responseObject.errorMessage);
+			}
+		}
+
 		function onMessageArrived(msg){
             switch(msg.destinationName){
 
@@ -103,8 +111,7 @@
                    fourMap =  drawFourMap(arr_lat,arr_lon);
                    document.getElementById("both").checked= true;
                    document.getElementById("btn").innerHTML +='<div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;"><button onclick="MapType(\'ROAD\')">ROAD</button><button onclick="MapType(\'HYBRID\')">HYBRID</button></div>';
-                    
-                     break;
+                    break;
                     
 
                 //알고리즘으로 고른 경로
@@ -126,7 +133,6 @@
                
                 case "now":  
                 var arr_now = msg.payloadString.split(','); 
-                    //console.log(msg.payloadString);
                 //현재위치 갱신
                 addCurrentMarker(resMap,arr_now[0],arr_now[1]);
 
@@ -136,19 +142,10 @@
                     exHeartRate = nowHeartRate;
                     addHeartRate(nowHeartRate);
                 }
-               
-
                 break;
 
             }
     }
-	
-		function onConnectionLost(responseObject) { 
-			console.log("접속 끊김");
-			if (responseObject.errorCode !== 0) {
-				console.log("접속 끊긴 이유:" + responseObject.errorMessage);
-			}
-		}
 		
 		var topicSave;
 		function subscribe(topic) {
@@ -197,8 +194,7 @@
                 center: new Tmapv2.LatLng(latitude,longitude),
                 width: "890px", //크기바꾸는곳
                 height: "500px",
-                zoom: 14,
-                draggable: false
+                zoom: 14
             });
             
             for(var j = 0 ; j < arr_lat.length ; j++ ){
@@ -455,4 +451,19 @@
 
     }
    
+
+    function setDisplay(){
+        if($('input:radio[id=fM]').is(':checked')){
+            $('#fourMap').css('display','block');
+            $('#resMap').css('display','none');
+
+        }else if ($('input:radio[id=rM]').is(':checked')) {
+             $('#resMap').css('display','block');
+             $('#fourMap').css('display','none');
+        }
+        else if ($('input:radio[id=both]').is(':checked')) {
+             $('#fourMap').css('display','block');
+             $('#resMap').css('display','block');
+        }
+    }
      
