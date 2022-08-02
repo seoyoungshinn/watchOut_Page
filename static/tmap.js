@@ -15,6 +15,7 @@
         /*------------------MQTT--------------------*/ 
 		function onConnect(){
 			console.log("접속 완료");
+            document.getElementById("state").innerHTML = '접속완료';
 			isConnected = true;
 
             subscribe("des");
@@ -28,6 +29,7 @@
 		}
 		
 		function onFailure(message){
+            document.getElementById("state").innerHTML = '접속실패';
 			console.log("접속 실패");
 			setTimeout( mqttConnection,reconnectTimeout);
 		}
