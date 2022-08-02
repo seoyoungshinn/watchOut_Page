@@ -61,7 +61,6 @@
 
                 //4가지 경로
                 case "route":
-                    console.log("route");
                     if(msg.payloadString == "restart"){
                         console.log("restart");
                         $('input:radio[name=myname]').prop('checked',false);
@@ -122,10 +121,7 @@
                     resMap = drawResMap(lat_res,lon_res);
                     addStartEndMarker(lat_res,lon_res,resMap);
                     document.getElementById("topic").innerHTML += "알고리즘으로 선택된 길과 현재위치를 볼려면 라디오 버튼을 클릭하세요" + '</span><br/>';
-                
                     break;
-
-
                
                 case "now":  
                 var arr_now = msg.payloadString.split(','); 
@@ -137,7 +133,7 @@
                 nowHeartRate = arr_now[2];
                 if(nowHeartRate != exHeartRate){
                     exHeartRate = nowHeartRate;
-                    addHeartRate(nowHeartRate)
+                    addHeartRate(nowHeartRate);
                 }
                
 
@@ -224,6 +220,7 @@
                 strokeWeight: 5,
                 map: map
                 });
+                console.log(color[j]);
             }
 
             return map;
@@ -330,7 +327,7 @@
 
     //심박수 갱신
     function addHeartRate(heartRate){
-        document.getElementById("heartDiv").innerHTML = heartRate;
+        document.getElementById("heartDiv").innerHTML = "심박수: "+ heartRate;
     }
 
     //테이블그리는 함수
@@ -423,6 +420,8 @@
         heading_5.innerHTML = "보행자도로";
         let heading_6 = document.createElement('th');
         heading_6.innerHTML = "쾌적X 도로";
+        let heading_7 = document.createElement('th');
+        heading_7.innerHTML = "최종 점수";
 
         row_1.appendChild(heading_1);
         row_1.appendChild(heading_2);
@@ -430,6 +429,7 @@
         row_1.appendChild(heading_4);
         row_1.appendChild(heading_5);
         row_1.appendChild(heading_6);
+        row_1.appendChild(heading_7);
 
         thead.appendChild(row_1);
         
@@ -447,6 +447,9 @@
             row_2_data.innerHTML = saftyparams[i];
             row_2.appendChild(row_2_data);
         }
+        let row_2_score = document.createElement('td');
+        row_2_score.innerHTML = saftyparams[0]; //점수
+            row_2.appendChild(row_2_score);
         tbody.appendChild(row_2);
 
     }
