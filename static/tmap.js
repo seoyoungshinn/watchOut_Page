@@ -11,6 +11,7 @@
         var markers = []; 
         var exHeartRate = 0;
         var nowHeartRate = 0;
+        var color = ["#00FFFF","#FF1493", "#2F4F4F", "#ADFF2F"];
 
         /*------------------MQTT--------------------*/ 
 		function onConnect(){
@@ -208,8 +209,7 @@
                 line_lon = arr_lon[j].split(",");
 
                 var ar_line = [];
-                var color = ["#00FFFF","#FF1493", "#2F4F4F", "#ADFF2F"];
-
+                
                 for (var k = 0; k < line_lat.length; k++) {
 				    var startPt = new Tmapv2.LatLng(line_lat[k],line_lon[k]);
 				    ar_line.push(startPt);
@@ -220,7 +220,6 @@
                 strokeWeight: 5,
                 map: map
                 });
-                console.log(color[j]);
             }
 
             return map;
@@ -346,6 +345,7 @@
         let row_1 = document.createElement('tr');
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = index+1+"번";
+        heading_1.style.color = color[index];
         let heading_2 = document.createElement('th');
         heading_2.innerHTML = "분기점";
         let heading_3 = document.createElement('th');
@@ -410,10 +410,11 @@
         let row_1 = document.createElement('tr');
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = index+1+"번";
+        heading_1.style.color = color[index];
         let heading_2 = document.createElement('th');
         heading_2.innerHTML = "횡단보도";
         let heading_3 = document.createElement('th');
-        heading_3.innerHTML = "차도 인도 분리";
+        heading_3.innerHTML = "차도인도 분리";
         let heading_4 = document.createElement('th');
         heading_4.innerHTML = "차도+인도";
         let heading_5 = document.createElement('th');
