@@ -1,8 +1,8 @@
 
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="EUC-KR">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
@@ -75,8 +75,8 @@
     </style>
     <link href="./static/css/carousel.css" rel="stylesheet">
     
-  </head>
-  <body>
+</head>
+<body>
     <script type = "text/javascript">
 		mqttConnection();
 	</script>
@@ -104,59 +104,59 @@
                 </div>
             </nav>
         </header>
-<main>
-  <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-      <a class="d-flex align-items-center text-dark text-decoration-none">
-         <span class="display-5 fw-bold" style="margin: auto;">History & Favorites</span>
-      </a>
-    </header>
+    <main>
+    <div class="container py-4">
+            <header class="pb-3 mb-4 border-bottom">
+            <a class="d-flex align-items-center text-dark text-decoration-none">
+                <span class="display-5 fw-bold" style="margin: auto;">History & Favorites</span>
+            </a>
+            </header>
+        
+        <div class="container py-4" style="height: 1000px;">
 
-    <div class="row align-items-md-stretch" style="float:right; width: 700px;">
-    <div class="p-5 mb-4 bg-light rounded-3" style="height: 700px;">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">데이터수치화 그래프</h1>
-        <p class="col-md-8 fs-4">yle it to your liking.</p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      </div>
-    </div>
-    <div class="p-5 mb-4 bg-light rounded-3" style="height:210px;">
-        <div class="container-fluid py-5">
-          <h2>일주일동안의 총 걸음수, 총 소모한 칼로리 등</h2>
-          <p class="col-md-8 fs-4">ng.</p>
-          <button class="btn btn-primary btn-lg" type="button">Example button</button>
-        </div>
-      </div>
-    </div>
+            <div class="row align-items-md-stretch" style="float:right; width: 700px;">
+                <div class="p-5 mb-4 bg-light rounded-3" style="height:700px;">
+                    <div class="container-fluid py-5">
+                        <h1 class="display-5 fw-bold">데이터수치화 그래프</h1>
+                        <p class="col-md-8 fs-4">yle it to your liking.</p>
+                        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+                    </div>
+                </div>
+                <div class="p-5 mb-4 bg-light rounded-3" style="height:210px;">
+                    <div class="container-fluid py-5">
+                        <h2>일주일동안의 총 걸음수, 총 소모한 칼로리 등</h2>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row align-items-md-stretch" style="float: left; width: 400px;">
-      <div class="col-md-6" style="width: 100%; height: 250px;">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h2>최근 방문 기록</h2>
-          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
+            <div class="row align-items-md-stretch" style="float: left; width: 400px;">
+                <div class="col-md-6" style="width: 100%; height: 250px;">
+                    <div class="h-100 p-5 text-bg-dark rounded-3">
+                        <h2>최근 방문 기록</h2>
+                        <button class="btn btn-outline-light" type="button">Example button</button>
+                    </div>
+                </div>
+                <div class="col-md-6" style="width: 100%; height: 450px; margin-top: 20px;">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>즐겨찾기 목록</h2>
+                        <button class="btn btn-outline-secondary" type="button">Example button</button>
+                    </div>
+                </div>
+                <div class="col-md-6" style="width: 100%; height: 200px; margin-top: 20px;">
+                    <div class="h-100 p-5 text-bg-dark rounded-3">
+                        <h2>즐겨찾기 직접 추가하기</h2>
+                        <p>추가</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-6" style="width: 100%; height: 450px; margin-top: 20px;">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <h2>즐겨찾기 목록</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-      <div class="col-md-6" style="width: 100%; height: 200px; margin-top: 20px;">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h2>즐겨찾기 직접 추가하기</h2>
-          <p>추가</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
-        </div>
-      </div>
+
+        <!-- FOOTER -->
+        <footer class="pt-3 mt-4 text-muted border-top">
+            <p class="float-end"><a href="#">Back to top</a></p>
+        </footer>
     </div>
-  </div>
-  <footer class="pt-3 mt-4 text-muted border-top">
-    &copy; 2022
-  </footer>
-</main>
-<script src="./static/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+    </main>
+    <script src="./static/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
 </html>
