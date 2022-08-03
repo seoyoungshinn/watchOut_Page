@@ -407,8 +407,8 @@
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = index+1+"번";
         heading_1.style.color = color[index];
-        let heading_2 = document.createElement('th');
-        heading_2.innerHTML = "횡단보도";
+        // let heading_2 = document.createElement('th');
+        // heading_2.innerHTML = "횡단보도";
         let heading_3 = document.createElement('th');
         heading_3.innerHTML = "차도인도 분리";
         let heading_4 = document.createElement('th');
@@ -421,7 +421,7 @@
         heading_7.innerHTML = "최종 점수";
 
         row_1.appendChild(heading_1);
-        row_1.appendChild(heading_2);
+        // row_1.appendChild(heading_2);
         row_1.appendChild(heading_3);
         row_1.appendChild(heading_4);
         row_1.appendChild(heading_5);
@@ -439,7 +439,7 @@
         row_2_data_1.innerHTML = "미터";
         row_2.appendChild(row_2_data_1);
 
-        for(var i = 10 ; i < 15 ; i++){ //횡단보도거리~25번
+        for(var i = 11 ; i < 15 ; i++){ //횡단보도거리~25번
             let row_2_data =  document.createElement('td');
             row_2_data.innerHTML = saftyparams[i];
             row_2.appendChild(row_2_data);
