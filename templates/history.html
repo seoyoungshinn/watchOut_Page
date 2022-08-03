@@ -119,13 +119,31 @@
                 <div class="p-5 mb-4 bg-light rounded-3" style="height:700px;">
                     <div class="container-fluid py-5">
                         <h1 class="display-5 fw-bold">데이터수치화 그래프</h1>
-                        <p class="col-md-8 fs-4">yle it to your liking.</p>
-                        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-                    </div>
+                        <!-- 데이터수치화시작 -->
+                        <p class="col-md-8 fs-4" style>경로요소/예상 발걸음 수 차이</p>
+                        <img id ="img" src="{{ url_for('static',filename = 'pie.png')}}" height="400" width="400" alt="pie">
+                        <p>
+                          <button class="btn btn-outline-secondary" type="button" onclick="showPie()">경로 요소 보기</button>
+                          <button class="btn btn-outline-secondary" type="button" onclick="showSticks()">소요시간차이보기</button>
+                        </p>
+                        <script>
+                          function showPie() {
+                              document.getElementById("img").src = "{{ url_for('static',filename = 'pie.png')}}";
+                          }
+                          function showSticks() {
+                              document.getElementById("img").src = "{{ url_for('static',filename = 'stick.png')}}";
+                          }
+                        </script>
+                        <!-- 데이터수치화끝 -->
+                      </div>
                 </div>
                 <div class="p-5 mb-4 bg-light rounded-3" style="height:210px;">
                     <div class="container-fluid py-5">
-                        <h2>일주일동안의 총 걸음수, 총 소모한 칼로리 등</h2>
+                      <!-- 건강정보시작 -->
+                      <h2>일주일간 사용자의 건강 정보</h2>
+                       <p>평균 발걸음 수 : <span style="color: #dc3545;">1811걸음</span></p>
+                       <p>평균 심박수 :<span style="color: #dc3545;">88</span></p> 
+                        <!-- 건강정보끝 -->
                     </div>
                 </div>
             </div>
@@ -134,19 +152,51 @@
                 <div class="col-md-6" style="width: 100%; height: 250px;">
                     <div class="h-100 p-5 text-bg-dark rounded-3">
                         <h2>최근 방문 기록</h2>
-                        <button class="btn btn-outline-light" type="button">Example button</button>
+                        <!--최근방문기록시작 -->
+                        <!-- <div>도착 시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;출발지 -> 도착지 걸음 심박수</div> -->
+                        <div style="color:#212529;">
+                          <p >2022-06-26 17:32 <span style ="color:darkslategrey;">낙산길20 -> 한성대</span > 0300 88</p>
+                          <p>2022-07-04 12:01 <span  style ="color:darkslategrey;">고봉로278 -> 탄현역</span > 4177 88</p>
+                          <p>2022-07-30 18:28 <span  style ="color:darkslategrey;">삼선교로 -> 맥도날드 성균관대점</span > 2617 92</p>
+                        </div>
+                        <!--최근방문기록끝 -->
+                      
                     </div>
                 </div>
                 <div class="col-md-6" style="width: 100%; height: 450px; margin-top: 20px;">
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <h2>즐겨찾기 목록</h2>
-                        <button class="btn btn-outline-secondary" type="button">Example button</button>
+                        <!-- 즐겨찾기목록시작 -->
+                        <p>
+                        <div class="col-md-8 fs-4" style ="color:darkslategrey;">우리집</div>
+                        <div>하늘마을 3단지</div>
+                        <div style="color:#6c757d;">고양시 일산동구 하늘마을1로 105</div>
+                      </p>
+                      <p>
+                        <div class="col-md-8 fs-4" style ="color:darkslategrey;">학교</div>
+                        <div>한성대학교</div>
+                        <div style="color: #6c757d;">서울특별시 성북구 삼선교로 16길 116</div>
+                      </p>
+                      <p>
+                        <div class="col-md-8 fs-4" style ="color:darkslategrey;">자주가는 맛집</div>
+                        <div>오실장강남면옥 탄현점</div>
+                        <div style="color:#6c757d;">고양시 일산서구 현중로26번길 45-2</div>
+                      </p>
+                        <!-- 즐겨찾기목록끝 -->
+                       
                     </div>
                 </div>
                 <div class="col-md-6" style="width: 100%; height: 200px; margin-top: 20px;">
                     <div class="h-100 p-5 text-bg-dark rounded-3">
-                        <h2>즐겨찾기 직접 추가하기</h2>
-                        <p>추가</p>
+                        <h2>즐겨찾기 추가</h2>
+                        <!-- 즐겨찾기추가시작 -->
+                        <form>
+                          별칭:<br>
+                          <input type="text" name="username"><br>
+                          주소<br>
+                          <input type="password" name="psw"> &nbsp;&nbsp;<button class="btn btn-outline-secondary" type="button">추가</button>
+                        </form>
+                        <!-- 즐겨찾기추가끝 -->
                     </div>
                 </div>
             </div>
