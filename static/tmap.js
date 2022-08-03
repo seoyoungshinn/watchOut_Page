@@ -446,7 +446,7 @@
         }
         let row_2_score = document.createElement('td');
         row_2_score.innerHTML = saftyparams[0]; //점수
-            row_2.appendChild(row_2_score);
+        row_2.appendChild(row_2_score);
         tbody.appendChild(row_2);
 
     }
