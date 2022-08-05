@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
     <script src="./static/tmap.js" type="text/javascript"></script>
+	<script src="./static/firebase.js" type="text/javascript"></script>
 	<script 
 	src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	<style>
@@ -46,6 +47,7 @@
 <body bgcolor="	#F0F8FF">
 	<script type = "text/javascript">
 		mqttConnection();
+		onTry();
 		function setDisplay(){
 			if($('input:radio[id=fM]').is(':checked')){
 				$('#fourMap').css('display','block');

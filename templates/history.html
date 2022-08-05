@@ -121,17 +121,17 @@
                         <h1 class="display-5 fw-bold">데이터수치화 그래프</h1>
                         <!-- 데이터수치화시작 -->
                         <p class="col-md-8 fs-4" style>경로요소/예상 발걸음 수 차이</p>
-                        <img id ="img" src="{{ url_for('static',filename = 'pie.png')}}" height="400" width="400" alt="pie">
+                        <img id ="img" src="{{ url_for('static',filename = 'image/pie.png')}}" height="400" width="400" alt="pie">
                         <p>
                           <button class="btn btn-outline-secondary" type="button" onclick="showPie()">경로 요소 보기</button>
                           <button class="btn btn-outline-secondary" type="button" onclick="showSticks()">소요시간차이보기</button>
                         </p>
                         <script>
                           function showPie() {
-                              document.getElementById("img").src = "{{ url_for('static',filename = 'pie.png')}}";
+                              document.getElementById("img").src = "{{ url_for('static',filename = 'image/pie.png')}}";
                           }
                           function showSticks() {
-                              document.getElementById("img").src = "{{ url_for('static',filename = 'stick.png')}}";
+                              document.getElementById("img").src = "{{ url_for('static',filename = 'image/stick.png')}}";
                           }
                         </script>
                         <!-- 데이터수치화끝 -->
