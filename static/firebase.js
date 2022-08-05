@@ -35,7 +35,16 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 function showDB(){
-    db.collection('Favorites').get().then((결과)=>{
-        console.log(결과);
-        })
+        var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").doc("영심이네");
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        }); 
 }
