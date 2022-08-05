@@ -34,8 +34,20 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+//login페이지에서 uid 받아오기
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+    var UID = getParameterByName('uid'); 
+    console.log(UID)
+
+
+//해당 uid의 파이어스토어에 연결
 function showDB(){
-        var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").doc("영심이네");
+        var docRef = db.collection("PersonalData").doc(UID).collection("Favorites").doc("영심이네");
 
         docRef.get().then((doc) => {
             if (doc.exists) {
