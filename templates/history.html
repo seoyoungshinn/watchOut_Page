@@ -73,9 +73,10 @@
     <link href="./static/css/carousel.css" rel="stylesheet">
     
 </head>
-<body>
+<body onload="showPie()">
     <script type = "text/javascript">
 		mqttConnection();
+    showFavorites();
 	</script>
     	<header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -201,9 +202,10 @@
                 <div class="col-md-6" style="width: 100%; height: 450px; margin-top: 20px;">
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <h2>즐겨찾기 목록</h2>
+                        <div id = "favoritesList"></div>
                         <!-- 즐겨찾기목록시작 -->
-                        <p>
-                        <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav1">우리집</div>
+                        <!-- <p>
+                        <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav1">우리집 <span style ="">3회</span></div>
                         <div style="color:#6c757d;">고양시 일산동구 하늘마을1로 105</div>
                       </p>
                       <p>
@@ -213,7 +215,7 @@
                       <p>
                         <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav3">자주가는 맛집</div>
                         <div style="color:#6c757d;">고양시 일산서구 현중로26번길 45-2</div>
-                      </p>
+                      </p> -->
                         <!-- 즐겨찾기목록끝 -->
                        
                     </div>
