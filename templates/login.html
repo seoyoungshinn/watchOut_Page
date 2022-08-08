@@ -138,7 +138,15 @@
                     console.log('로그인 성공')
                     console.log(userCredential)
                     const user = userCredential.user;
-                    window.location.href = '/bootmap'
+                    console.log(user.uid)
+                   // location.href="/경로?보낼변수명=" + 값;
+//+) 값 2개 이상 보낼때에는 location.href="/경로?보낼변수명=" + 값 + "&보낼변수명2=" + 값 ..... ;
+                    //하게되면 url에 값이 넘어가게되고, 컨트롤러단에서
+                    //request.getParameter('보낼변수명"); 
+
+                
+
+                    location.href = '/bootmap?uid='+user.uid
                     // ...
                 })
                 .catch((error) => {
@@ -146,7 +154,7 @@
                     console.log(email.value,password.value)
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    window.location.href = '/bootmap'
+                    //window.location.href = '/bootmap'
                 });
 
         })

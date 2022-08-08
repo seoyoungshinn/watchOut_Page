@@ -22,6 +22,10 @@ def boot():
 def history():
     return render_template('history.html')
 
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")
 
