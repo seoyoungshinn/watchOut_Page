@@ -1,25 +1,4 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-// 	  const firebaseConfig = {
-// 		apiKey: "AIzaSyAdfT9fZDJFN4II45NITCqBGpguzVrls5U",
-// 		authDomain: "watchout-5da32.firebaseapp.com",
-// 		databaseURL: "https://watchout-5da32-default-rtdb.firebaseio.com",
-// 		projectId: "watchout-5da32",
-// 		storageBucket: "watchout-5da32.appspot.com",
-// 		messagingSenderId: "559553548409",
-// 		appId: "1:559553548409:web:647b935251b767e69c84a8",
-// 		measurementId: "G-YTFRDPWZGD"
-// 	  };
-	
-// 	  // Initialize Firebase
-// 	  const app = initializeApp(firebaseConfig);
-
-//  const db = firebase.firestore();
-//  db.collection('Favorites').get().then((결과)=>{
-//     console.log(결과);
-// })
-
-
+/*firebase설정키*/
 const firebaseConfig = {
     apiKey: "AIzaSyAdfT9fZDJFN4II45NITCqBGpguzVrls5U",
     authDomain: "watchout-5da32.firebaseapp.com",
@@ -31,9 +10,14 @@ const firebaseConfig = {
     measurementId: "G-YTFRDPWZGD"
   };
 
+  /*firestore에서 db가져옴*/
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+<<<<<<< HEAD
+function showYoungShimHouse(){
+        var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").doc("영심이네");
+=======
 //login페이지에서 uid 받아오기
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -49,9 +33,11 @@ function getParameterByName(name) {
 function showDB(){
         var docRef = db.collection("PersonalData").doc(UID).collection("Favorites").doc("영심이네");
 
+>>>>>>> 7d7b5544d6f2ec30a854f4374d4ea3ec1c2dec66
         docRef.get().then((doc) => {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
+                console.log("영심이네:", doc.data());
+                console.log("주소" + doc.data().address);
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -59,4 +45,16 @@ function showDB(){
         }).catch((error) => {
             console.log("Error getting document:", error);
         }); 
+}
+
+function showAllFavorites(){
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+        });
+    });
+}
+
+function fromFavorites(){
+    
 }
