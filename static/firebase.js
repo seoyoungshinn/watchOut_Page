@@ -14,10 +14,38 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-<<<<<<< HEAD
-function showYoungShimHouse(){
-        var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").doc("영심이네");
-=======
+//Favorites
+class Favorites {
+    constructor (nickName, address, frequency,lat,lon ) {
+        this.nickName = nickName;
+        this.address = address;
+        this.frequency = frequency;
+        this.lat = lat;
+        this.lon = lon;
+    }
+    toString() {
+        return this.nickName + ', ' + this.address + ', ' + this.frequency;
+    }
+}
+
+// Firestore data converter
+var favConverter = {
+    toFirestore: function(fav) {
+        return {
+            address: fav.name,
+           frequency: fav.frequency,
+            lat: fav.lat,
+            lon:fav.lon
+            };
+    },
+    fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        return new Favorites(data.id,data.address, data.frequency, data.lat,data.lon);
+    }
+};
+
+
+
 //login페이지에서 uid 받아오기
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -32,8 +60,6 @@ function getParameterByName(name) {
 //해당 uid의 파이어스토어에 연결
 function showDB(){
         var docRef = db.collection("PersonalData").doc(UID).collection("Favorites").doc("영심이네");
-
->>>>>>> 7d7b5544d6f2ec30a854f4374d4ea3ec1c2dec66
         docRef.get().then((doc) => {
             if (doc.exists) {
                 console.log("영심이네:", doc.data());
@@ -48,13 +74,25 @@ function showDB(){
 }
 
 function showAllFavorites(){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites").get().then((querySnapshot) => {
+    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
+    
+    docRef.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
         });
     });
 }
 
-function fromFavorites(){
-    
-}
+ function fromFavorites(){
+    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
+   docRef.withConverter(favConverter).get().then((doc) => {
+    if (doc.exists){
+      var fav = doc.data();
+      console.log(fav.toString());
+    } else {
+      console.log("No such document!");
+    }}).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+ }
