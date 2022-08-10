@@ -50,12 +50,12 @@
                 case "saftyScore":
                     var split = msg.payloadString.split("!");
                     var safty = []; 
+                    drawWeightTable();
                     for(var i = 0 ; i<split.length ; i++){
                         var s1 = split[i].split("(");
                         var s2 = s1[1].split(")");
                         safty[i] = s2[0];
-                        drawTurnTables(i,safty[i].split(",")); //4개 표
-                        drawRoadTables(i,safty[i].split(","));
+                        drawDataTables(i,safty[i].split(",")); //4개 표
                     }
                     break;
 
@@ -326,6 +326,95 @@
     }
 
     //테이블그리는 함수
+    function drawWeightTable(){ //가중치부분
+
+        let table = document.createElement('table');
+        table.setAttribute(
+            'style',
+            'background-color:#fff;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal; '
+        );
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = "weight";
+        //db에서 가중치 값 받아와서 넣기
+
+        for(var i = 1 ; i < 10 ; i++){
+            let row_1_data =  document.createElement('th');
+            row_1_data.innerHTML = saftyparams[i];
+            row_1.appendChild(row_1_data);
+        }
+        thead.appendChild(row_1);
+        
+        let row_2 = document.createElement('tr');
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "type";
+        row_2.appendChild(row_2_data_1);
+
+        let row_2_data_2 = document.createElement('td');
+        row_2_data_2.innerHTML = "분기점 개수";
+        let row_2_data_3 = document.createElement('td');
+        row_2_data_3.innerHTML = "횡단보도 개수";
+        let row_2_data_4 = document.createElement('td');
+        row_2_data_4.innerHTML = "도로타입 점수";
+        let row_2_data_5 = document.createElement('td');
+        row_2_data_5.innerHTML = "위험시설 점수";
+        let row_2_data_6 = document.createElement('td');
+        row_2_data_6.innerHTML = "총 점수";
+
+        row_2.appendChild(row_2_data_2);
+        row_2.appendChild(row_2_data_3);
+        row_2.appendChild(row_2_data_4);
+        row_2.appendChild(row_2_data_5);
+        row_2.appendChild(row_2_data_6);
+
+        tbody.appendChild(row_2);
+
+    }
+    function drawDataTables(index,saftyparams){ //값 부분
+
+        let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        document.getElementById('saftyTables').appendChild(table);
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = index+1+"번";
+        heading_1.style.color = color[index];
+
+        for(var i = 0 ; i < saftyparams.length ; i ++){
+            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        }
+
+        for(var i = 1 ; i < 10 ; i++){
+            let row_1_data =  document.createElement('th');
+            row_1_data.innerHTML = saftyparams[i];
+            row_1.appendChild(row_1_data);
+        }
+        thead.appendChild(row_1);
+
+        let row_2 = document.createElement('tr');
+        let row_2_name = document.createElement('td');
+        row_2_name.innerHTML = "특이사항";
+        row_2.appendChild(row_2_name);
+        let row_2_data = document.createElement('td');
+        row_2_data.style.columnSpan = 5;
+        row_2.appendChild(row_2_data); //특이사항 있으면 넣기
+
+        tbody.appendChild(row_2);
+
+    }
+
     function drawTurnTables(index,saftyparams){
        
         //TurnTypeTables
@@ -335,7 +424,6 @@
 
         table.appendChild(thead);
         table.appendChild(tbody);
-
 
         document.getElementById('saftyTables').appendChild(table);
         let row_1 = document.createElement('tr');
