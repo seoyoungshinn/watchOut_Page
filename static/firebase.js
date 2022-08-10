@@ -188,8 +188,6 @@ function showHistory(history){
  function getWeightfromFirebase(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
    docRef.get().then((doc) => {
-        //doc.data()
-        //ex) doc.data().crossWalk
         drawWeightTable(doc.data());
     }).catch((error) => {
         console.log("Error getting document:", error);
