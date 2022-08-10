@@ -24,6 +24,7 @@ function getParameterByName(name) {
 }
     var UID = getParameterByName('uid'); 
     console.log(UID)
+
 //History 객체
 class History {
     constructor (arrivedTime, departureTime,dpName,spName,heartRateAverage,stepNum) {
@@ -183,17 +184,78 @@ function showHistory(history){
 }
 
 
-//연습용
- function fromFavorites(){
-    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
-   docRef.withConverter(favConverter).get().then((doc) => {
-    if (doc.exists){
-      var fav = doc.data();
-      fav.setName(doc.id);
-      console.log(fav.toString());
-    } else {
-      console.log("No such document!");
-    }}).catch((error) => {
-      console.log("Error getting document:", error);
+//DB에서 가중치 가져오는 함수
+ function getWeightfromFirebase(){
+    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
+   docRef.get().then((doc) => {
+        //doc.data()
+        //ex) doc.data().crossWalk
+        drawWeightTable(doc.data());
+    }).catch((error) => {
+        console.log("Error getting document:", error);
     });
  }
+
+ function drawWeightTable(data){ //가중치부분
+
+    let table = document.createElement('table');
+        let thead = document.createElement('thead');
+        let tbody = document.createElement('tbody');
+        table.setAttribute(
+            'style',
+            'background-color:#fff;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal; '
+        );
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        document.getElementById('saftyTables').appendChild(table);
+
+        let row_1 = document.createElement('tr');
+
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = "weight";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = data.crossWalk;
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML =data.ft_car;
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = data.ft_noCar;
+        let heading_5 = document.createElement('th');
+        heading_5.innerHTML =data.score;
+        let heading_6 = document.createElement('th');
+        heading_6.innerHTML = data.tableWeight;
+
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+        row_1.appendChild(heading_5);
+        row_1.appendChild(heading_6);
+        thead.appendChild(row_1);
+
+        let row_2 = document.createElement('tr');
+
+        let row_2_data_1 = document.createElement('td');
+        row_2_data_1.innerHTML = "type";
+        let row_2_data_2 = document.createElement('td');
+        row_2_data_2.innerHTML = "분기점 개수";
+        let row_2_data_3 = document.createElement('td');
+        row_2_data_3.innerHTML = "횡단보도 개수";
+        let row_2_data_4 = document.createElement('td');
+        row_2_data_4.innerHTML = "도로타입 점수";
+        let row_2_data_5 = document.createElement('td');
+        row_2_data_5.innerHTML = "위험시설 점수";
+        let row_2_data_6 = document.createElement('td');
+        row_2_data_6.innerHTML = "총 점수";
+
+
+        row_2.appendChild(row_2_data_1);
+        row_2.appendChild(row_2_data_2);
+        row_2.appendChild(row_2_data_3);
+        row_2.appendChild(row_2_data_4);
+        row_2.appendChild(row_2_data_5);
+        row_2.appendChild(row_2_data_6);
+
+        tbody.appendChild(row_2);
+}

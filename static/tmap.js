@@ -50,12 +50,13 @@
                 case "saftyScore":
                     var split = msg.payloadString.split("!");
                     var safty = []; 
-                    drawWeightTable();
                     for(var i = 0 ; i<split.length ; i++){
                         var s1 = split[i].split("(");
                         var s2 = s1[1].split(")");
                         safty[i] = s2[0];
-                        drawDataTables(i,safty[i].split(",")); //4개 표
+                        drawTurnTables(i,safty[i].split(",")); //4개 표
+                        drawRoadTables(i,safty[i].split(","));
+                       // drawDataTables(i,safty[i].split(",")); //4개 표
                     }
                     break;
 
