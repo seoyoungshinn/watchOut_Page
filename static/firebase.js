@@ -13,6 +13,7 @@ const firebaseConfig = {
   /*firestore에서 db가져옴*/
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+var HistoryArr;
 
 //login페이지에서 uid 받아오기
 function getParameterByName(name) {
@@ -23,85 +24,66 @@ function getParameterByName(name) {
 }
     var UID = getParameterByName('uid'); 
     console.log(UID)
-
-//Favorites
-class Favorites {
-    constructor (address, frequency,lat,lon ) {
-        this.address = address;
-        this.frequency = frequency;
-        this.lat = lat;
-        this.lon = lon;
+//History 객체
+class History {
+    constructor (arrivedTime, departureTime,dpName,spName,heartRateAverage,stepNum) {
+        //this.arrivedDate = arrivedTime.substring(0,11);
+        this.arrivedTime = arrivedTime
+        this.departureTime =departureTime
+        this.dpName =dpName;
+        this.spName = spName;
+        this.heartRateAverage = heartRateAverage;
+        this.stepNum = stepNum
     }
 
-    setName(nickName){
-        this.nickName = nickName;
-    }
-    toString() {
-        return this.nickName + ', ' + this.address + ', ' + this.frequency;
+    setName(name){
+        this.name = name;
     }
 }
 
 // Firestore data converter
-var favConverter = {
-    toFirestore: function(fav) {
-        return {
-            address: fav.name,
-           frequency: fav.frequency,
-            lat: fav.lat,
-            lon:fav.lon
-            };
+var historyConverter = {
+    toFirestore: function() {
+        return {};
     },
     fromFirestore: function(snapshot, options){
         const data = snapshot.data(options);
-        return new Favorites(data.id,data.address, data.frequency, data.lat,data.lon);
+        return new History(data.arrivedTime, data.departureTime, data.dpName,data.spName,data.heartRateAverage,data.stepNum);
     }
 };
 
-//해당 uid의 파이어스토어에 연결
-function showDB(){
-        var docRef = db.collection("PersonalData").doc(UID).collection("Favorites").doc("영심이네");
-        docRef.get().then((doc) => {
-            if (doc.exists) {
-                console.log("영심이네:", doc.data());
-                console.log("주소" + doc.data().address);
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        }); 
-}
-
-function showFavorites(){
+//빈번 높은 순으로 즐겨찾기 5개 웹이 띄움
+function showFavoritesFromFirebase(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
     
     docRef.orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             let favNameDiv = document.createElement('div');
-            let favFrequencySpan = document.createElement('span');
-            let favaddressDiv = document.createElement('div');
-            let p =  document.createElement('p');
+            favNameDiv.textContent = doc.id;
             favNameDiv.setAttribute(
                 'style',
-                'color:darkslategrey; font-size: 1.5rem !important; flex: 0 0 auto;width: 66.66666667%;',
+                'color:darkslategrey; font-size: 1.5rem !important; flex: 0 0 auto;width: 66.66666667%;'
               );
+
+            let favFrequencySpan = document.createElement('span');
+            favFrequencySpan.textContent = doc.data().frequency + "회";
             favFrequencySpan.setAttribute(
                 'style',
                 'font-size: 1.0rem; color:#adb5bd; float:right;'
             )
+
+            let favaddressDiv = document.createElement('div');
+            favaddressDiv.textContent = doc.data().address;
             favaddressDiv.setAttribute(
                 'style',
                 'color:#6c757d'
             );
+
+            let p =  document.createElement('p');
             // p.setAttribute(
             //     'style',
             //     'background-color: #ced4da;'
             // )
-
-            favNameDiv.textContent = doc.id;
-            favFrequencySpan.textContent = doc.data().frequency + "회";
-            favaddressDiv.textContent = doc.data().address;
 
             let listDiv = document.getElementById('favoritesList');
             
@@ -112,6 +94,94 @@ function showFavorites(){
         });
     });
 }
+
+function makeHistoryObject(){
+    HistoryArr = [];
+
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
+    .withConverter(historyConverter)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           var history = doc.data();
+           history.setName(doc.id);
+        var a =  HistoryArr.push(history);
+           console.log(a);
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function showHistoryFromFirebase(){
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
+    .limit(3)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           showHistory(doc.data());
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function showHistory(history){
+    let backgroundDiv = document.createElement('div');
+    backgroundDiv.setAttribute(
+        'style',
+        'padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;',
+      );
+
+    let firstDiv = document.createElement('div');
+    let dateSpan = document.createElement('span');
+    dateSpan.textContent = history.arrivedTime.substring(11,0);
+    dateSpan.setAttribute(
+        'style',
+        'display:inline-block; width:90px;'
+    );
+    let arrivedTimeSpan = document.createElement('span');
+    arrivedTimeSpan.textContent = history.arrivedTime.substring(11);
+    let startNameSpan = document.createElement('span');
+    startNameSpan.textContent = history.spName;
+    startNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey;'
+    );
+
+    firstDiv.appendChild(dateSpan);
+    firstDiv.appendChild(arrivedTimeSpan);
+    firstDiv.appendChild(startNameSpan);
+
+    let secondDiv = document.createElement('div');
+    let healthSpan = document.createElement('span');
+    healthSpan.textContent = history.stepNum+" "+ history.heartRateAverage;
+    healthSpan.setAttribute(
+        'style',
+        'display:inline-block; color:#dc3545; width:90px;'
+    );
+    let departureTimeSpan = document.createElement('span');
+    departureTimeSpan.textContent = history.departureTime.substring(11);
+    let departureNameSpan = document.createElement('span');
+    departureNameSpan.textContent = history.dpName;
+    departureNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey;'
+    );
+
+    secondDiv.appendChild(healthSpan);
+    secondDiv.appendChild(departureTimeSpan);
+    secondDiv.appendChild(departureNameSpan);
+
+    backgroundDiv.appendChild(firstDiv);
+    backgroundDiv.appendChild(secondDiv);
+
+    let listDiv = document.getElementById('historyList');
+    listDiv.appendChild(backgroundDiv);
+}
+
 
 //연습용
  function fromFavorites(){
