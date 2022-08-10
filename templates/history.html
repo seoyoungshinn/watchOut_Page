@@ -112,13 +112,13 @@
         
         <div class="container py-4" style="height: 1000px;">
 
-            <div class="row align-items-md-stretch" style="float:right; width: 700px;">
+            <div class="row align-items-md-stretch" style="float:right; width: 600px;">
                 <div class="p-5 mb-4 bg-light rounded-3" style="height:700px;">
-                    <div class="container-fluid py-5">
+                    <div class="container-fluid" style="margin-top:1.0rem; margin-bottom:1.5rem;">
                         <h1 class="display-5 fw-bold">데이터수치화 그래프</h1>
                         <!-- 데이터수치화시작 -->
-                        <p class="col-md-8 fs-4" style>경로요소/예상 발걸음 수 차이</p>
-                        <canvas id="show-chart" width="300" height="250" ></canvas>
+                        <p class="col-md-8 fs-4" style = "width:400px;">경로요소/예상 발걸음 수 차이</p>
+                        <canvas id="show-chart" width="400px" height="300px" ></canvas>
                         
                         <button class="btn btn-outline-secondary" type="button" onclick="showPie()">경로 요소 보기</button>
                         <button class="btn btn-outline-secondary" type="button" onclick="showSticks()">소요시간차이보기</button>
@@ -174,7 +174,7 @@
                       </div>
                 </div>
                 <div class="p-5 mb-4 bg-light rounded-3" style="height:210px;">
-                    <div class="container-fluid py-5">
+                    <div class="container-fluid margin-top:1.5rem; margin-bottom:1.5rem;">
                       <!-- 건강정보시작 -->
                       <h2>일주일간 사용자의 건강 정보</h2>
                        <p>평균 발걸음 수 : <span style="color: #dc3545;">1811걸음</span></p>
@@ -184,53 +184,33 @@
                 </div>
             </div>
 
-            <div class="row align-items-md-stretch" style="float: left; width: 400px;">
-                <div class="col-md-6" style="width: 100%; height: 250px;">
-                    <div class="h-100 p-5 text-bg-dark rounded-3">
+            <div class="row align-items-md-stretch" style="float: left; width: 500px;">
+                <div class="col-md-6" style="width: 100%; height: 400px;">
+                    <div class="h-100 p-5 rounded-3" style="background-color:#A9A9A9;">
                         <h2>최근 방문 기록</h2>
                         <!--최근방문기록시작 -->
                         <!-- <div>도착 시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;출발지 -> 도착지 걸음 심박수</div> -->
-                        <div style="color:#212529;">
-                          <p >2022-06-26 17:32 <span style ="color:darkslategrey;">낙산길20 -> 한성대</span > 0300 88</p>
-                          <p>2022-07-04 12:01 <span  style ="color:darkslategrey;">고봉로278 -> 탄현역</span > 4177 88</p>
-                          <p>2022-07-30 18:28 <span  style ="color:darkslategrey;">삼선교로 -> 맥도날드 성균관대점</span > 2617 92</p>
+                        <div style="padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;">
+                          <div>2022-06-26 17:32 <span style="font-size:13px; color:#dc3545">0300 88</span></div>
+                          <div style ="color:darkslategrey; padding: 5px;"><span style="padding: 5px;">S : 낙산길 20</span><span>E : 한성대</span></div>
                         </div>
+                        <div style="padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;">
+                          <div>2022-07-04 12:01 <span style="font-size:13px; color:#dc3545">4177 88</span></div>
+                          <div style ="color:darkslategrey; padding: 5px;"><span style="padding: 5px;">S : 고봉로 278</span><span>E : 탄현역</span></div>
+                        </div>
+                        <div style="padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;">
+                          <div>2022-07-30 18:28 <span style="font-size:13px; color:#dc3545">2617 92</span> </div>
+                          <div style ="color:darkslategrey; padding: 5px;"><span style="padding: 5px;">S : 삼선교로</span><span>E : 맥도날드 성균관대점</span></div>
+                        </div>
+                        
                         <!--최근방문기록끝 -->
                       
                     </div>
                 </div>
-                <div class="col-md-6" style="width: 100%; height: 450px; margin-top: 20px;">
+                <div class="col-md-6" style="width: 100%; height: 500px; margin-top: 20px;">
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <h2>즐겨찾기 목록</h2>
                         <div id = "favoritesList"></div>
-                        <!-- 즐겨찾기목록시작 -->
-                        <!-- <p>
-                        <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav1">우리집 <span style ="">3회</span></div>
-                        <div style="color:#6c757d;">고양시 일산동구 하늘마을1로 105</div>
-                      </p>
-                      <p>
-                        <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav2">학교</div>
-                        <div style="color: #6c757d;">서울특별시 성북구 삼선교로 16길 116</div>
-                      </p>
-                      <p>
-                        <div class="col-md-8 fs-4" style ="color:darkslategrey;" id="fav3">자주가는 맛집</div>
-                        <div style="color:#6c757d;">고양시 일산서구 현중로26번길 45-2</div>
-                      </p> -->
-                        <!-- 즐겨찾기목록끝 -->
-                       
-                    </div>
-                </div>
-                <div class="col-md-6" style="width: 100%; height: 200px; margin-top: 20px;">
-                    <div class="h-100 p-5 text-bg-dark rounded-3">
-                        <h2>즐겨찾기 추가</h2>
-                        <!-- 즐겨찾기추가시작 -->
-                        <form>
-                          별칭:<br>
-                          <input type="text" name="username"><br>
-                          주소<br>
-                          <input type="password" name="psw"> &nbsp;&nbsp;<button class="btn btn-outline-secondary" type="button">추가</button>
-                        </form>
-                        <!-- 즐겨찾기추가끝 -->
                     </div>
                 </div>
             </div>
