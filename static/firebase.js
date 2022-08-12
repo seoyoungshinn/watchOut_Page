@@ -133,7 +133,7 @@ function showHistory(history){
     let backgroundDiv = document.createElement('div');
     backgroundDiv.setAttribute(
         'style',
-        'padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;',
+        'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin:10px;',
       );
 
     let firstDiv = document.createElement('div');
@@ -145,11 +145,12 @@ function showHistory(history){
     );
     let arrivedTimeSpan = document.createElement('span');
     arrivedTimeSpan.textContent = history.arrivedTime.substring(11);
+    arrivedTimeSpan.style.fontSize = "13px";
     let startNameSpan = document.createElement('span');
-    startNameSpan.textContent = history.spName;
+    startNameSpan.textContent ="S: "+ history.spName;
     startNameSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey;'
+        'padding: 5px; color:darkslategrey; font-size:13px;'
     );
 
     firstDiv.appendChild(dateSpan);
@@ -165,11 +166,12 @@ function showHistory(history){
     );
     let departureTimeSpan = document.createElement('span');
     departureTimeSpan.textContent = history.departureTime.substring(11);
+    departureTimeSpan.style.fontSize = "13px";
     let departureNameSpan = document.createElement('span');
-    departureNameSpan.textContent = history.dpName;
+    departureNameSpan.textContent ="E: "+ history.dpName;
     departureNameSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey;'
+        'padding: 5px; color:darkslategrey;font-size:13px;'
     );
 
     secondDiv.appendChild(healthSpan);
@@ -193,7 +195,7 @@ function showHistory(history){
         console.log("Error getting document:", error);
     });
  }
-//rkwnd
+
  function drawWeightTable(data){ //가중치부분
 
     let table = document.createElement('table');
@@ -201,7 +203,7 @@ function showHistory(history){
         let tbody = document.createElement('tbody');
         table.setAttribute(
             'style',
-            'background-color:#fff;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal; '
+            'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin-left: 10px; margin-right:10px;'
         );
 
         table.appendChild(thead);
