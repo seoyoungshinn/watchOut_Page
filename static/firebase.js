@@ -53,28 +53,34 @@ var historyConverter = {
     }
 };
 
-//빈번 높은 순으로 즐겨찾기 5개 웹이 띄움
-function showFavoritesFromFirebase(){
+/*-----------즐겨찾기-----------*/ 
+function getFavoritesFromFirestore(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
     
     docRef.orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            let favNameDiv = document.createElement('div');
-            favNameDiv.textContent = doc.id;
+            showFavoritesOnWeb(doc.id , doc.data());
+        });
+    });
+}
+
+function showFavoritesOnWeb(id,data){
+    let favNameDiv = document.createElement('div');
+            favNameDiv.textContent = id;
             favNameDiv.setAttribute(
                 'style',
                 'color:darkslategrey; font-size: 1.5rem !important; flex: 0 0 auto;width: 66.66666667%;'
               );
 
             let favFrequencySpan = document.createElement('span');
-            favFrequencySpan.textContent = doc.data().frequency + "회";
+            favFrequencySpan.textContent = data.frequency + "회";
             favFrequencySpan.setAttribute(
                 'style',
                 'font-size: 1.0rem; color:#adb5bd; float:right;'
             )
 
             let favaddressDiv = document.createElement('div');
-            favaddressDiv.textContent = doc.data().address;
+            favaddressDiv.textContent = data.address;
             favaddressDiv.setAttribute(
                 'style',
                 'color:#6c757d'
@@ -92,44 +98,37 @@ function showFavoritesFromFirebase(){
             p.appendChild(favNameDiv);
             p.appendChild(favaddressDiv);
             listDiv.appendChild(p);
-        });
-    });
 }
+/*-----------기록-----------*/ 
 
-function makeHistoryObject(){
-    HistoryArr = [];
-
+function getHistoryObjectFromFirestore(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
     .withConverter(historyConverter)
     .get()
-    .then((querySnapshot) => {
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
         querySnapshot.forEach((doc) => {
-           var history = doc.data();
-           history.setName(doc.id);
-        var a =  HistoryArr.push(history);
-           console.log(a);
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
         });
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        console.log("ddd");
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        for(var i = 0 ; i < 3 ; i++){ 
+            showHistoryOnWeb(HistoryArr[i]);
+        }
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
 }
 
-function showHistoryFromFirebase(){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
-    .limit(3)
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           showHistory(doc.data());
-        });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-}
-
-function showHistory(history){
+function showHistoryOnWeb(history){
     let backgroundDiv = document.createElement('div');
     backgroundDiv.setAttribute(
         'style',
@@ -184,9 +183,45 @@ function showHistory(history){
     let listDiv = document.getElementById('historyList');
     listDiv.appendChild(backgroundDiv);
 }
+/*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
+function showTimeChartFromFirebase(){
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
+    .limit(5)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           drawStickChart();
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
 
+function drawTimeChart(){
+    new Chart(document.getElementById("showBar"), {
+        type: 'bar',
+        data: {
+          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          datasets: [
+            {
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: [2478,5267,734,784,433]
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+      });
+}
 
-//DB에서 가중치 가져오는 함수
+/*-----------가중치 테이블-----------*/ 
  function getWeightfromFirebase(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
    docRef.get().then((doc) => {
@@ -196,7 +231,7 @@ function showHistory(history){
     });
  }
 
- function drawWeightTable(data){ //가중치부분
+ function drawWeightTable(data){ 
 
     let table = document.createElement('table');
         let thead = document.createElement('thead');
