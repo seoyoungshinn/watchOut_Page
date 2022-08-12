@@ -138,50 +138,6 @@
                         <p class="col-md-8 fs-4" style = "width:400px;">경로요소/예상 발걸음 수 차이</p>
                         <canvas id="showPie" style="width:400px; height:300px;"></canvas>
                         <canvas id="showBar" style="width:400px; height:300px;"></canvas>
-                        <script>
-                        showChart();
-                        function showChart() {
-                          // new Chart(document.getElementById("showBar"), {
-                          //   type: 'bar',
-                          //   data: {
-                          //     labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                          //     datasets: [
-                          //       {
-                          //       label: "Population (millions)",
-                          //       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                          //       data: [2478,5267,734,784,433]
-                          //       }
-                          //     ]
-                          //   },
-                          //   options: {
-                          //     legend: { display: false },
-                          //     title: {
-                          //       display: true,
-                          //       text: 'Predicted world population (millions) in 2050'
-                          //     }
-                          //   }
-                          // });
-                          new Chart(document.getElementById("showPie"), {
-                              type: 'doughnut',
-                              data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [
-                                    {
-                                      label: "Population (millions)",
-                                      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                      data: [2478,5267,734,784,433]
-                                    }
-                                ]
-                              },
-                              options: {
-                                title: {
-                                  display: true,
-                                  text: 'Predicted world population (millions) in 2050'
-                                }
-                              }
-                          });
-                        }
-                        </script>
                         <!-- 데이터수치화끝 -->
                       </div>
                 </div>

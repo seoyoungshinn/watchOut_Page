@@ -115,13 +115,11 @@ function getHistoryObjectFromFirestore(){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        drawTimeChartOnWeb(HistoryArr);
-        return HistoryArr;
-    })
-    .then((HistoryArr)=>{
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(HistoryArr[i]);
         }
+        drawBarChartOnWeb(HistoryArr);
+        drawDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -190,7 +188,7 @@ function showHistoryOnWeb(history){
     listDiv.appendChild(backgroundDiv);
 }
 /*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
-function drawTimeChartOnWeb(historyArr){
+function drawBarChartOnWeb(historyArr){
     var colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"];
     var labelsArr = [];
     var dataArr = [];
@@ -222,6 +220,28 @@ function drawTimeChartOnWeb(historyArr){
           }
         }
       });
+}
+
+function drawDoughnutChartOnWeb(historyArr){
+    new Chart(document.getElementById("showPie"), {
+        type: 'doughnut',
+        data: {
+          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          datasets: [
+              {
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [2478,5267,734,784,433]
+              }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+    });
 }
 
 /*-----------가중치 테이블-----------*/ 
