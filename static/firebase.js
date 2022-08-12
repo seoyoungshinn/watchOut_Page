@@ -25,34 +25,6 @@ function getParameterByName(name) {
     var UID = getParameterByName('uid'); 
     console.log(UID)
 
-//History 객체
-class History {
-    constructor (arrivedTime, departureTime,dpName,spName,heartRateAverage,stepNum) {
-        //this.arrivedDate = arrivedTime.substring(0,11);
-        this.arrivedTime = arrivedTime
-        this.departureTime =departureTime
-        this.dpName =dpName;
-        this.spName = spName;
-        this.heartRateAverage = heartRateAverage;
-        this.stepNum = stepNum
-    }
-
-    setName(name){
-        this.name = name;
-    }
-}
-
-// Firestore data converter
-var historyConverter = {
-    toFirestore: function() {
-        return {};
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new History(data.arrivedTime, data.departureTime, data.dpName,data.spName,data.heartRateAverage,data.stepNum);
-    }
-};
-
 /*-----------즐겨찾기-----------*/ 
 function getFavoritesFromFirestore(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
@@ -100,6 +72,34 @@ function showFavoritesOnWeb(id,data){
             listDiv.appendChild(p);
 }
 /*-----------기록-----------*/ 
+//History 객체
+class History {
+    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime) {
+        this.arrivedTime =new Date(arrivedTime);
+        this.departureTime = new Date(departureTime);
+        this.arrivedName = arrivedName;
+        this.dpName =dpName;
+        this.heartRateAverage = heartRateAverage;
+        this.stepNum = stepNum;
+        this.expectedTime =expectedTime;
+    }
+
+    setName(name){
+        this.name = name;
+    }
+}
+
+// Firestore data converter
+var historyConverter = {
+    toFirestore: function() {
+        return {};
+    },
+    fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        return new History(data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
+            data.heartRateAverage,data.stepNum,data.expectedTime);
+    }
+};
 
 function getHistoryObjectFromFirestore(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
@@ -115,7 +115,7 @@ function getHistoryObjectFromFirestore(){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        console.log("ddd");
+        drawTimeChartOnWeb(HistoryArr);
         return HistoryArr;
     })
     .then((HistoryArr)=>{
@@ -137,24 +137,27 @@ function showHistoryOnWeb(history){
 
     let firstDiv = document.createElement('div');
     let dateSpan = document.createElement('span');
-    dateSpan.textContent = history.arrivedTime.substring(11,0);
+    dateSpan.textContent = history.departureTime.toLocaleDateString();
     dateSpan.setAttribute(
         'style',
         'display:inline-block; width:90px;'
     );
-    let arrivedTimeSpan = document.createElement('span');
-    arrivedTimeSpan.textContent = history.arrivedTime.substring(11);
-    arrivedTimeSpan.style.fontSize = "13px";
-    let startNameSpan = document.createElement('span');
-    startNameSpan.textContent ="S: "+ history.spName;
-    startNameSpan.setAttribute(
+    let departureTimeSpan = document.createElement('span');
+    departureTimeSpan.textContent = history.departureTime.getHours()+":"+history.departureTime.getMinutes()+":"+history.departureTime.getSeconds();
+    departureTimeSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey; font-size:13px;'
+        'display:inline-block; width:60px;'
+    );
+    let departureNameSpan = document.createElement('span');
+    departureNameSpan.textContent ="E: "+ history.dpName;
+    departureNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey;font-size:13px;font-weight:bold;'
     );
 
     firstDiv.appendChild(dateSpan);
-    firstDiv.appendChild(arrivedTimeSpan);
-    firstDiv.appendChild(startNameSpan);
+    firstDiv.appendChild(departureTimeSpan);
+    firstDiv.appendChild(departureNameSpan);
 
     let secondDiv = document.createElement('div');
     let healthSpan = document.createElement('span');
@@ -163,19 +166,22 @@ function showHistoryOnWeb(history){
         'style',
         'display:inline-block; color:#dc3545; width:90px;'
     );
-    let departureTimeSpan = document.createElement('span');
-    departureTimeSpan.textContent = history.departureTime.substring(11);
-    departureTimeSpan.style.fontSize = "13px";
-    let departureNameSpan = document.createElement('span');
-    departureNameSpan.textContent ="E: "+ history.dpName;
-    departureNameSpan.setAttribute(
+   
+    let arrivedTimeSpan = document.createElement('span');
+    arrivedTimeSpan.textContent = history.arrivedTime.getHours()+":"+history.arrivedTime.getMinutes()+":"+history.arrivedTime.getSeconds();
+    arrivedTimeSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey;font-size:13px;'
+        'display:inline-block; width:60px;'
     );
-
+    let arrivedNameSpan = document.createElement('span');
+    arrivedNameSpan.textContent ="S: "+ history.arrivedName;
+    arrivedNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey; font-size:13px; font-weight:bold;'
+    );
     secondDiv.appendChild(healthSpan);
-    secondDiv.appendChild(departureTimeSpan);
-    secondDiv.appendChild(departureNameSpan);
+    secondDiv.appendChild(arrivedTimeSpan);
+    secondDiv.appendChild(arrivedNameSpan);
 
     backgroundDiv.appendChild(firstDiv);
     backgroundDiv.appendChild(secondDiv);
@@ -184,30 +190,27 @@ function showHistoryOnWeb(history){
     listDiv.appendChild(backgroundDiv);
 }
 /*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
-function showTimeChartFromFirebase(){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
-    .limit(5)
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           drawStickChart();
-        });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-}
+function drawTimeChartOnWeb(historyArr){
+    var colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"];
+    var labelsArr = [];
+    var dataArr = [];
+    for(var i = 0 ; i < 5; i++){
+        var arrivedLabel = historyArr[i].arrivedTime.getMonth() + "월 "+historyArr[i].arrivedTime.getDate() + "일";
+        labelsArr.push(arrivedLabel);
 
-function drawTimeChart(){
+        var elapsedTime = historyArr[i].arrivedTime - historyArr[i].departureTime; //실제소요시간(ms)
+        var timeData = elapsedTime/1000 - historyArr[i].expectedTime ; //예상소요시간과차이(s)
+        dataArr.push(timeData);
+    }
     new Chart(document.getElementById("showBar"), {
         type: 'bar',
         data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          labels: labelsArr,
           datasets: [
             {
-            label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-            data: [2478,5267,734,784,433]
+            label: "예상시간-소요시간(seconds)",
+            backgroundColor: colors,
+            data: dataArr
             }
           ]
         },
@@ -215,7 +218,7 @@ function drawTimeChart(){
           legend: { display: false },
           title: {
             display: true,
-            text: 'Predicted world population (millions) in 2050'
+            text: '예상 소요 시간과 실제 소요 시간의 차이 (최근 5가지)'
           }
         }
       });
