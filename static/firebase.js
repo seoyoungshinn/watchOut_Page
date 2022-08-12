@@ -193,7 +193,7 @@ function showHistory(history){
         console.log("Error getting document:", error);
     });
  }
-
+//rkwnd
  function drawWeightTable(data){ //가중치부분
 
     let table = document.createElement('table');
