@@ -25,56 +25,34 @@ function getParameterByName(name) {
     var UID = getParameterByName('uid'); 
     console.log(UID)
 
-//History 객체
-class History {
-    constructor (arrivedTime, departureTime,dpName,spName,heartRateAverage,stepNum) {
-        //this.arrivedDate = arrivedTime.substring(0,11);
-        this.arrivedTime = arrivedTime
-        this.departureTime =departureTime
-        this.dpName =dpName;
-        this.spName = spName;
-        this.heartRateAverage = heartRateAverage;
-        this.stepNum = stepNum
-    }
-
-    setName(name){
-        this.name = name;
-    }
-}
-
-// Firestore data converter
-var historyConverter = {
-    toFirestore: function() {
-        return {};
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new History(data.arrivedTime, data.departureTime, data.dpName,data.spName,data.heartRateAverage,data.stepNum);
-    }
-};
-
-//빈번 높은 순으로 즐겨찾기 5개 웹이 띄움
-function showFavoritesFromFirebase(){
+/*-----------즐겨찾기-----------*/ 
+function getFavoritesFromFirestore(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
     
     docRef.orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            let favNameDiv = document.createElement('div');
-            favNameDiv.textContent = doc.id;
+            showFavoritesOnWeb(doc.id , doc.data());
+        });
+    });
+}
+
+function showFavoritesOnWeb(id,data){
+    let favNameDiv = document.createElement('div');
+            favNameDiv.textContent = id;
             favNameDiv.setAttribute(
                 'style',
                 'color:darkslategrey; font-size: 1.5rem !important; flex: 0 0 auto;width: 66.66666667%;'
               );
 
             let favFrequencySpan = document.createElement('span');
-            favFrequencySpan.textContent = doc.data().frequency + "회";
+            favFrequencySpan.textContent = data.frequency + "회";
             favFrequencySpan.setAttribute(
                 'style',
                 'font-size: 1.0rem; color:#adb5bd; float:right;'
             )
 
             let favaddressDiv = document.createElement('div');
-            favaddressDiv.textContent = doc.data().address;
+            favaddressDiv.textContent = data.address;
             favaddressDiv.setAttribute(
                 'style',
                 'color:#6c757d'
@@ -92,69 +70,92 @@ function showFavoritesFromFirebase(){
             p.appendChild(favNameDiv);
             p.appendChild(favaddressDiv);
             listDiv.appendChild(p);
-        });
-    });
+}
+/*-----------기록-----------*/ 
+//History 객체
+class History {
+    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime) {
+        this.arrivedTime =new Date(arrivedTime);
+        this.departureTime = new Date(departureTime);
+        this.arrivedName = arrivedName;
+        this.dpName =dpName;
+        this.heartRateAverage = heartRateAverage;
+        this.stepNum = stepNum;
+        this.expectedTime =expectedTime;
+    }
+
+    setName(name){
+        this.name = name;
+    }
 }
 
-function makeHistoryObject(){
-    HistoryArr = [];
+// Firestore data converter
+var historyConverter = {
+    toFirestore: function() {
+        return {};
+    },
+    fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        return new History(data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
+            data.heartRateAverage,data.stepNum,data.expectedTime);
+    }
+};
 
+function getHistoryObjectFromFirestore(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
     .withConverter(historyConverter)
     .get()
-    .then((querySnapshot) => {
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
         querySnapshot.forEach((doc) => {
-           var history = doc.data();
-           history.setName(doc.id);
-        var a =  HistoryArr.push(history);
-           console.log(a);
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
         });
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        for(var i = 0 ; i < 3 ; i++){ 
+            showHistoryOnWeb(HistoryArr[i]);
+        }
+        drawBarChartOnWeb(HistoryArr);
+        drawDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
 }
 
-function showHistoryFromFirebase(){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
-    .limit(3)
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           showHistory(doc.data());
-        });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-}
-
-function showHistory(history){
+function showHistoryOnWeb(history){
     let backgroundDiv = document.createElement('div');
     backgroundDiv.setAttribute(
         'style',
-        'padding: 10px; background-color: blanchedalmond; margin-bottom: 10px;',
+        'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin:10px;',
       );
 
     let firstDiv = document.createElement('div');
     let dateSpan = document.createElement('span');
-    dateSpan.textContent = history.arrivedTime.substring(11,0);
+    dateSpan.textContent = history.departureTime.toLocaleDateString();
     dateSpan.setAttribute(
         'style',
         'display:inline-block; width:90px;'
     );
-    let arrivedTimeSpan = document.createElement('span');
-    arrivedTimeSpan.textContent = history.arrivedTime.substring(11);
-    let startNameSpan = document.createElement('span');
-    startNameSpan.textContent = history.spName;
-    startNameSpan.setAttribute(
+    let departureTimeSpan = document.createElement('span');
+    departureTimeSpan.textContent = history.departureTime.getHours()+":"+history.departureTime.getMinutes()+":"+history.departureTime.getSeconds();
+    departureTimeSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey;'
+        'display:inline-block; width:60px;'
+    );
+    let departureNameSpan = document.createElement('span');
+    departureNameSpan.textContent ="E: "+ history.dpName;
+    departureNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey;font-size:13px;font-weight:bold;'
     );
 
     firstDiv.appendChild(dateSpan);
-    firstDiv.appendChild(arrivedTimeSpan);
-    firstDiv.appendChild(startNameSpan);
+    firstDiv.appendChild(departureTimeSpan);
+    firstDiv.appendChild(departureNameSpan);
 
     let secondDiv = document.createElement('div');
     let healthSpan = document.createElement('span');
@@ -163,18 +164,22 @@ function showHistory(history){
         'style',
         'display:inline-block; color:#dc3545; width:90px;'
     );
-    let departureTimeSpan = document.createElement('span');
-    departureTimeSpan.textContent = history.departureTime.substring(11);
-    let departureNameSpan = document.createElement('span');
-    departureNameSpan.textContent = history.dpName;
-    departureNameSpan.setAttribute(
+   
+    let arrivedTimeSpan = document.createElement('span');
+    arrivedTimeSpan.textContent = history.arrivedTime.getHours()+":"+history.arrivedTime.getMinutes()+":"+history.arrivedTime.getSeconds();
+    arrivedTimeSpan.setAttribute(
         'style',
-        'padding: 5px; color:darkslategrey;'
+        'display:inline-block; width:60px;'
     );
-
+    let arrivedNameSpan = document.createElement('span');
+    arrivedNameSpan.textContent ="S: "+ history.arrivedName;
+    arrivedNameSpan.setAttribute(
+        'style',
+        'padding: 5px; color:darkslategrey; font-size:13px; font-weight:bold;'
+    );
     secondDiv.appendChild(healthSpan);
-    secondDiv.appendChild(departureTimeSpan);
-    secondDiv.appendChild(departureNameSpan);
+    secondDiv.appendChild(arrivedTimeSpan);
+    secondDiv.appendChild(arrivedNameSpan);
 
     backgroundDiv.appendChild(firstDiv);
     backgroundDiv.appendChild(secondDiv);
@@ -182,9 +187,64 @@ function showHistory(history){
     let listDiv = document.getElementById('historyList');
     listDiv.appendChild(backgroundDiv);
 }
+/*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
+function drawBarChartOnWeb(historyArr){
+    var colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"];
+    var labelsArr = [];
+    var dataArr = [];
+    for(var i = 0 ; i < 5; i++){
+        var arrivedLabel = historyArr[i].arrivedTime.getMonth() + "월 "+historyArr[i].arrivedTime.getDate() + "일";
+        labelsArr.push(arrivedLabel);
 
+        var elapsedTime = historyArr[i].arrivedTime - historyArr[i].departureTime; //실제소요시간(ms)
+        var timeData = elapsedTime/1000 - historyArr[i].expectedTime ; //예상소요시간과차이(s)
+        dataArr.push(timeData);
+    }
+    new Chart(document.getElementById("showBar"), {
+        type: 'bar',
+        data: {
+          labels: labelsArr,
+          datasets: [
+            {
+            label: "예상시간-소요시간(seconds)",
+            backgroundColor: colors,
+            data: dataArr
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: '예상 소요 시간과 실제 소요 시간의 차이 (최근 5가지)'
+          }
+        }
+      });
+}
 
-//DB에서 가중치 가져오는 함수
+function drawDoughnutChartOnWeb(historyArr){
+    new Chart(document.getElementById("showPie"), {
+        type: 'doughnut',
+        data: {
+          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          datasets: [
+              {
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [2478,5267,734,784,433]
+              }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+    });
+}
+
+/*-----------가중치 테이블-----------*/ 
  function getWeightfromFirebase(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
    docRef.get().then((doc) => {
@@ -193,15 +253,19 @@ function showHistory(history){
         console.log("Error getting document:", error);
     });
  }
-//rkwnd
- function drawWeightTable(data){ //가중치부분
+
+ function drawWeightTable(data){ 
 
     let table = document.createElement('table');
         let thead = document.createElement('thead');
         let tbody = document.createElement('tbody');
         table.setAttribute(
             'style',
+<<<<<<< HEAD
             'border-collapse:collapse; border-color:#ccc; border-spacing:0;'
+=======
+            'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin-left: 10px; margin-right:10px;'
+>>>>>>> d3b2fdcea53eab33d1e8e9f354bc1d7b00604d94
         );
 
         table.appendChild(thead);
