@@ -201,7 +201,7 @@ function showHistory(history){
         let tbody = document.createElement('tbody');
         table.setAttribute(
             'style',
-            'background-color:#fff;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal; '
+            'border-collapse:collapse; border-color:#ccc; border-spacing:0;'
         );
 
         table.appendChild(thead);
@@ -214,15 +214,15 @@ function showHistory(history){
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = "weight";
         let heading_2 = document.createElement('th');
-        heading_2.innerHTML = data.crossWalk;
+        heading_2.innerHTML = data.algorithmWeight_turnPoint;
         let heading_3 = document.createElement('th');
-        heading_3.innerHTML =data.ft_car;
+        heading_3.innerHTML =data.algorithmWeight_crossWalk;
         let heading_4 = document.createElement('th');
-        heading_4.innerHTML = data.ft_noCar;
+        heading_4.innerHTML = data.algorithmWeight_facilityNoCar;
         let heading_5 = document.createElement('th');
-        heading_5.innerHTML =data.score;
+        heading_5.innerHTML =data.algorithmWeight_facilityCar;
         let heading_6 = document.createElement('th');
-        heading_6.innerHTML = data.tableWeight;
+        heading_6.innerHTML = data.score;
 
         row_1.appendChild(heading_1);
         row_1.appendChild(heading_2);
