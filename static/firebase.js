@@ -261,11 +261,7 @@ function drawDoughnutChartOnWeb(historyArr){
         let tbody = document.createElement('tbody');
         table.setAttribute(
             'style',
-<<<<<<< HEAD
             'border-collapse:collapse; border-color:#ccc; border-spacing:0;'
-=======
-            'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin-left: 10px; margin-right:10px;'
->>>>>>> d3b2fdcea53eab33d1e8e9f354bc1d7b00604d94
         );
 
         table.appendChild(thead);
