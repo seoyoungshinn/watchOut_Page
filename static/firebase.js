@@ -74,14 +74,20 @@ function showFavoritesOnWeb(id,data){
 /*-----------기록-----------*/ 
 //History 객체
 class History {
-    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime) {
+    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime,
+        expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint) {
         this.arrivedTime =new Date(arrivedTime);
         this.departureTime = new Date(departureTime);
         this.arrivedName = arrivedName;
         this.dpName =dpName;
         this.heartRateAverage = heartRateAverage;
         this.stepNum = stepNum;
-        this.expectedTime =expectedTime;
+        this.expectedTime = expectedTime;
+        this.expCrossWalk = expCrossWalk;
+        this.expStraightRoad = expStraightRoad;
+        this.expNoCar = expNoCar;
+        this.expWithCar = expWithCar;
+        this.expTurnPoint = expTurnPoint;
     }
 
     setName(name){
@@ -96,8 +102,10 @@ var historyConverter = {
     },
     fromFirestore: function(snapshot, options){
         const data = snapshot.data(options);
-        return new History(data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
-            data.heartRateAverage,data.stepNum,data.expectedTime);
+        return new History(
+            data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
+            data.heartRateAverage,data.stepNum,data.expectedTime,
+            data.expCrossWalk,data.expStraightRoad,data.expNoCar,data.expWithCar,data.expTurnPoint);
     }
 };
 
@@ -115,6 +123,9 @@ function getHistoryObjectFromFirestore(){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
+        // for(var i = 0 ; i < HistoryArr.length ; i++){
+        //     console.log(HistoryArr[i]);
+        // }
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(HistoryArr[i]);
         }
@@ -223,22 +234,43 @@ function drawBarChartOnWeb(historyArr){
 }
 
 function drawDoughnutChartOnWeb(historyArr){
+    var labels = ["횡단보도" , "직진길", "분기점", "위험요소A","위험요소B"];
+    var crossWalk = 0;
+    var straightRoad = 0;
+    var noCar = 0;
+    var withCar = 0;
+    var turnPoint = 0;
+
+    for(var i = 0 ; i < 5; i++){
+        crossWalk += historyArr[i].expCrossWalk;
+        straightRoad += historyArr[i].expStraightRoad;
+        noCar += historyArr[i].expNoCar;
+        withCar += historyArr[i].expWithCar;
+        turnPoint += historyArr[i].expTurnPoint;
+    }
+    console.log("walk: " + crossWalk);
+    console.log("st: " + straightRoad);
+    console.log("no: " + noCar);
+    console.log("with: " + withCar);
+    console.log("tP: " + turnPoint);
+
+
     new Chart(document.getElementById("showPie"), {
         type: 'doughnut',
         data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          labels: labels,
           datasets: [
               {
-                label: "Population (millions)",
+                label: "dd (millions)",
                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                data: [2478,5267,734,784,433]
+                data: [crossWalk,straightRoad,noCar,withCar,turnPoint]
               }
           ]
         },
         options: {
           title: {
             display: true,
-            text: 'Predicted world population (millions) in 2050'
+            text: '경로이탈한 위치의 타입 비율'
           }
         }
     });
