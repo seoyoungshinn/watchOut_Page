@@ -48,20 +48,21 @@
 
                 //4가지경로 점수테이블
                 case "saftyScore":
+                    drawTypeTable();
                     var split = msg.payloadString.split("!");
-                    var safty = []; 
+                    //var safty = []; 
                     for(var i = 0 ; i<split.length ; i++){
-                        var s1 = split[i].split("(");
-                        var s2 = s1[1].split(")");
-                        safty[i] = s2[0];
-                        drawTurnTables(i,safty[i].split(",")); //4개 표
-                        drawRoadTables(i,safty[i].split(","));
-                       // drawDataTables(i,safty[i].split(",")); //4개 표
+                        var safty = split[i].split(",");
+                        drawDataTables(i,safty); //4개 표
                     }
                     break;
 
+                case "ectData":
+                    document.getElementById("ect").innerHTML += msg.payloadString;
+                    break;
+
                 case "des":            
-                document.getElementById("topic").innerHTML += '목적지: ' + msg.payloadString + '</span><br/>';
+                    document.getElementById("topic").innerHTML += '목적지: ' + msg.payloadString + '</span><br/>';
                 break;
 
                 //출력되는 메시지
@@ -99,7 +100,7 @@
                         break;
                     }
 
-                   
+                    console.log(msg.payloadString);
                     var arr_lat = [];
                     var arr_lon = [];
                     var split = msg.payloadString.split("!"); 
@@ -121,6 +122,7 @@
                     var lat_res = [];
                     var lon_res = [];
 
+                    console.log(msg.payloadString);
                     var split =[];
                     split = msg.payloadString.split('/');
 
@@ -327,7 +329,7 @@
     }
 
     //테이블그리는 함수
-    function drawWeightTable(){ //가중치부분
+    function drawTypeTable(){ //대가리
 
         let table = document.createElement('table');
         table.setAttribute(
@@ -341,17 +343,6 @@
         table.appendChild(tbody);
 
         document.getElementById('saftyTables').appendChild(table);
-        let row_1 = document.createElement('tr');
-        let heading_1 = document.createElement('th');
-        heading_1.innerHTML = "weight";
-        //db에서 가중치 값 받아와서 넣기
-
-        for(var i = 1 ; i < 10 ; i++){
-            let row_1_data =  document.createElement('th');
-            row_1_data.innerHTML = saftyparams[i];
-            row_1.appendChild(row_1_data);
-        }
-        thead.appendChild(row_1);
         
         let row_2 = document.createElement('tr');
         let row_2_data_1 = document.createElement('td');
@@ -392,12 +383,13 @@
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = index+1+"번";
         heading_1.style.color = color[index];
+        row_1.append(heading_1);
 
-        for(var i = 0 ; i < saftyparams.length ; i ++){
-            saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
-        }
+        // for(var i = 0 ; i < saftyparams.length ; i ++){
+        //     saftyparams[i] = saftyparams[i].substring(saftyparams[i].indexOf("=")+1); //숫자만
+        // }
 
-        for(var i = 1 ; i < 10 ; i++){
+        for(var i = 0 ; i < saftyparams.length ; i++){
             let row_1_data =  document.createElement('th');
             row_1_data.innerHTML = saftyparams[i];
             row_1.appendChild(row_1_data);
@@ -410,6 +402,7 @@
         row_2.appendChild(row_2_name);
         let row_2_data = document.createElement('td');
         row_2_data.style.columnSpan = 5;
+        row_2_data.id = 'ect';
         row_2.appendChild(row_2_data); //특이사항 있으면 넣기
 
         tbody.appendChild(row_2);
