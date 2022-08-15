@@ -299,7 +299,7 @@ function drawDoughnutChartOnWeb(historyArr){
         table.appendChild(thead);
         table.appendChild(tbody);
 
-        document.getElementById('saftyTables').appendChild(table);
+        document.getElementById('weightTable').appendChild(table);
 
         let row_1 = document.createElement('tr');
 
