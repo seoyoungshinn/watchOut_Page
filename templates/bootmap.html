@@ -47,7 +47,7 @@
 <body bgcolor="	#F0F8FF">
 	<script type = "text/javascript">
 		mqttConnection();
-		//getWeightfromFirebase();
+		getWeightfromFirebase();
 	</script>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -156,14 +156,10 @@
 		<hr class="featurette-divider">
 
 		<div class="row featurette">
-			<div class="col-md-7">
+			<div class="col-md-7" style="width:1000px;">
 			  <h2 style="margin-bottom:15px;">Algorithm</h2>
-				<div id='doTables'></div>
-				<script>
-				  drawTables();
-				</script>
-				<!-- <div id = "saftyTables" style="float: left;"></div> 점수 테이블들
-				<div id = "weightTable" style="float: left;"></div> 가중치 테이블 -->
+				<div id = "saftyTables" style="float: left;"></div> 
+				<div id = "weightTable" style="float: right;"></div> 
 			</div>
 		</div>
 

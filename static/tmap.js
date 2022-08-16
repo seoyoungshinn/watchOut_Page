@@ -50,14 +50,11 @@
                 case "saftyScore":
                     drawTypeTable();
                     var split = msg.payloadString.split("!");
-                    for(var i = 0 ; i<split.length ; i++){
+                    for(var i = 0 ; i < split.length ; i++){
                         var safty = split[i].split(",");
+                        console.log(safty);
                         drawDataTables(i,safty); //4개 표
                     }
-                    break;
-
-                case "ectData":
-                    document.getElementById("ect").innerHTML += msg.payloadString;
                     break;
 
                 case "des":            
@@ -333,7 +330,7 @@
         let table = document.createElement('table');
         table.setAttribute(
             'style',
-            'background-color:#fff; border-style:solid; border-width:1px; color:#333; font-family:Arial, sans-serif; font-size:14px; overflow:hidden; padding:10px; word-break:normal; ',
+            'border-collapse:collapse;border-color:#ccc;border-spacing:0;'
         );
         let thead = document.createElement('thead');
         let tbody = document.createElement('tbody');
@@ -344,20 +341,48 @@
         document.getElementById('saftyTables').appendChild(table);
         
         let row_2 = document.createElement('tr');
-        let row_2_data_1 = document.createElement('td');
-        row_2_data_1.innerHTML = "type";
+        row_2.setAttribute(
+            'style',
+            'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
+        );
+        let row_2_data_1 = document.createElement('th');
+        row_2_data_1.innerHTML = "Type";
+        row_2_data_1.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top; width:7ch;'
+        );
         row_2.appendChild(row_2_data_1);
 
-        let row_2_data_2 = document.createElement('td');
+        let row_2_data_2 = document.createElement('th');
         row_2_data_2.innerHTML = "분기점 개수";
-        let row_2_data_3 = document.createElement('td');
+        row_2_data_2.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
+        let row_2_data_3 = document.createElement('th');
         row_2_data_3.innerHTML = "횡단보도 개수";
-        let row_2_data_4 = document.createElement('td');
+        row_2_data_3.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
+        let row_2_data_4 = document.createElement('th');
         row_2_data_4.innerHTML = "도로타입 점수";
-        let row_2_data_5 = document.createElement('td');
+        row_2_data_4.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
+        let row_2_data_5 = document.createElement('th');
         row_2_data_5.innerHTML = "위험시설 점수";
-        let row_2_data_6 = document.createElement('td');
+        row_2_data_5.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
+        let row_2_data_6 = document.createElement('th');
         row_2_data_6.innerHTML = "총 점수";
+        row_2_data_6.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
 
         row_2.appendChild(row_2_data_2);
         row_2.appendChild(row_2_data_3);
@@ -365,12 +390,16 @@
         row_2.appendChild(row_2_data_5);
         row_2.appendChild(row_2_data_6);
 
-        tbody.appendChild(row_2);
+        thead.appendChild(row_2);
 
     }
     function drawDataTables(index,saftyparams){ //값 부분
 
         let table = document.createElement('table');
+        table.setAttribute(
+            'style',
+            'border-collapse:collapse;border-color:#ccc;border-spacing:0;'
+        );
         let thead = document.createElement('thead');
         let tbody = document.createElement('tbody');
 
@@ -379,24 +408,61 @@
 
         document.getElementById('saftyTables').appendChild(table);
         let row_1 = document.createElement('tr');
+        row_1.setAttribute(
+            'style',
+            'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
+        );
         let heading_1 = document.createElement('th');
         heading_1.innerHTML = index+1+"번";
         heading_1.style.color = color[index];
+        heading_1.style.backgroundColor = "#f9f9f9";
+        heading_1.style.borderColor = "inherit";
+        heading_1.style.textAlign = "center";
+        heading_1.style.verticalAlign = "top";
+        // heading_1.setAttribute(
+        //     'style',
+        //     'background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:top;'
+        // );
         row_1.append(heading_1);
 
-        for(var i = 0 ; i < saftyparams.length ; i++){
+
+        for(var i = 0 ; i < 5 ; i++){
             let row_1_data =  document.createElement('th');
             row_1_data.innerHTML = saftyparams[i];
+            row_1_data.setAttribute(
+                'style',
+                'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;'
+            );
             row_1.appendChild(row_1_data);
         }
         thead.appendChild(row_1);
 
+
         let row_2 = document.createElement('tr');
+        row_2.setAttribute(
+            'style',
+            'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
+        );
         let row_2_name = document.createElement('td');
         row_2_name.innerHTML = "특이사항";
+        row_2_name.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
         row_2.appendChild(row_2_name);
         let row_2_data = document.createElement('td');
-        row_2_data.id = 'ect';
+        console.log("aa: "+ saftyparams.length);
+        if (saftyparams.length == 6){
+            row_2_data.innerHTML = saftyparams[5];
+        }
+        else {
+            row_2_data.innerHTML = "";
+        }
+        row_2_data.setAttribute(
+            'style',
+            'border-color:inherit;text-align:center;vertical-align:top;'
+        );
+        row_2_data.colSpan = 5;
         row_2.appendChild(row_2_data); //특이사항 있으면 넣기
 
         tbody.appendChild(row_2);
