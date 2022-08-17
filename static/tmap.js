@@ -349,7 +349,7 @@
         row_2_data_1.innerHTML = "Type";
         row_2_data_1.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top; width:7ch;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:8ch;'
         );
         row_2.appendChild(row_2_data_1);
 
@@ -357,31 +357,31 @@
         row_2_data_2.innerHTML = "분기점 개수";
         row_2_data_2.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
         );
         let row_2_data_3 = document.createElement('th');
         row_2_data_3.innerHTML = "횡단보도 개수";
         row_2_data_3.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
         );
         let row_2_data_4 = document.createElement('th');
         row_2_data_4.innerHTML = "도로타입 점수";
         row_2_data_4.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
         );
         let row_2_data_5 = document.createElement('th');
         row_2_data_5.innerHTML = "위험시설 점수";
         row_2_data_5.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
         );
         let row_2_data_6 = document.createElement('th');
         row_2_data_6.innerHTML = "총 점수";
         row_2_data_6.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
         );
 
         row_2.appendChild(row_2_data_2);
@@ -419,6 +419,7 @@
         heading_1.style.borderColor = "inherit";
         heading_1.style.textAlign = "center";
         heading_1.style.verticalAlign = "top";
+        heading_1.style.width = "8ch;"
         // heading_1.setAttribute(
         //     'style',
         //     'background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:top;'
@@ -431,7 +432,7 @@
             row_1_data.innerHTML = saftyparams[i];
             row_1_data.setAttribute(
                 'style',
-                'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;'
+                'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;width:10ch;'
             );
             row_1.appendChild(row_1_data);
         }

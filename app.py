@@ -24,7 +24,7 @@ def history():
 
 @app.route('/feedback')
 def feedback():
-    return render_template('feedback.html')
+    return render_template('preference.html')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")
