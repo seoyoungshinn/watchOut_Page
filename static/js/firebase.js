@@ -128,32 +128,24 @@ var weightConverter = {
     }
 };
 
-function getWeightObjectFromFirestore(){
-    console.log("getWeightObject");
+function getWeightObjectFromFirestore(command){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .withConverter(weightConverter)
   .get()
   .then((doc) => {
       var weight = doc.data();
       console.log(weight.toString());
+      return weight;
     })
-    .then((HistoryArr)=>{
-        for(var i = 0 ; i < 3 ; i++){ 
-            showHistoryOnWeb(HistoryArr[i]);
+    .then((weight)=>{
+        drawWeightTable(weight);
+        if(command == "preference"){
+           // 변수 조정
+           console.log("ddd");
         }
-        drawBarChartOnWeb(HistoryArr);
-        drawDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
       console.log("Error getting document:", error);
     });
 }
 
- function getWeightfromFirestoreAndDrawTable(){
-    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
-   docRef.get().then((doc) => {
-        drawWeightTable(doc.data());
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
- }
