@@ -26,7 +26,7 @@ function getParameterByName(name) {
     console.log(UID)
 
 /*-----------즐겨찾기-----------*/ 
-function getFavoritesFromFirestore(){
+function getFavoritesFromFirestoreAndShow(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
     
     docRef.orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
@@ -74,7 +74,7 @@ var historyConverter = {
     }
 };
 
-function getHistoryObjectFromFirestore(){
+function getHistoryObjectFromFirestoreAndShow(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
     .withConverter(historyConverter)
     .get()
@@ -100,7 +100,56 @@ function getHistoryObjectFromFirestore(){
 }
 
 /*-----------가중치-----------*/ 
- function getWeightfromFirebase(){
+
+class Weight {
+    constructor (algorithmWeight_crossWalk,algorithmWeight_facilityCar,algorithmWeight_facilityNoCar,algorithmWeight_turnPoint
+        ,score,tableWeight) {
+        this.algorithmWeight_crossWalk =algorithmWeight_crossWalk;
+        this.algorithmWeight_facilityCar = algorithmWeight_facilityCar;
+        this.algorithmWeight_facilityNoCar = algorithmWeight_facilityNoCar;
+        this.algorithmWeight_turnPoint = algorithmWeight_turnPoint;
+        this.score = score;
+        this.tableWeight = tableWeight;
+    }
+    toString(){
+        return this.score + ', ' + this.tableWeight ;
+    }
+}
+
+// Firestore data converter
+var weightConverter = {
+    toFirestore: function() {
+        return {};
+    },
+    fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        return new Weight (data.algorithmWeight_crossWalk,data.algorithmWeight_facilityCar,
+            data.algorithmWeight_facilityNoCar,data.algorithmWeight_turnPoint,data.score,data.tableWeight);
+    }
+};
+
+function getWeightObjectFromFirestore(){
+    console.log("getWeightObject");
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
+  .withConverter(weightConverter)
+  .get()
+  .then((doc) => {
+      var weight = doc.data();
+      console.log(weight.toString());
+    })
+    .then((HistoryArr)=>{
+        for(var i = 0 ; i < 3 ; i++){ 
+            showHistoryOnWeb(HistoryArr[i]);
+        }
+        drawBarChartOnWeb(HistoryArr);
+        drawDoughnutChartOnWeb(HistoryArr);
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+}
+
+ function getWeightfromFirestoreAndDrawTable(){
     var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
    docRef.get().then((doc) => {
         drawWeightTable(doc.data());

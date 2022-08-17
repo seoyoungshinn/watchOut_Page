@@ -44,7 +44,7 @@ function onMessageArrived(msg) {
 
         //4가지경로 점수테이블
         case "saftyScore":
-            getWeightfromFirebase();
+            getWeightfromFirestoreAndDrawTable();
             drawTypeTable();
             var split = msg.payloadString.split("!");
             for (var i = 0; i < split.length; i++) {
