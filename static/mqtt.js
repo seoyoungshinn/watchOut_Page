@@ -48,7 +48,6 @@ function onMessageArrived(msg) {
             var split = msg.payloadString.split("!");
             for (var i = 0; i < split.length; i++) {
                 var safty = split[i].split(",");
-                console.log(safty);
                 drawDataTables(i, safty); //4개 표
             }
             break;
@@ -92,7 +91,6 @@ function onMessageArrived(msg) {
                 break;
             }
 
-            console.log(msg.payloadString);
             var arr_lat = [];
             var arr_lon = [];
             var split = msg.payloadString.split("!");
@@ -115,7 +113,6 @@ function onMessageArrived(msg) {
             var lat_res = [];
             var lon_res = [];
 
-            console.log(msg.payloadString);
             var split = [];
             split = msg.payloadString.split('/');
 

@@ -169,13 +169,13 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
         let row_2 = document.createElement('tr');
         row_2.setAttribute(
             'style',
-            'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
+            'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:10px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let row_2_data_1 = document.createElement('th');
         row_2_data_1.innerHTML = "Type";
         row_2_data_1.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top; width:8ch;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:8ch; font-size:10px;'
         );
         row_2.appendChild(row_2_data_1);
 
@@ -183,7 +183,7 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
         row_2_data_2.innerHTML = "분기점 개수";
         row_2_data_2.setAttribute(
             'style',
-            'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+            'border-color:inherit;text-align:center;vertical-align:top; width:10ch; font-size:10px;'
         );
         let row_2_data_3 = document.createElement('th');
         row_2_data_3.innerHTML = "횡단보도 개수";
