@@ -15,3 +15,10 @@ function changeRouteScore(){
 function selectAllValuesAndReload(){
 
 }
+
+function questDanger(data) {
+    var id = document.getElementById('danger');
+    var div = document.createAttribute('div');
+    var label = document.createAttribute('label');
+
+}
