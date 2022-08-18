@@ -128,7 +128,7 @@ var weightConverter = {
     }
 };
 
-function getWeightObjectFromFirestore(command){
+function getWeightObjectFromFirestoreAndShowTable(command){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .withConverter(weightConverter)
   .get()
