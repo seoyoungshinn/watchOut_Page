@@ -95,6 +95,7 @@ function getHistoryObjectFromFirestoreAndShow(){
     .then((HistoryArr)=>{
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(HistoryArr[i]);
+            showForToFeedback(HistoryArr[i]);
         }
         drawBarChartOnWeb(HistoryArr);
         drawDoughnutChartOnWeb(HistoryArr);
