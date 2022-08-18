@@ -40,7 +40,7 @@ function getFavoritesFromFirestoreAndShow(){
 //History 객체
 class History {
     constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime,
-        expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint) {
+        expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint,hasDanger) {
         this.arrivedTime =new Date(arrivedTime);
         this.departureTime = new Date(departureTime);
         this.arrivedName = arrivedName;
@@ -53,6 +53,7 @@ class History {
         this.expNoCar = expNoCar;
         this.expWithCar = expWithCar;
         this.expTurnPoint = expTurnPoint;
+        this.hasDanger = hasDanger;
     }
 
     setName(name){
@@ -70,7 +71,8 @@ var historyConverter = {
         return new History(
             data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
             data.heartRateAverage,data.stepNum,data.expectedTime,
-            data.expCrossWalk,data.expStraightRoad,data.expNoCar,data.expWithCar,data.expTurnPoint);
+            data.expCrossWalk,data.expStraightRoad,data.expNoCar,data.expWithCar,data.expTurnPoint,
+            data.hasDanger);
     }
 };
 
@@ -118,8 +120,15 @@ class Weight {
 
 // Firestore data converter
 var weightConverter = {
-    toFirestore: function() {
-        return {};
+    toFirestore: function(weight ) {
+        return {
+            algorithmWeight_crossWalk : weight.algorithmWeight_crossWalk,
+            algorithmWeight_facilityCar : weight.algorithmWeight_facilityCar,
+            algorithmWeight_facilityNoCar : weight.algorithmWeight_facilityNoCar,
+            algorithmWeight_turnPoint : weight.algorithmWeight_turnPoint,
+            score : weight.score,
+            tableWeight : weight.tableWeight
+        };
     },
     fromFirestore: function(snapshot, options){
         const data = snapshot.data(options);
@@ -147,5 +156,12 @@ function getWeightObjectFromFirestoreAndShowTable(command){
     .catch((error) => {
       console.log("Error getting document:", error);
     });
+}
+
+function changeWeightAndSaveToFirestore(newWeight){
+    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
+  .withConverter(weightConverter)
+  .set(newWeight);
+  //.set(new City("Los Angeles", "CA", "USA"));
 }
 
