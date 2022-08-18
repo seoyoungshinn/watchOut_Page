@@ -92,7 +92,7 @@
     <link href="./static/css/carousel.css" rel="stylesheet">
     <link href="./static/css/form-validation.css" rel="stylesheet">
   </head>
-  <body class="bg-light">
+  <body class="bg-light" onload="changeRouteScore()">
     <script type = "text/javascript">
     getWeightObjectFromFirestoreAndShowTable("preference");
 	</script>
@@ -147,7 +147,7 @@
                 <label for="country" class="form-label">Q1</label>
                 <span class="question">이용하신 경로에 대해 얼마나 만족하십니까?</span>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 <label for="state" class="form-label">A1</label>
                 <select class="form-select" id="a1" onchange="changeRouteScore()">
                   <option value="1">1</option>
@@ -159,7 +159,7 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-                  <option value="10">10</option>
+                  <option value="10" selected>10</option>
                 </select>
             </div>
           
