@@ -44,7 +44,7 @@ function onMessageArrived(msg) {
 
         //4가지경로 점수테이블
         case "saftyScore":
-            getWeightfromFirestoreAndDrawTable("bootmap");
+            getWeightObjectFromFirestoreAndShowTable("mqtt");
             drawTypeTable();
             var split = msg.payloadString.split("!");
             for (var i = 0; i < split.length; i++) {
@@ -74,9 +74,12 @@ function onMessageArrived(msg) {
                 var fMap = document.getElementById("fourMap");
                 var rMap = document.getElementById("resMap");
                 var sTables = document.getElementById("saftyTables");
+                var wTables = document.getElementById("weightTable");
+
                 fMap.innerHTML = '';
                 rMap.innerHTML = '';
                 sTables.innerHTML = '';
+                wTables.innerHTML = '';
 
                 break;
             }
