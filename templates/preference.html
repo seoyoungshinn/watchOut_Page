@@ -142,115 +142,63 @@
         <h4 class="mb-3">Question</h4>
         <form class="needs-validation" novalidate>
           <div class="row g-3">
-            <div class="col-sm-6">
+            <div class="col-lg-8">
                 <label for="country" class="form-label">Q1</label>
-                <span class="question" id="q1">이번 경로가 마음에 듭니까?</span>
+                <span class="question" id="q1">이용하신 경로에 대해 얼마나 만족하십니까?</span>
             </div>
             <div class="col-md-4">
                 <label for="state" class="form-label">A1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
+                <select class="form-select" id="A1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
             </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q1-1</label>
-                <span class="question" id="q1">다음에도 이용하시겠습니까?</span>
+            <div class="col-lg-8">
+                <label for="country" class="form-label">Q2</label>
+                <span class="question" id="q2">경로 안내에 있어 전반적인 도로상태와 시설물개수 중 더 중요한 것은 무엇입니까?</span>
             </div>
             <div class="col-md-4">
-                <label for="state" class="form-label">A1-1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
+                <label for="state" class="form-label">A2</label>
+                <select class="form-select" id="A2">
+                  <option value="keep">유지</option>
+                  <option value="road">도로</option>
+                  <option value="danger">시설물</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
             </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q1-2</label>
-                <span class="question" id="q1">분기점, 엘베, 횡단보도의 개수가 너무 많았습니까?</span>
+            <div class="col-lg-8">
+                <label for="country" class="form-label">Q3</label>
+                <span class="question" id="q3">직진우선길과 최단거리우선중 어떤 경로를 선호하십니까?</span>
             </div>
             <div class="col-md-4">
-                <label for="state" class="form-label">A1-2</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
+                <label for="state" class="form-label">A3</label>
+                <select class="form-select" id="A3">
+                  <option value="keep">유지</option>
+                  <option value="stright">직진우선</option>
+                  <option value="short">최단거리</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
             </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q2-1</label>
-                <span class="question" id="q1">분기점, 엘베, 횡단보도 중 어떤 것의 갯수가 너무 많았습니까?</span>
+            <div class="col-lg-8">
+                <label for="country" class="form-label">Q4</label>
+                <span class="question" id="q4">이용하신 경로에는 (시설물)이 있었습니다. 향후 (시설물)이 최소화된 길을 안내받으시려면 “최소화”를 선택해주세요.</span>
             </div>
             <div class="col-md-4">
-                <label for="state" class="form-label">A2-1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>분기점</option>
-                  <option>엘레베이터</option>
-                  <option>횡단보도</option>
+                <label for="state" class="form-label">A4</label>
+                <select class="form-select" id="A4">
+                  <option value="keep">유지</option>
+                  <option value="minize">최소화</option>
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q3-1</label>
-                <span class="question" id="q1">교량 , 터널, 고가도로의 개수가 너무 많았습니까?</span>
-            </div>
-            <div class="col-md-4">
-                <label for="state" class="form-label">A3-1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q4-1</label>
-                <span class="question" id="q1">육교, 지하보도, 계단의 개수가 너무 많았습니까?</span>
-            </div>
-            <div class="col-md-4">
-                <label for="state" class="form-label">A4-1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <label for="country" class="form-label">Q5-1</label>
-                <span class="question" id="q1">도로타입이 마음에 들지 않습니까?</span>
-            </div>
-            <div class="col-md-4">
-                <label for="state" class="form-label">A5-1</label>
-                <select class="form-select" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>네</option>
-                  <option>아니오</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
             </div>
           </div>
           <hr class="my-4">
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" id="update">Continue to checkout</button>
         </form>
       </div>
     </div>
