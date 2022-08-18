@@ -16,9 +16,29 @@ function selectAllValuesAndReload(){
 
 }
 
-function questDanger(data) {
+function checkDanger(data) {
     var id = document.getElementById('danger');
-    var div = document.createAttribute('div');
-    var label = document.createAttribute('label');
+    //data.danger = null  <-얘가 null이면 하면안됨
+    var i = 0;
+
+    //받았다고 치고 
+    //횡단보도 = crossWalk , dangerA = 엘베-육교-지하보도-계단, dangerB = 교량-터널-고가도로-대형시설통로
+    if(data.crossWalk != null){
+        i++;
+        questDanger(i,crossWalk,data.crossWalk)
+    }
+    if(data.dangerA != null){
+        var d = data.dangerA;
+        if(d/1000 != 0) {
+            i++;
+            questDanger(i,elevator,d/1000);
+        }
+        else {
+            
+        }
+    }
+
+}
+function questDanger(i,danger,num) {
 
 }
