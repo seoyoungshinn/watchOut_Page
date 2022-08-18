@@ -79,7 +79,7 @@ var historyConverter = {
     }
 };
 
-function getHistoryObjectFromFirestoreAndShow(){
+function getHistoryObjectFromFirestoreAndShow(command){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
     .withConverter(historyConverter)
     .get()
@@ -93,9 +93,15 @@ function getHistoryObjectFromFirestoreAndShow(){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
+        if(command == "feed"){
+            //피드백페이지에서할일
+        }
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(HistoryArr[i]);
-            showForToFeedback(HistoryArr[i]);
+            showForFeedback(i+1,HistoryArr[i]);
         }
         drawBarChartOnWeb(HistoryArr);
         drawDoughnutChartOnWeb(HistoryArr);

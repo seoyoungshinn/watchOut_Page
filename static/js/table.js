@@ -67,6 +67,7 @@
     thead.appendChild(row_2);
 
 }
+
 function drawDataTables(index,saftyparams){ //값 부분
 
     let table = document.createElement('table');

@@ -56,7 +56,7 @@ function showHistoryOnWeb(history){
         'display:inline-block; width:60px;'
     );
     let departureNameSpan = document.createElement('span');
-    departureNameSpan.textContent ="E: "+ history.dpName;
+    departureNameSpan.textContent ="S: "+ history.dpName;
     departureNameSpan.setAttribute(
         'style',
         'padding: 5px; color:darkslategrey;font-size:13px;font-weight:bold;'
@@ -81,7 +81,7 @@ function showHistoryOnWeb(history){
         'display:inline-block; width:60px;'
     );
     let arrivedNameSpan = document.createElement('span');
-    arrivedNameSpan.textContent ="S: "+ history.arrivedName;
+    arrivedNameSpan.textContent ="E: "+ history.arrivedName;
     arrivedNameSpan.setAttribute(
         'style',
         'padding: 5px; color:darkslategrey; font-size:13px; font-weight:bold;'
@@ -95,4 +95,16 @@ function showHistoryOnWeb(history){
 
     let listDiv = document.getElementById('historyList');
     listDiv.appendChild(backgroundDiv);
+}
+
+function showForFeedback(index, history){
+    var dateTagName = "historyTofeedback-date-" + index; //날짜
+    console.log(dateTagName);
+    var dateDiv = document.getElementById(dateTagName);
+    dateDiv.textContent = history.departureTime.toLocaleDateString();
+
+    var desTagName = "historyTofeedback-des-" + index;
+    var desDiv = document.getElementById(desTagName);
+    desDiv.textContent = history.dpName + " -> " + history.arrivedName;
+
 }
