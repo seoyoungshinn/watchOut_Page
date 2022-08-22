@@ -19,7 +19,6 @@ function checkDanger(history){
         var questionDiv = document.getElementById('weightQ');
        for(var i = 0 ; i < dangerAarr.length ; i++){
             if(dangerAarr[i] != "0"){
-                console.log(dangerAarr[i]);
                 questionDiv.appendChild(makeQuestionDiv(i));
                 questionDiv.appendChild(makeAnswerDiv(i));
             } 
