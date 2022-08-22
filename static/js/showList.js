@@ -111,23 +111,8 @@ function showForFeedback(index, history){
     recentHistoryArr.push(history.name);
 }
 
-function getSelectedHistoryNum(url, index){ //숫자인자로 넘겨주면 배ㅕ열의 이름 return
+function getSelectedHistoryNum(index){ //숫자인자로 넘겨주면 배ㅕ열의 이름 return
 
-    var name = recentHistoryArr[index].name;
-    var key = "num";
+    return recentHistoryArr[index].name;
 
-    var form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('target', '_blank');
-    form.setAttribute('action', url);
-    document.charset = "UTF-8";
-
-    var hiddenField = document.createElement('input');
-    hiddenField.setAttribute('type', 'hidden');      
-    hiddenField.setAttribute('name', key);
-    hiddenField.setAttribute('value', name);
-    form.appendChild(hiddenField);
-
-    document.body.appendChild(form);
-    form.submit();
 }
