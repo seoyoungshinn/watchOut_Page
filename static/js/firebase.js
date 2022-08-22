@@ -155,14 +155,13 @@ function getWeightObjectFromFirestoreAndShowTable(command){
   .get()
   .then((doc) => {
       var weight = doc.data();
-      console.log(weight.toString());
       return weight;
     })
     .then((weight)=>{
         drawWeightTable(weight);
         if(command == "preference"){
            // 변수 조정
-           console.log("ddd");
+           
         }
     })
     .catch((error) => {
