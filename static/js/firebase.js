@@ -93,18 +93,20 @@ function getHistoryObjectFromFirestoreAndShow(command){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        if(command == "feed"){
-            //피드백페이지에서할일
+        if(command == "preference"){
+            checkDanger(HistoryArr[2]);
         }
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        for(var i = 0 ; i < 3 ; i++){ 
-            showHistoryOnWeb(HistoryArr[i]);
-            showForFeedback(i+1,HistoryArr[i]);
+        if(command == "history"){
+            for(var i = 0 ; i < 3 ; i++){ 
+                showHistoryOnWeb(HistoryArr[i]);
+                showForFeedback(i+1,HistoryArr[i]);
+            }
+            drawBarChartOnWeb(HistoryArr);
+            drawDoughnutChartOnWeb(HistoryArr);
         }
-        drawBarChartOnWeb(HistoryArr);
-        drawDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
