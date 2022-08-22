@@ -110,9 +110,3 @@ function showForFeedback(index, history){
 
     recentHistoryArr.push(history.name);
 }
-
-function getSelectedHistoryNum(index){ //숫자인자로 넘겨주면 배ㅕ열의 이름 return
-
-    return recentHistoryArr[index].name;
-
-}
