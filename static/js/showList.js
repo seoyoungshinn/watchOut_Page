@@ -1,3 +1,4 @@
+var recentHistoryArr = []; //선호도조사로 넘길 변수
 
 function showFavoritesOnWeb(id,data){
     let favNameDiv = document.createElement('div');
@@ -99,7 +100,7 @@ function showHistoryOnWeb(history){
 
 function showForFeedback(index, history){
     var dateTagName = "historyTofeedback-date-" + index; //날짜
-    console.log(dateTagName);
+    
     var dateDiv = document.getElementById(dateTagName);
     dateDiv.textContent = history.departureTime.toLocaleDateString();
 
@@ -107,4 +108,9 @@ function showForFeedback(index, history){
     var desDiv = document.getElementById(desTagName);
     desDiv.textContent = history.dpName + " -> " + history.arrivedName;
 
+    recentHistoryArr.push(history.name);
+}
+
+function getSelectedHistoryNum(index){ //숫자인자로 넘겨주면 배ㅕ열의 이름 return
+    return recentHistoryArr[index].name;
 }
