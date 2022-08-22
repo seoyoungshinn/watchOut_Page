@@ -95,6 +95,7 @@
   <body class="bg-light" onload="changeRouteScore()">
     <script type = "text/javascript">
     getWeightObjectFromFirestoreAndShowTable("preference");
+    getHistoryObjectFromFirestoreAndShow("preference");
 	</script>
     
     <header>
@@ -179,7 +180,7 @@
                 </select>
               </div>
               <div class="col-lg-8">
-                <label for="country" class="form-label">Q3</label>
+                <label class="form-label">Q3</label>
                 <span class="question">직진우선길과 최단거리우선중 어떤 경로를 선호하십니까?</span>
               </div>
               <div class="col-md-4">
@@ -191,7 +192,7 @@
                 </select>
               </div>
               <div id="danger"></div>
-              <div class="col-lg-8">
+              <!-- <div class="col-lg-8">
                 <label for="country" class="form-label">Q4</label>
                 <span class="question">이용하신 경로에는 (시설물)이 있었습니다. 향후 (시설물)이 최소화된 길을 안내받으시려면 “최소화”를 선택해주세요.</span>
               </div>
@@ -201,7 +202,7 @@
                   <option value="keep">유지</option>
                   <option value="minize">최소화</option>
                 </select>
-              </div>
+              </div> -->
             </div>
                 <!-- 여기까지 6미만질문 -->
             <hr class="my-4">
