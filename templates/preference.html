@@ -94,14 +94,15 @@
   </head>
   <body class="bg-light" onload="changeRouteScore()">
     <script type = "text/javascript">
-    getWeightObjectFromFirestoreAndShowTable("preference");
-    getHistoryObjectFromFirestoreAndShow("preference");
-
     const url = window.location.href;
     const urlStr = new URL(url);
     const urlParam = urlStr.searchParams;
     const num = urlParam.get('num');
     console.log(num);
+
+    getWeightObjectFromFirestoreAndShowTable("preference");
+    getHistoryObjectFromFirestoreAndShow("preference"+num);
+
     
 	</script>
     
@@ -134,7 +135,7 @@
   <main>
     <div class="py-5 text-center">
       <h2 style="font:bold;">Feedback</h2>
-      <p>여기에 경로 써주세야</p>
+      <p class="lead" id="routename"></p>
       <p class="lead">이용하신 경로에 대해 피드백을 남겨주세요.</p>
     </div>
 

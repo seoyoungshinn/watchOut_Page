@@ -93,7 +93,16 @@ function getHistoryObjectFromFirestoreAndShow(command){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        if(command == "preference"){
+        if(command == "preference0"){
+            routeName(HistoryArr[0]);
+            checkDanger(HistoryArr[0]);
+        }
+        else if(command == "preference1"){
+            routeName(HistoryArr[1]);
+            checkDanger(HistoryArr[1]);
+        }
+        else if(command == "preference2"){
+            routeName(HistoryArr[2]);
             checkDanger(HistoryArr[2]);
         }
         return HistoryArr;
