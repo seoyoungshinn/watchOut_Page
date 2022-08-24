@@ -93,6 +93,7 @@ function getHistoryObjectFromFirestoreAndShow(command){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
+        var id = document.getElementById('a1');
         if(command == "preference0"){
             routeName(HistoryArr[0]);
             checkDanger(HistoryArr[0]);

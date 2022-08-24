@@ -124,3 +124,8 @@ function routeName(history) {
     var dname = history.dpName;
     id.innerHTML = dname+"->"+aname;
 }
+
+function justForFeedback() {
+    var id = document.getElementById('q1');
+    id.innerHTML = "gd";
+}

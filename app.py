@@ -17,6 +17,10 @@ def history():
 
 @app.route('/feedback')
 def feedback():
+    return render_template('feedback.html')
+
+@app.route('/preference')
+def preference():
     return render_template('preference.html')
     
 if __name__ == '__main__':
