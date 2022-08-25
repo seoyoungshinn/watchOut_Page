@@ -98,11 +98,9 @@
     const urlStr = new URL(url);
     const urlParam = urlStr.searchParams;
     const num = urlParam.get('num');
-    console.log(num);
-
-    getWeightObjectFromFirestoreAndShowTable("preference");
-    getHistoryObjectFromFirestoreAndShow("preference"+num);
     
+    getWeightObjectFromFirestoreAndDoSomething("table");
+    getHistoryObjectFromFirestoreAndShow("preference"+num);
 	</script>
     
     <header>
@@ -156,7 +154,7 @@
             </div>
             <div class="col-md-4">
                 <label for="state" class="form-label">A1</label>
-                <select class="form-select" id="a1" onchange="changeRouteScore()">
+                <select class="form-select" id="answer1" onchange="changeRouteScore()">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -179,7 +177,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A2</label>
-                <select class="form-select" id="a2">
+                <select class="form-select" id="answer2">
                   <option value="keep">유지</option>
                   <option value="road">도로</option>
                   <option value="danger">시설물</option>
@@ -191,7 +189,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A3</label>
-                <select class="form-select" id="a3">
+                <select class="form-select" id="answer3">
                   <option value="keep">유지</option>
                   <option value="stright">직진우선</option>
                   <option value="short">최단거리</option>
@@ -201,9 +199,9 @@
             </div>
                 <!-- 여기까지 6미만질문 -->
             <hr class="my-4">
-            <button class="w-100 btn btn-primary btn-lg" id="update">Continue to checkout</button>
           </div>
         </form>
+        <button class="w-100 btn btn-primary btn-lg" id="update" onclick="getAllValues()">Continue to checkout</button>
       </div>
     </div>
   </main>

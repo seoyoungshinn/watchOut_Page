@@ -95,16 +95,16 @@ function getHistoryObjectFromFirestoreAndShow(command){
     .then((HistoryArr)=>{
         var id = document.getElementById('a1');
         if(command == "preference0"){
-            routeName(HistoryArr[0]);
-            checkDanger(HistoryArr[0]);
+            showRouteName(HistoryArr[0]);
+            checkDangerAndShowQuestion(HistoryArr[0]);
         }
         else if(command == "preference1"){
-            routeName(HistoryArr[1]);
-            checkDanger(HistoryArr[1]);
+            showRouteName(HistoryArr[1]);
+            checkDangerAndShowQuestion(HistoryArr[1]);
         }
         else if(command == "preference2"){
-            routeName(HistoryArr[2]);
-            checkDanger(HistoryArr[2]);
+            showRouteName(HistoryArr[2]);
+            checkDangerAndShowQuestion(HistoryArr[2]);
         }
         return HistoryArr;
     })
@@ -133,10 +133,7 @@ class Weight {
         this.algorithmWeight_facilityNoCar = algorithmWeight_facilityNoCar;
         this.algorithmWeight_turnPoint = algorithmWeight_turnPoint;
         this.score = score;
-        this.tableWeight = tableWeight;
-    }
-    toString(){
-        return this.score + ', ' + this.tableWeight ;
+        this.tableWeight = parseFloat(tableWeight);
     }
 }
 
@@ -159,7 +156,7 @@ var weightConverter = {
     }
 };
 
-function getWeightObjectFromFirestoreAndShowTable(command){
+function getWeightObjectFromFirestoreAndDoSomething(command){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .withConverter(weightConverter)
   .get()
@@ -168,10 +165,21 @@ function getWeightObjectFromFirestoreAndShowTable(command){
       return weight;
     })
     .then((weight)=>{
-        drawWeightTable(weight);
-        if(command == "preference"){
-           // 변수 조정
-           
+        if(command == "table"){
+            drawWeightTable(weight);
+        }
+        else{
+            var div = document.getElementById('weightTable');
+            div.innerHTML = '';
+            drawWeightTable(weight);
+            // console.log("------기존----");
+            // console.log(weight);
+            // console.log("----설문------");
+            // console.log(command);
+            var changedWeight = addWeight(weight,command);
+            // console.log("----바뀐------");
+            // console.log(changedWeight);
+            saveWeightToFirestore(changedWeight);
         }
     })
     .catch((error) => {
@@ -179,10 +187,28 @@ function getWeightObjectFromFirestoreAndShowTable(command){
     });
 }
 
-function changeWeightAndSaveToFirestore(newWeight){
+function addWeight(w1,w2){
+    w1.algorithmWeight_crossWalk += w2.algorithmWeight_crossWalk;
+    w1.algorithmWeight_facilityCar += w2.algorithmWeight_facilityCar;
+    w1.algorithmWeight_facilityNoCar += w2.algorithmWeight_facilityNoCar;
+    w1.algorithmWeight_turnPoint += w2.algorithmWeight_turnPoint;
+    w1.tableWeight += w2.tableWeight;
+
+    if(w1.tableWeight > 1){ //0~1
+        w1.tableWeight = 1;
+        console.log("1로만듬");
+    }
+    else if(w1.tableWeight < 1){
+        w1.tableWeight = 0;
+        console.log("0로만듬");
+    }
+
+    return w1;
+}
+
+function saveWeightToFirestore(newWeight){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .withConverter(weightConverter)
   .set(newWeight);
-  //.set(new City("Los Angeles", "CA", "USA"));
 }
 
