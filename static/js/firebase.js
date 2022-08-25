@@ -165,23 +165,22 @@ function getWeightObjectFromFirestoreAndDoSomething(command){
       return weight;
     })
     .then((weight)=>{
-        //if(command == "table"){
+        if(command == "table"){
+            drawWeightTable(weight);
+        }
+        else{
             var div = document.getElementById('weightTable');
             div.innerHTML = '';
             drawWeightTable(weight);
-        //}
-        //else{
             // console.log("------기존----");
             // console.log(weight);
             // console.log("----설문------");
             // console.log(command);
-            
-            
             var changedWeight = addWeight(weight,command);
             // console.log("----바뀐------");
             // console.log(changedWeight);
             saveWeightToFirestore(changedWeight);
-        //}
+        }
     })
     .catch((error) => {
       console.log("Error getting document:", error);
