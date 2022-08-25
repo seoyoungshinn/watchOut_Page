@@ -149,27 +149,6 @@ function addWeightToFirestore(table,turn,c,a,b){
     });
 }
 
-
-
-function addWeight(w1,w2){
-    w1.algorithmWeight_crossWalk += w2.algorithmWeight_crossWalk;
-    w1.algorithmWeight_facilityCar += w2.algorithmWeight_facilityCar;
-    w1.algorithmWeight_facilityNoCar += w2.algorithmWeight_facilityNoCar;
-    w1.algorithmWeight_turnPoint += w2.algorithmWeight_turnPoint;
-    w1.tableWeight += w2.tableWeight;
-
-    if(w1.tableWeight > 1){ //0~1
-        w1.tableWeight = 1;
-        console.log("1로만듬");
-    }
-    else if(w1.tableWeight < 1){
-        w1.tableWeight = 0;
-        console.log("0로만듬");
-    }
-
-    return w1;
-}
-
 function saveWeightToFirestore(newWeight){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .withConverter(weightConverter)
