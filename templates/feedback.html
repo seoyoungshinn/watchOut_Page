@@ -92,13 +92,13 @@
     <link href="./static/css/carousel.css" rel="stylesheet">
     <link href="./static/css/form-validation.css" rel="stylesheet">
   </head>
-  <body class="bg-light" onload="changeRouteScore()">
+  <body class="bg-light" onload="changeRouteScore()" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);">
     <script type = "text/javascript">
     getWeightObjectFromFirestoreAndShowTable("preference");
 	</script>
     
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #FFC091;">
             <div class="container-fluid">
               <a class="navbar-brand">Watch Out!</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,13 +116,13 @@
                     <a class="nav-link active" href="/feedback">Feedback</a>
                   </li>
                 </ul>
-                <a><div id = "state" style="color:#5a5a5a;">아직</div></a>
+                <a><div id = "state">아직</div></a>
               </div>
             </div>
         </nav>
     </header>
 
-<div class="container">
+<div class="container" style="background-color: #F5D08A; padding:1rem;">
   <main>
     <div class="py-5 text-center">
       <h2 style="font:bold;">Feedback</h2>
