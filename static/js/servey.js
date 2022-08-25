@@ -172,7 +172,25 @@ function getAllValues(){
         }
         i++;
     }
+    addWeightToFirestore(turnType,tableWeight,crossWalk,dangerA,dangerB);
+}
 
-    var weight =  new Weight(crossWalk , dangerA, dangerB,turnType, 0,tableWeight);
-    getWeightObjectFromFirestoreAndDoSomething(weight);
+//feedback.html
+function changeWeightPriority(){
+    var answer2 = document.getElementById('answer2');
+    //유지면 냅두고
+    if(answer2.options[answer2.selectedIndex].value == "road" ){ //아니면 바꿈
+        tableWeight = -0.1;
+    }
+    else if(answer2.options[answer2.selectedIndex].value == "danger"){ //박
+        tableWeight = 0.1;
+    }
+
+    var answer3 = document.getElementById('answer3');
+    if(answer3.options[answer3.selectedIndex].value == "stright"){
+        turnType = -5;
+    }
+    else if(answer3.options[answer3.selectedIndex].value == "short"){
+        turnType = 5;
+    }
 }

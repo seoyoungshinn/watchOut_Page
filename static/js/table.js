@@ -144,7 +144,7 @@ function drawDataTables(index,saftyparams){ //값 부분
 
 }
 
-function drawWeightTable(data){  //파이어베이스에서 가중치가져와 테이블그리는 함수
+function drawWeightTable(tableWeight,algorithmWeight_crossWalk,algorithmWeight_facilityCar,algorithmWeight_facilityNoCar,algorithmWeight_turnPoint){  //파이어베이스에서 가중치가져와 테이블그리는 함수
 
     let table = document.createElement('table');
     table.setAttribute(
@@ -177,7 +177,7 @@ function drawWeightTable(data){  //파이어베이스에서 가중치가져와 �
             'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let heading_2 = document.createElement('th');
-        heading_2.innerHTML = data.tableWeight;
+        heading_2.innerHTML = tableWeight;
         heading_2.setAttribute(
             'style',
             'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
@@ -202,7 +202,7 @@ function drawWeightTable(data){  //파이어베이스에서 가중치가져와 �
             'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let data_2 = document.createElement('td');
-        data_2.innerHTML = data.algorithmWeight_turnPoint;
+        data_2.innerHTML = algorithmWeight_turnPoint;
         data_2.setAttribute(
             'style',
             'background-color:#f9f9f9;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
@@ -226,7 +226,7 @@ function drawWeightTable(data){  //파이어베이스에서 가중치가져와 �
             'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let data_3 = document.createElement('td');
-        data_3.innerHTML = data.algorithmWeight_crossWalk;
+        data_3.innerHTML = algorithmWeight_crossWalk;
         data_3.setAttribute(
             'style',
             'background-color:#f9f9f9;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
@@ -250,7 +250,7 @@ function drawWeightTable(data){  //파이어베이스에서 가중치가져와 �
             'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let data_4 = document.createElement('td');
-        data_4.innerHTML = data.algorithmWeight_facilityNoCar;
+        data_4.innerHTML = algorithmWeight_facilityNoCar;
         data_4.setAttribute(
             'style',
             'background-color:#f9f9f9;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
@@ -274,7 +274,7 @@ function drawWeightTable(data){  //파이어베이스에서 가중치가져와 �
             'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
         );
         let data_5 = document.createElement('td');
-        data_5.innerHTML = data.algorithmWeight_facilityCar;
+        data_5.innerHTML =algorithmWeight_facilityCar;
         data_5.setAttribute(
             'style',
             'background-color:#f9f9f9;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'

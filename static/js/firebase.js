@@ -124,68 +124,32 @@ function getHistoryObjectFromFirestoreAndShow(command){
 }
 
 /*-----------가중치-----------*/ 
-
-class Weight {
-    constructor (algorithmWeight_crossWalk,algorithmWeight_facilityCar,algorithmWeight_facilityNoCar,algorithmWeight_turnPoint
-        ,score,tableWeight) {
-        this.algorithmWeight_crossWalk =algorithmWeight_crossWalk;
-        this.algorithmWeight_facilityCar = algorithmWeight_facilityCar;
-        this.algorithmWeight_facilityNoCar = algorithmWeight_facilityNoCar;
-        this.algorithmWeight_turnPoint = algorithmWeight_turnPoint;
-        this.score = score;
-        this.tableWeight = parseFloat(tableWeight);
-    }
-}
-
-// Firestore data converter
-var weightConverter = {
-    toFirestore: function(weight ) {
-        return {
-            algorithmWeight_crossWalk : weight.algorithmWeight_crossWalk,
-            algorithmWeight_facilityCar : weight.algorithmWeight_facilityCar,
-            algorithmWeight_facilityNoCar : weight.algorithmWeight_facilityNoCar,
-            algorithmWeight_turnPoint : weight.algorithmWeight_turnPoint,
-            score : weight.score,
-            tableWeight : weight.tableWeight
-        };
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new Weight (data.algorithmWeight_crossWalk,data.algorithmWeight_facilityCar,
-            data.algorithmWeight_facilityNoCar,data.algorithmWeight_turnPoint,data.score,data.tableWeight);
-    }
-};
-
-function getWeightObjectFromFirestoreAndDoSomething(command){
+function getWeightFromFirestore(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
-  .withConverter(weightConverter)
   .get()
   .then((doc) => {
       var weight = doc.data();
-      return weight;
-    })
-    .then((weight)=>{
-        if(command == "table"){
-            drawWeightTable(weight);
-        }
-        else{
-            var div = document.getElementById('weightTable');
-            div.innerHTML = '';
-            drawWeightTable(weight);
-            // console.log("------기존----");
-            // console.log(weight);
-            // console.log("----설문------");
-            // console.log(command);
-            var changedWeight = addWeight(weight,command);
-            // console.log("----바뀐------");
-            // console.log(changedWeight);
-            saveWeightToFirestore(changedWeight);
-        }
+      drawWeightTable(weight.tableWeight,weight.algorithmWeight_crossWalk,weight.algorithmWeight_facilityCar,
+        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_turnPoint);
     })
     .catch((error) => {
       console.log("Error getting document:", error);
     });
 }
+
+function addWeightToFirestore(table,turn,c,a,b){
+    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
+
+    weightRef.update({
+        algorithmWeight_crossWalk: firebase.firestore.FieldValue.increment(c),
+        algorithmWeight_facilityCar: firebase.firestore.FieldValue.increment(a),
+        algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(b) ,
+        algorithmWeight_turnPoint : firebase.firestore.FieldValue.increment(turn),
+        tableWeight: firebase.firestore.FieldValue.increment(table)
+    });
+}
+
+
 
 function addWeight(w1,w2){
     w1.algorithmWeight_crossWalk += w2.algorithmWeight_crossWalk;
