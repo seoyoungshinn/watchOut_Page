@@ -46,12 +46,12 @@
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
 </head>
-<body bgcolor="	#F0F8FF">
+<body style="background: linear-gradient(to left, #FFC091, #EA9A56);">
 	<script type = "text/javascript">
 		mqttConnection();
 	</script>
 	<header>
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-image:linear-gradient(to left, #FFC091, #EA9A56);">
 		<div class="container-fluid">
 		  <a class="navbar-brand">Watch Out!</a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,35 +85,39 @@
 		  </div>
 		  <div class="carousel-inner">
 			<div class="carousel-item active">
-			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>
+				<image href="./static/image/moni.jpg" width="100%"/>
+			  </svg>
 	  
 			  <div class="container">
-				<div class="carousel-caption text-start">
+				<div class="carousel-caption text-start" style="background-color: rgba( 255, 255, 255, 0.5 ); color: #000; padding: 2rem; font-weight: bold;">
 				  <h1>Monitoring System</h1>
 				  <p>워치에서 일어나는 모든 상황을 실시간으로 볼 수 있는 시스템</p>
-				  <!-- <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p> -->
 				</div>
 			  </div>
 			</div>
 			<div class="carousel-item">
-			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>
+				<image href="./static/image/watch.jpg" width="100%"/>
+			</svg>
 	  
 			  <div class="container">
-				<div class="carousel-caption">
-				  <h1>워치 앱 설명 적을 예정</h1>
-				  <p>Some representative placeholder content for the second slide of the carousel.</p>
-				  <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+				<div class="carousel-caption" style="background-color: rgba( 255, 255, 255, 0.5 ); color: #000; padding: 2rem; font-weight: bold;">
+				  <h1>Wearable Device</h1>
+				  <p>보행시 불편함과 위험도를 감소하기 위해 웨어러블형 디바이스로 제작</p>
 				</div>
 			  </div>
 			</div>
 			<div class="carousel-item">
-			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+			  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>
+				<image href="./static/image/sound.jpg" width="100%"/>
+		      </svg>
 	  
 			  <div class="container">
-				<div class="carousel-caption text-end">
-				  <h1>One more for good measure.</h1>
-				  <p>Some representative placeholder content for the third slide of this carousel.</p>
-				  <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+				<div class="carousel-caption text-end" style="background-color: rgba( 255, 255, 255, 0.5 ); color: #000; padding: 2rem; font-weight: bold;">
+				  <h1>No Visual Information</h1>
+				  <p>시각적인 정보 없이 음성/진동 표현만으로 길 안내</p>
+				  <p><a class="btn btn-lg btn-primary" style="background-color: gray;" href="#">Learn more</a></p>
 				</div>
 			  </div>
 			</div>
@@ -129,8 +133,8 @@
 		</div>
 
 		<div class="container marketing">
-    	<div class="row featurette">
-				<div id="massege" style="float:left; background-color:#FDF5E6; width:250px; height:600px; overflow-y: auto;">
+    	<div class="row featurette" style="background-color:#FDF5E6;">
+				<div id="massege" style="float:left;width:250px; height:600px; overflow-y: auto;">
 					<h2>Message</h2>
 					<div id = "topic"></div>
 				</div>
