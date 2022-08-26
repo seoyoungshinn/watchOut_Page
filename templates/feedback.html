@@ -17,7 +17,7 @@
     <script src="./static/js/table.js" type="text/javascript"></script>
     <script src="./static/js/servey.js" type="text/javascript"></script>
     <link href="./static/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8= sha256-T+aPohYXbm0fRYDpJLr+zJ9RmYTswGsahAoIsNiMld4=" crossorigin="anonymous"></script>
 
     <style>
       .bd-placeholder-img {
@@ -87,12 +87,19 @@
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       }
       
+      .feedback{
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: .875em;
+        color: #dc3545;
+      }
     </style>
 
     <link href="./static/css/carousel.css" rel="stylesheet">
     <link href="./static/css/form-validation.css" rel="stylesheet">
   </head>
-  <body class="bg-light" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);">
+  <body class="bg-light" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);" onload="showWarning(1);showWarning(2);showWarning(3);showWarning(4);">
     <script type = "text/javascript">
 	</script>
     
@@ -112,7 +119,7 @@
                     <a class="nav-link" href="/history" style="color:#5a5a5a;">History</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="/feedback" style="color:#5a5a5a;">Feedback</a>
+                    <a class="nav-link active" href="/feedback">Feedback</a>
                   </li>
                 </ul>
               </div>
@@ -181,14 +188,14 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A3</label>
-                <select class="form-select" id="r1" onchange="findOverlap(1);" required>
-                  <option value="">Choose...</option>
+                <select class="form-select" id="r1" onchange="findOverlap(1); showWarning(1);">
+                  <option value="empty">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="feedback" id ="f1">
                   Please provide a valid state.
                 </div>
               </div>
@@ -200,14 +207,14 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A4</label>
-                <select class="form-select" id="r2" onchange="findOverlap(2);" required>
-                  <option value="">Choose...</option>
+                <select class="form-select" id="r2" onchange="findOverlap(2); showWarning(2);">
+                  <option value="empty">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="feedback" id ="f2">
                   Please provide a valid state.
                 </div>
               </div>
@@ -219,14 +226,14 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A5</label>
-                <select class="form-select" id="r3" onchange="findOverlap(3);" required>
-                  <option value="">Choose...</option>
+                <select class="form-select" id="r3" onchange="findOverlap(3); showWarning(3);">
+                  <option value="empty">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="feedback" id ="f3">
                   Please provide a valid state.
                 </div>
               </div>
@@ -238,23 +245,23 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A6</label>
-                <select class="form-select" id="r4" onchange="findOverlap(4);" required>
-                  <option value="">Choose...</option>
+                <select class="form-select" id="r4" onchange="findOverlap(4); showWarning(4);">
+                  <option value="empty">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="feedback" id ="f4">
                   Please provide a valid state.
                 </div>
               </div>
 
             </div>
             <hr class="my-4">
-          </div>
-          <button class="w-100 btn btn-primary btn-lg" id="update" onclick="changeWeightPriority()">Continue to checkout</button>
+          </div>        
         </form>
+        <button class="w-100 btn btn-primary btn-lg" id="update" onclick="changeWeightPriority()">Continue to checkout</button>
       </div>
     </div>
   </main>

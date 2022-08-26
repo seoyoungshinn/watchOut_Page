@@ -250,3 +250,15 @@ function findOverlap(num) {
       }
     }
 }
+
+//choose고르면 빨간 경고 보이는 함수
+function showWarning(index){
+    var selectedId = document.getElementById("r"+index);
+    var warningId = document.getElementById("f"+index);
+    if(selectedId.options[selectedId.selectedIndex].value == "empty"){
+        warningId.style.display = "block";
+    } 
+    else{
+        warningId.style.display = "none";
+    }
+}
