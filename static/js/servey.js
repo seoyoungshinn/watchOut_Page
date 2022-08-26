@@ -199,7 +199,7 @@ function changeWeightPriority(){
         turnType = 5;
     }
 
-    for(var i = 4 ; i > 0 ; i--){
+    for(var i = 1 ; i < 5 ; i++){
         var ranking =  document.getElementById('r' + i);
         switch(ranking.options[ranking.selectedIndex].value){
             case "turn":
@@ -225,16 +225,26 @@ function changeWeightPriority(){
 }
 
 
+var valueList = [];
+
 //중복제거함수
 function findOverlap(num) {
     var id = document.getElementById("r"+num);
     var v = id.options[id.selectedIndex].value;
+    var v2 = null;
+    if (valueList[num-1] != null) {
+        v2 = valueList[num-1];
+    }
+    valueList[num-1] = v;
     for (i = 1; i<5; i++) {
       if (i!=num) {
         var id2 = document.getElementById("r"+i);
-        for (j = 0; j<4; j++) {
+        for (j = 1; j<5; j++) {
           if(id2.options[j].value == v){
             id2.options[j].disabled = true;
+          }
+          else if (id2.options[j].value == v2){
+            id2.options[j].disabled = false;
           }
         }
       }

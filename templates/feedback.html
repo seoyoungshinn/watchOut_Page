@@ -181,12 +181,16 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A3</label>
-                <select class="form-select" id="r1" onchange="findOverlap(1);">
+                <select class="form-select" id="r1" onchange="findOverlap(1);" required>
+                  <option value="">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
               </div>
 
               <div class="col-lg-8">
@@ -196,12 +200,16 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A4</label>
-                <select class="form-select" id="r2" onchange="findOverlap(2);">
+                <select class="form-select" id="r2" onchange="findOverlap(2);" required>
+                  <option value="">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
               </div>
 
               <div class="col-lg-8">
@@ -211,12 +219,16 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A5</label>
-                <select class="form-select" id="r3" onchange="findOverlap(3);">
+                <select class="form-select" id="r3" onchange="findOverlap(3);" required>
+                  <option value="">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
               </div>
 
               <div class="col-lg-8">
@@ -226,19 +238,23 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A6</label>
-                <select class="form-select" id="r4" onchange="findOverlap(4);">
+                <select class="form-select" id="r4" onchange="findOverlap(4);" required>
+                  <option value="">Choose...</option>
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
                   <option value="danB">위험시설B</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
               </div>
 
             </div>
             <hr class="my-4">
           </div>
+          <button class="w-100 btn btn-primary btn-lg" id="update" onclick="changeWeightPriority()">Continue to checkout</button>
         </form>
-        <button class="w-100 btn btn-primary btn-lg" id="update" onclick="changeWeightPriority()">Continue to checkout</button>
       </div>
     </div>
   </main>
