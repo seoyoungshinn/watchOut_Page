@@ -171,11 +171,11 @@ function addDangerWeightToFirestore(c,a,b){
 function setDangerWeightToFirestore(n1, n2, n3, n4){
     var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
     
-    weightRef.set({
+    weightRef.update({
         algorithmWeight_crossWalk: n1,
         algorithmWeight_facilityCar: n2,
         algorithmWeight_facilityNoCar: n3,
-        algorithmWeight_turnPoint : n4
+        algorithmWeight_turnPoint : n4,
     })
     .then(() => {
         console.log("set Weight success");
