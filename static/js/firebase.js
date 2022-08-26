@@ -124,7 +124,7 @@ function getHistoryObjectFromFirestoreAndShow(command){
 }
 
 /*-----------가중치-----------*/ 
-function getWeightFromFirestore(){
+function getWeightAndDrawTableFromFirestore(){
     db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
   .get()
   .then((doc) => {
@@ -168,19 +168,20 @@ function addDangerWeightToFirestore(c,a,b){
     });
 }
 
-function setDangerWeightToFirestore(first,second,third,fourth){
+function setDangerWeightToFirestore(n1, n2, n3, n4){
     var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
     
     weightRef.set({
-        first: "",
-        second: "CA",
-        country: "USA"
+        algorithmWeight_crossWalk: n1,
+        algorithmWeight_facilityCar: n2,
+        algorithmWeight_facilityNoCar: n3,
+        algorithmWeight_turnPoint : n4
     })
     .then(() => {
-        console.log("setDangerWeight success");
+        console.log("set Weight success");
     })
     .catch((error) => {
-        console.error("Error setting dangerWeight document: ", error);
+        console.error("Error setting weight document: ", error);
     });
 }
 

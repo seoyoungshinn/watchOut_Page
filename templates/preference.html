@@ -99,7 +99,7 @@
     const urlParam = urlStr.searchParams;
     const num = urlParam.get('num');
     
-    getWeightFromFirestore();
+    getWeightAndDrawTableFromFirestore();
     getHistoryObjectFromFirestoreAndShow("preference"+num);
 	</script>
     

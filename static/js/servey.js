@@ -172,14 +172,17 @@ function getAllValues(){
         }
         i++;
     }
-    
+
     addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
     addDangerWeightToFirestore(crossWalk,dangerA,dangerB);
 }
 
 //feedback.html
 function changeWeightPriority(){
-    var answer2 = document.getElementById('answer2');
+    var answer2 = document.getElementById('a2');
+    var tableWeight = 0 , turnType = 0;
+    var turn_value , cross_value, danA_value , danB_value;
+
     //유지면 냅두고
     if(answer2.options[answer2.selectedIndex].value == "road" ){ //아니면 바꿈
         tableWeight = -0.1;
@@ -188,7 +191,7 @@ function changeWeightPriority(){
         tableWeight = 0.1;
     }
 
-    var answer3 = document.getElementById('answer3');
+    var answer3 = document.getElementById('a3');
     if(answer3.options[answer3.selectedIndex].value == "stright"){
         turnType = -5;
     }
@@ -196,17 +199,39 @@ function changeWeightPriority(){
         turnType = 5;
     }
 
+    for(var i = 4 ; i > 0 ; i--){
+        var ranking =  document.getElementById('r' + i);
+        switch(ranking.options[ranking.selectedIndex].value){
+            case "turn":
+                turn_value = i * -10;
+                break;
+
+            case "cross":
+                cross_value = i * -10;
+                break;
+
+            case "danA":
+                danA_value = i * -10;
+                break;
+
+            case "danB":
+                danB_value = i * -10;
+                break;
+        }
+      }
+
     addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
+    setDangerWeightToFirestore(cross_value,danA_value,danB_value,turn_value);
 }
 
 
 //중복제거함수
 function findOverlap(num) {
-    var id = document.getElementById("s"+num);
+    var id = document.getElementById("r"+num);
     var v = id.options[id.selectedIndex].value;
     for (i = 1; i<5; i++) {
       if (i!=num) {
-        var id2 = document.getElementById("s"+i);
+        var id2 = document.getElementById("r"+i);
         for (j = 0; j<4; j++) {
           if(id2.options[j].value == v){
             id2.options[j].disabled = true;
