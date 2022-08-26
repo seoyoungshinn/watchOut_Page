@@ -92,7 +92,7 @@
                         <a class="nav-link" aria-current="page" href="/bootmap" style="color:#5a5a5a;">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" href="/history" style="color:#5a5a5a;">History</a>
+                        <a class="nav-link active" href="/history">History</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="/feedback" style="color:#5a5a5a;">Feedback</a>
@@ -115,7 +115,29 @@
                     <h2 style="padding:1rem; padding-bottom:1rem; padding-top: 2rem;">최근 방문 기록</h2>
                     <!--최근방문기록시작 -->
                     <!-- <div>도착 시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;출발지 -> 도착지 걸음 심박수</div> -->
-                    <div id = "historyList">
+                    <div id = "historyList1">
+                      <p><button class="btn btn-secondary" id="gobtn1" style="float:right;">1 &raquo;</button></p>
+                      <script>
+                        document.getElementById("gobtn1").onclick = function () {
+                          location.href = '/preference?num='+0;
+                        };
+                      </script>  
+                    </div>
+                    <div id = "historyList2">
+                      <p><button class="btn btn-secondary" id="gobtn2" style="float:right;">2 &raquo;</button></p>
+                      <script>
+                        document.getElementById("gobtn2").onclick = function () {
+                          location.href = '/preference?num='+1;
+                        };
+                      </script>  
+                    </div>
+                    <div id = "historyList3">
+                      <p><button class="btn btn-secondary" id="gobtn3" style="float:right;">3 &raquo;</button></p>
+                      <script>
+                        document.getElementById("gobtn3").onclick = function () {
+                          location.href = '/preference?num='+2;
+                        };
+                      </script>  
                     </div>
                     <!--최근방문기록끝 -->
                 </div>

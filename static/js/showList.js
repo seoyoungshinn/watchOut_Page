@@ -36,13 +36,12 @@ function showFavoritesOnWeb(id,data){
             listDiv.appendChild(p);
 }
 
-function showHistoryOnWeb(history){
+function showHistoryOnWeb(num,history){
     let backgroundDiv = document.createElement('div');
     backgroundDiv.setAttribute(
         'style',
-        'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin:10px;',
-      );
-
+        'float:left;'
+    );
     let firstDiv = document.createElement('div');
     let dateSpan = document.createElement('span');
     dateSpan.textContent = history.departureTime.toLocaleDateString();
@@ -94,8 +93,13 @@ function showHistoryOnWeb(history){
     backgroundDiv.appendChild(firstDiv);
     backgroundDiv.appendChild(secondDiv);
 
-    let listDiv = document.getElementById('historyList');
-    listDiv.appendChild(backgroundDiv);
+    let ListDiv = document.getElementById('historyList'+num);
+    backgroundDiv.setAttribute(
+        'style',
+        'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin:10px;',
+    );
+    ListDiv.appendChild(backgroundDiv);
+
 }
 
 function showForFeedback(index, history){
