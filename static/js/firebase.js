@@ -137,21 +137,50 @@ function getWeightFromFirestore(){
     });
 }
 
-function addWeightToFirestore(table,turn,c,a,b){
+function addTurnPointAndTableWeightToFireStore(turn,table){
+    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
+
+    weightRef.update({
+        algorithmWeight_turnPoint : firebase.firestore.FieldValue.increment(turn),
+        tableWeight: firebase.firestore.FieldValue.increment(table)
+    })
+    .then(() => {
+        console.log("addturnWeight success");
+    })
+    .catch((error) => {
+        console.error("Error adding turnWeight document: ", error);
+    });
+    
+}
+function addDangerWeightToFirestore(c,a,b){
     var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
 
     weightRef.update({
         algorithmWeight_crossWalk: firebase.firestore.FieldValue.increment(c),
         algorithmWeight_facilityCar: firebase.firestore.FieldValue.increment(a),
-        algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(b) ,
-        algorithmWeight_turnPoint : firebase.firestore.FieldValue.increment(turn),
-        tableWeight: firebase.firestore.FieldValue.increment(table)
+        algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(b) 
+    })
+    .then(() => {
+        console.log("addDangerWeight success");
+    })
+    .catch((error) => {
+        console.error("Error adding dangerWeight document: ", error);
     });
 }
 
-function saveWeightToFirestore(newWeight){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
-  .withConverter(weightConverter)
-  .set(newWeight);
+function setDangerWeightToFirestore(first,second,third,fourth){
+    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
+    
+    weightRef.set({
+        first: "",
+        second: "CA",
+        country: "USA"
+    })
+    .then(() => {
+        console.log("setDangerWeight success");
+    })
+    .catch((error) => {
+        console.error("Error setting dangerWeight document: ", error);
+    });
 }
 

@@ -172,7 +172,9 @@ function getAllValues(){
         }
         i++;
     }
-    addWeightToFirestore(turnType,tableWeight,crossWalk,dangerA,dangerB);
+    
+    addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
+    addDangerWeightToFirestore(crossWalk,dangerA,dangerB);
 }
 
 //feedback.html
@@ -193,4 +195,6 @@ function changeWeightPriority(){
     else if(answer3.options[answer3.selectedIndex].value == "short"){
         turnType = 5;
     }
+
+    addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
 }
