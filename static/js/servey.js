@@ -198,3 +198,20 @@ function changeWeightPriority(){
 
     addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
 }
+
+
+//중복제거함수
+function findOverlap(num) {
+    var id = document.getElementById("s"+num);
+    var v = id.options[id.selectedIndex].value;
+    for (i = 1; i<5; i++) {
+      if (i!=num) {
+        var id2 = document.getElementById("s"+i);
+        for (j = 0; j<4; j++) {
+          if(id2.options[j].value == v){
+            id2.options[j].disabled = true;
+          }
+        }
+      }
+    }
+}

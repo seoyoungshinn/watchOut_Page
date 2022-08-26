@@ -92,9 +92,8 @@
     <link href="./static/css/carousel.css" rel="stylesheet">
     <link href="./static/css/form-validation.css" rel="stylesheet">
   </head>
-  <body class="bg-light" onload="changeRouteScore()" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);">
+  <body class="bg-light" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);">
     <script type = "text/javascript">
-    getWeightObjectFromFirestoreAndShowTable("preference");
 	</script>
     
     <header>
@@ -147,7 +146,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A1</label>
-                <select class="form-select" id="a1">
+                <select class="form-select" id="a2">
                   <option value="keep">유지</option>
                   <option value="road">도로</option>
                   <option value="danger">시설물</option>
@@ -160,7 +159,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A2</label>
-                <select class="form-select" id="a2">
+                <select class="form-select" id="a3">
                   <option value="keep">유지</option>
                   <option value="stright">직진우선</option>
                   <option value="short">최단거리</option>
@@ -183,7 +182,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A3</label>
-                <select class="form-select" id="a3">
+                <select class="form-select" id="s1" onchange="findOverlap(1);">
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
@@ -198,7 +197,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A4</label>
-                <select class="form-select" id="a4">
+                <select class="form-select" id="s2" onchange="findOverlap(2);">
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
@@ -213,7 +212,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A5</label>
-                <select class="form-select" id="a5">
+                <select class="form-select" id="s3" onchange="findOverlap(3);">
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
@@ -228,7 +227,7 @@
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">A4</label>
-                <select class="form-select" id="a4">
+                <select class="form-select" id="s4" onchange="findOverlap(4);">
                   <option value="turn">분기점</option>
                   <option value="cross">횡단보도</option>
                   <option value="danA">위험시설A</option>
