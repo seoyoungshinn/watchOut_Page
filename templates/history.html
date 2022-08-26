@@ -115,11 +115,19 @@
                     <h2 style="padding:1rem; padding-bottom:1rem; padding-top: 2rem;">최근 방문 기록</h2>
                     <!--최근방문기록시작 -->
                     <!-- <div>도착 시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;출발지 -> 도착지 걸음 심박수</div> -->
+                    <div id = "historyList0">
+                      <p><button class="btn btn-secondary" id="gobtn0" style="float:right;">0 &raquo;</button></p>
+                      <script>
+                        document.getElementById("gobtn0").onclick = function () {
+                          location.href = '/preference?num='+0;
+                        };
+                      </script>  
+                    </div>
                     <div id = "historyList1">
                       <p><button class="btn btn-secondary" id="gobtn1" style="float:right;">1 &raquo;</button></p>
                       <script>
                         document.getElementById("gobtn1").onclick = function () {
-                          location.href = '/preference?num='+0;
+                          location.href = '/preference?num='+1;
                         };
                       </script>  
                     </div>
@@ -127,14 +135,6 @@
                       <p><button class="btn btn-secondary" id="gobtn2" style="float:right;">2 &raquo;</button></p>
                       <script>
                         document.getElementById("gobtn2").onclick = function () {
-                          location.href = '/preference?num='+1;
-                        };
-                      </script>  
-                    </div>
-                    <div id = "historyList3">
-                      <p><button class="btn btn-secondary" id="gobtn3" style="float:right;">3 &raquo;</button></p>
-                      <script>
-                        document.getElementById("gobtn3").onclick = function () {
                           location.href = '/preference?num='+2;
                         };
                       </script>  
