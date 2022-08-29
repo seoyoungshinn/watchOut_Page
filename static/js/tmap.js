@@ -17,9 +17,9 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
            var map = new Tmapv2.Map("fourMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px", //크기바꾸는곳
-                height: "500px",
-                zoom: 14
+                width: "580px", //크기바꾸는곳
+                height: "400px",
+                zoom: 15
             });
             
             for(var j = 0 ; j < arr_lat.length ; j++ ){
@@ -57,7 +57,7 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
             var map = new Tmapv2.Map("resMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "890px",  //크기바꾸는 곳
+                width: "850px",  //크기바꾸는 곳
                 height: "500px",
                 zoom: 15,
                 draggable: true
@@ -147,20 +147,20 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
 
     //심박수 갱신
     function addHeartRate(heartRate){
-        document.getElementById("heartDiv").innerHTML = "심박수: "+ heartRate;
+        document.getElementById("heartDiv").innerHTML = heartRate;
     }
 
-    function setDisplay(){
-        if($('input:radio[id=fM]').is(':checked')){
-            $('#fourMap').css('display','block');
-            $('#resMap').css('display','none');
+    // function setDisplay(){
+    //     if($('input:radio[id=fM]').is(':checked')){
+    //         $('#fourMap').css('display','block');
+    //         $('#resMap').css('display','none');
     
-        }else if ($('input:radio[id=rM]').is(':checked')) {
-             $('#resMap').css('display','block');
-             $('#fourMap').css('display','none');
-        }
-        else if ($('input:radio[id=both]').is(':checked')) {
-             $('#fourMap').css('display','block');
-             $('#resMap').css('display','block');
-        }
-    }
+    //     }else if ($('input:radio[id=rM]').is(':checked')) {
+    //          $('#resMap').css('display','block');
+    //          $('#fourMap').css('display','none');
+    //     }
+    //     else if ($('input:radio[id=both]').is(':checked')) {
+    //          $('#fourMap').css('display','block');
+    //          $('#resMap').css('display','block');
+    //     }
+    // }

@@ -4,7 +4,7 @@
     let table = document.createElement('table');
     table.setAttribute(
         'style',
-        'border-collapse:collapse;border-color:#ccc;border-spacing:0;font-size:10px;'
+        'border-collapse:collapse;border-color:#ccc;border-spacing:0;'
     );
     let thead = document.createElement('thead');
     let tbody = document.createElement('tbody');
@@ -23,39 +23,39 @@
     row_2_data_1.innerHTML = "Type";
     row_2_data_1.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:8ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; width:7.5ch; font-size:20px;'
     );
     row_2.appendChild(row_2_data_1);
 
     let row_2_data_2 = document.createElement('th');
-    row_2_data_2.innerHTML = "분기점 개수";
+    row_2_data_2.innerHTML = "분기점";
     row_2_data_2.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_3 = document.createElement('th');
-    row_2_data_3.innerHTML = "횡단보도 개수";
+    row_2_data_3.innerHTML = "횡단보도";
     row_2_data_3.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_4 = document.createElement('th');
-    row_2_data_4.innerHTML = "도로타입 점수";
+    row_2_data_4.innerHTML = "도로타입";
     row_2_data_4.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_5 = document.createElement('th');
-    row_2_data_5.innerHTML = "위험시설 점수";
+    row_2_data_5.innerHTML = "위험시설";
     row_2_data_5.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_6 = document.createElement('th');
     row_2_data_6.innerHTML = "총 점수";
     row_2_data_6.setAttribute(
         'style',
-        'border-color:inherit;text-align:center;vertical-align:top; width:10ch;'
+        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
 
     row_2.appendChild(row_2_data_2);
@@ -94,7 +94,7 @@ function drawDataTables(index,saftyparams){ //값 부분
     heading_1.style.borderColor = "inherit";
     heading_1.style.textAlign = "center";
     heading_1.style.verticalAlign = "top";
-    heading_1.style.width = "8ch;"
+    heading_1.style.width = "7ch;"
     // heading_1.setAttribute(
     //     'style',
     //     'background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:top;'
@@ -104,11 +104,16 @@ function drawDataTables(index,saftyparams){ //값 부분
 
     for(var i = 0 ; i < 5 ; i++){
         let row_1_data =  document.createElement('th');
-        row_1_data.innerHTML = saftyparams[i];
         row_1_data.setAttribute(
             'style',
-            'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;width:10ch;'
+            'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;width:8ch;'
         );
+        if (i<2){
+            row_1_data.innerHTML = saftyparams[i] +"개";
+        }
+        else {
+            row_1_data.innerHTML = saftyparams[i] +"점";
+        }
         row_1.appendChild(row_1_data);
     }
     thead.appendChild(row_1);

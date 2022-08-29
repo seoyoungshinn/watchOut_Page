@@ -133,38 +133,35 @@
 		</div>
 
 		<div class="container marketing">
-    	<div class="row featurette" style="background-color:#FDF5E6;">
-				<div id="massege" style="float:left;width:250px; height:600px; overflow-y: auto;">
-					<h2>Message</h2>
-					<div id = "topic"></div>
+    	<div class="row featurette">
+			<div id="section" style="width:890px; height:600px;float:left; padding:10px;">
+				<div style="margin-bottom:1rem; height: 45px;">
+					<div id="des" style="font-size:30px; font-weight:bold; float: left; margin-bottom:1rem;"></div>
+					<div id = "heartDiv" style="width: 100px; float:right;">0</div> 
 				</div>
-			<!-- </div> -->
-				<div id="section" style="width:890px;float:left; padding:10px;">
-					<h2>Map</h2>
-					<div>
-					<input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
-					<input id = "fM" type="radio" name="myname" onclick="setDisplay()" value = "30">여러 경로
-					<input id = "rM" type="radio" name="myname" onclick="setDisplay()" value = "3">현재 위치
+				<!-- <input id = "both" type="radio" name="myname" onclick="setDisplay()" value = "36">전체
+				<input id = "fM" type="radio" name="myname" onclick="setDisplay()" value = "30">여러 경로
+				<input id = "rM" type="radio" name="myname" onclick="setDisplay()" value = "3">현재 위치 -->
 					<!--심박수-->
-						<div id = "heartDiv" style="width: 100px; float: right;"></div> 
-					</div>
-					<!--위도 경도 바꾸는 버튼-->
-					<div id = "btn"></div> 
-					<!--4경로 지도-->
-					<div id="fourMap"></div>		
-					<!--알고리즘으로 고른 지도-->
-					<div id = "resMap" ></div>
-				</div>
-			<!-- </div> -->
+				<!--위도 경도 바꾸는 버튼-->
+				<div id = "btn"></div> 
+				<!--알고리즘으로 고른 지도-->
+				<div id = "resMap" ></div>
+			</div>
+			<div id="massege" style="width:250px; height:600px; margin-bottom: 50px; background-color: #A0522D; color:white; text-align: center; padding: 10px;">
+				<h3 style="padding-bottom: 5px;">실시간 메세지</h3>
+				<div id = "topic"></div>
+			</div>
     	</div>
 
 		<hr class="featurette-divider">
 
 		<div class="row featurette">
-			<div class="col-md-7" style="width:1000px;">
+			<div class="col-md-7" style="width:1140px;">
 			  <h2 style="margin-bottom:15px;">Algorithm</h2>
-				<div id = "saftyTables" style="float: left;"></div> 
-				<div id = "weightTable" style="float: right;"></div> 
+				<div id = "saftyTables" style="float:left;"></div>
+				<!--4경로 지도-->
+				<div id="fourMap" style="float:right;"></div>
 			</div>
 		</div>
 
