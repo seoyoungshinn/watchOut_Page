@@ -174,16 +174,18 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
 
     // midpoint 버튼클릭마다 주는 함수
 
-    var latArr = [];
-    var lonArr = [];
+    var lat = [];
+    var lon = [];
     var i = 0;
 
     function getMid(latArr, lonArr) {
-        latArr = latArr;
-        lonArr = lonArr;
+        lat = latArr;
+        lon = lonArr;
+        console.log("getMid");
     }
 
-    function pushPoint(lat,lon) {
+    function pushPoint() {
         addCurrentMarker(lat[i],lon[i]);
         i++;
+        console.log(lat[i]+","+lon[i]);
     }
