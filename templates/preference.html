@@ -94,13 +94,13 @@
   </head>
   <body class="bg-light" onload="changeRouteScore()" style="background: linear-gradient(to right, #FAEBD7,#FFE0C6);">
     <script type = "text/javascript">
-    const url = window.location.href;
-    const urlStr = new URL(url);
-    const urlParam = urlStr.searchParams;
-    const num = urlParam.get('num');
-    
-    getWeightAndDrawTableFromFirestore();
-    getHistoryObjectFromFirestoreAndShow("preference"+num);
+      const url = window.location.href;
+      const urlStr = new URL(url);
+      const urlParam = urlStr.searchParams;
+      const num = urlParam.get('num');
+      
+      getWeightAndDrawTableFromFirestore();
+      getHistoryObjectFromFirestoreAndShow("preference"+num);
 	</script>
     
     <header>
@@ -207,7 +207,7 @@
   </main>
 
   <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
+    <p class="float-end"><a href="#" style="color:#E19B50">Back to top</a></p>
   </footer>
 </div>
     <script src="./static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

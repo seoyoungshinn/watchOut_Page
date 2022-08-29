@@ -22,6 +22,10 @@ def feedback():
 @app.route('/preference')
 def preference():
     return render_template('preference.html')
+
+@app.route('/simulation')
+def simulation():
+    return render_template('simulation.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

@@ -22,6 +22,7 @@ function onConnect() {
     subscribe("route_res");
     subscribe("now");
     subscribe("saftyScore");
+    subscribe("mid");
 
 }
 
@@ -140,6 +141,19 @@ function onMessageArrived(msg) {
             }
             break;
 
+        case "mid":
+            var lat_res = [];
+            var lon_res = [];
+
+            var split = [];
+            split = msg.payloadString.split('/');
+
+            lat_res = split[0].split(',');
+            lon_res = split[1].split(',');
+
+            getMid(lat_res,lon_res);
+
+            break;
     }
 }
 

@@ -164,3 +164,26 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
     //          $('#resMap').css('display','block');
     //     }
     // }
+
+
+    ///////////////////////////////////
+    ///////////////////////////////////
+    /////////////////////////////////
+    /////////////////////////////
+
+
+    // midpoint 버튼클릭마다 주는 함수
+
+    var latArr = [];
+    var lonArr = [];
+    var i = 0;
+
+    function getMid(latArr, lonArr) {
+        latArr = latArr;
+        lonArr = lonArr;
+    }
+
+    function pushPoint(lat,lon) {
+        addCurrentMarker(lat[i],lon[i]);
+        i++;
+    }
