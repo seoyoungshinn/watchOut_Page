@@ -84,11 +84,15 @@ function onMessageArrived(msg) {
                 var fMap = document.getElementById("fourMap");
                 var rMap = document.getElementById("resMap");
                 var sTables = document.getElementById("saftyTables");
+                var btn = document.getElementById("btn");
+                var heart = document.getElementById("heartDiv");
            //     var wTables = document.getElementById("weightTable");
 
                 fMap.innerHTML = '';
                 rMap.innerHTML = '';
                 sTables.innerHTML = '';
+                heart.innerHTML = '';
+                btn.innerHTML = '';
              //   wTables.innerHTML = '';
 
                 break;
@@ -97,9 +101,14 @@ function onMessageArrived(msg) {
                 var fMap = document.getElementById("fourMap");
                 var rMap = document.getElementById("resMap");
                 var sTables = document.getElementById("saftyTables");
+                var btn = document.getElementById("btn");
+                var heart = document.getElementById("heartDiv");
+
                 fMap.innerHTML = '';
                 rMap.innerHTML = '';
                 sTables.innerHTML = '';
+                heart.innerHTML = '';
+                btn.innerHTML = ''; 
 
                 document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
                 break;
@@ -139,6 +148,7 @@ function onMessageArrived(msg) {
             break;
 
         case "now":
+            console.log(msg.payloadString);
             var arr_now = msg.payloadString.split(',');
             //현재위치 갱신
             addCurrentMarker(arr_now[0], arr_now[1]);
