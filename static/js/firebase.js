@@ -185,19 +185,3 @@ function setDangerWeightToFirestore(n1, n2, n3, n4){
     });
 }
 
-
-/* ------------------RealTimeDatabase-------------------- */
-//json으로 저장된 dong아래 lat이랑 lon배열 가져옴
-function getAllDataFromRealTimeDatabase() {
-    const dbRef = firebase.database().ref('dong');
-    dbRef.get().then((snapshot) => {
-        if (snapshot.exists()) {
-            console.log(snapshot.val().lat); //lat배열
-            console.log(snapshot.val().lon); //lon배열
-        } else {
-            console.log("No data available");
-        }
-    }).catch((error) => {
-        console.error(error);
-    });
-  }
