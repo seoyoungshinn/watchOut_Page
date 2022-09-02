@@ -1,4 +1,4 @@
-/*firebase설정키*/
+ /*firebase설정키*/
 const firebaseConfig = {
     apiKey: "AIzaSyAdfT9fZDJFN4II45NITCqBGpguzVrls5U",
     authDomain: "watchout-5da32.firebaseapp.com",
@@ -31,12 +31,12 @@ function getAllDataFromRealTimeDatabase(des) {
 }
 
 function showSimulName(history) {
-    var id = document.getElementById('');
+    var id = document.getElementById('simultime');
     var atime = history.departureTime;
     var dtime = history.arrivedTime;
     id.innerHTML = dtime+" ~ "+atime+"의 History";
 
-    var id2 = document.getElementById('routename');
+    var id2 = document.getElementById('simulname');
     var aname = history.arrivedName;
     var dname = history.dpName;
     id2.innerHTML = dname+" -> "+aname;
