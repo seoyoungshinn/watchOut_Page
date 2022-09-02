@@ -75,7 +75,7 @@
         const urlStr = new URL(url);
         const urlParam = urlStr.searchParams;
         const num = urlParam.get('num');
-		getAllDataFromRealTimeDatabase(1);
+		getAllDataFromRealTimeDatabase(num);
 	</script>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#FFC091;">
@@ -104,27 +104,32 @@
 	<main>
 		<div class="container marketing">
     	<div class="row featurette">
-            <div style="height:50px"></div>
-			<div id="section" style="width:890px; height:600px;float:left; padding:10px;">
-				<div style="margin-bottom:1rem; height: 45px;">
-					<div id="simultime" style="font-size:30px; font-weight:bold; float: left; margin-bottom:1rem;"></div>
-					<div id="simulname" style="font-size:30px; font-weight:bold; float: left; margin-bottom:1rem;"></div>
-					<div style="width:100px; float: right;">
+            <div style="padding-top:2rem">
+				<div id="simultime" style="font-size:30px; font-weight:bold; float: left; margin-bottom:1rem;"></div>
+				<div style="width:890px">
+					<div id="simulname" style="font-size:20px; font-weight:bold; float: left;"></div>
+					<div style="width:100px; float: right; margin-top:0.7rem;">
 						<div class="heart">
 							<div id = "heartDiv" style="position:absolute; transform: rotate(-45deg); z-index: 2; color:#E19B50; text-align:center; width: 100%;height: 100%;">0</div>
 						</div>
 					</div>
-				</div>
+				</div>	
+			</div>
+			<div id="section" style="width:890px; height:550px;float:left; padding:10px;">
+				<!--시뮬레이션 시작 버튼-->
 				<button id = "startBtn" onclick="startSimulation()" style="visibility:hidden;">쏘세요</button>
-				<!--위도 경도 바꾸는 버튼-->
-				<div id = "btn"></div> 
 				<!--알고리즘으로 고른 지도-->
 				<div id = "resMap" ></div>
 			</div>
-			<div id="massege" style="width:250px; height:200px; margin-bottom: 50px; background-color: #A0522D; color:white; text-align: center; padding: 10px;">
-				<h3 style="padding-top:5px; padding-bottom: 10px;">실시간 메세지</h3>
-				<div id = "topic"></div>
-			</div>
+			<div style="float:right; padding:10px; width:250px;">
+				<div id="massege" style="height:170px; background-color: #A0522D; margin-bottom: 15px; color:white; text-align: center; padding: 10px;">
+				   <h3 style="padding-top:5px; padding-bottom: 10px;">실시간 메세지</h3>
+				   <div id = "topic"></div>
+				</div>
+				<div style="height:350px; background-color: #A0522D; color:white; text-align: center; padding: 10px;">
+				   <h3 style="padding-top:5px; padding-bottom: 10px;">최종 루트 정보</h3>
+				</div>
+			 </div>
     	</div>
 		</div>
 	</main>
