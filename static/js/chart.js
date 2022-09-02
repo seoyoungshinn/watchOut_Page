@@ -4,7 +4,7 @@ function drawBarChartOnWeb(historyArr){
     var labelsArr = [];
     var dataArr = [];
     for(var i = 0 ; i < 5; i++){
-        var arrivedLabel = historyArr[i].arrivedTime.getMonth() + "월 "+historyArr[i].arrivedTime.getDate() + "일";
+        var arrivedLabel = historyArr[i].arrivedTime.getMonth()+1 + "월 "+historyArr[i].arrivedTime.getDate() + "일";
         labelsArr.push(arrivedLabel);
 
         var elapsedTime = historyArr[i].arrivedTime - historyArr[i].departureTime; //실제소요시간(ms)
