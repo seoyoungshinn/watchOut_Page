@@ -78,6 +78,8 @@
         const urlStr = new URL(url);
         const urlParam = urlStr.searchParams;
         const num = urlParam.get('num');
+
+		getHistoryObjectFromFirestoreAndShow("preference"+num);
 	</script>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#FFC091;">

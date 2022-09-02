@@ -117,6 +117,18 @@ function getHistoryObjectFromFirestoreAndShow(command){
             drawBarChartOnWeb(HistoryArr);
             drawDoughnutChartOnWeb(HistoryArr);
         }
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        if(command == "simulation0"){
+
+        }
+        else if(command == "simulation1"){
+
+        }
+        else if(command == "simulation2"){
+
+        }
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
