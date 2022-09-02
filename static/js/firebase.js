@@ -121,13 +121,13 @@ function getHistoryObjectFromFirestoreAndShow(command){
     })
     .then((HistoryArr)=>{
         if(command == "simulation0"){
-
+            showSimulName(HistoryArr[0]);
         }
         else if(command == "simulation1"){
-
+            showSimulName(HistoryArr[1]);
         }
         else if(command == "simulation2"){
-
+            showSimulName(HistoryArr[2]);
         }
     })
     .catch((error) => {

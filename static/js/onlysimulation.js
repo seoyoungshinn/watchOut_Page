@@ -28,4 +28,16 @@ function getAllDataFromRealTimeDatabase(des) {
     }).catch((error) => {
         console.error(error);
     });
-  }
+}
+
+function showSimulName(history) {
+    var id = document.getElementById('');
+    var atime = history.departureTime;
+    var dtime = history.arrivedTime;
+    id.innerHTML = dtime+" ~ "+atime+"의 History";
+
+    var id2 = document.getElementById('routename');
+    var aname = history.arrivedName;
+    var dname = history.dpName;
+    id2.innerHTML = dname+" -> "+aname;
+}
