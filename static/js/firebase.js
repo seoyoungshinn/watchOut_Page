@@ -24,12 +24,11 @@ function getParameterByName(name) {
 }
     var UID = getParameterByName('uid'); 
     console.log(UID)
+    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
 
 /*-----------즐겨찾기-----------*/ 
 function getFavoritesFromFirestoreAndShow(){
-    var docRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("Favorites");
-    
-    docRef.orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
+    docRef.collection("Favorites").orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             showFavoritesOnWeb(doc.id , doc.data());
         });
@@ -79,8 +78,8 @@ var historyConverter = {
     }
 };
 
-function getHistoryObjectFromFirestoreAndShow(command){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2").collection("History")
+function setHistoryObjectForHistory(){
+    docRef.collection("History")
     .withConverter(historyConverter)
     .get()
     .then((querySnapshot) => { //History객체 생성
@@ -93,40 +92,70 @@ function getHistoryObjectFromFirestoreAndShow(command){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        var id = document.getElementById('a1');
-        if(command == "preference0"){
+        for(var i = 0 ; i < 3 ; i++){ 
+            showHistoryOnWeb(i,HistoryArr[i]);
+            showForFeedback(i+1,HistoryArr[i]);
+        }
+        drawBarChartOnWeb(HistoryArr);
+        drawDoughnutChartOnWeb(HistoryArr);
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+function setHistoryObjectForPreference(){
+    docRef.collection("History")
+    .withConverter(historyConverter)
+    .get()
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
+        querySnapshot.forEach((doc) => {
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
+        });
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        if(command == 0){
             showRouteName(HistoryArr[0]);
             checkDangerAndShowQuestion(HistoryArr[0]);
         }
-        else if(command == "preference1"){
+        else if(command == 1){
             showRouteName(HistoryArr[1]);
             checkDangerAndShowQuestion(HistoryArr[1]);
         }
-        else if(command == "preference2"){
+        else if(command == 2){
             showRouteName(HistoryArr[2]);
             checkDangerAndShowQuestion(HistoryArr[2]);
         }
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function setHistoryObjectForSimulation(){
+    docRef.collection("History")
+    .withConverter(historyConverter)
+    .get()
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
+        querySnapshot.forEach((doc) => {
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
+        });
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        if(command == "history"){
-            for(var i = 0 ; i < 3 ; i++){ 
-                showHistoryOnWeb(i,HistoryArr[i]);
-                showForFeedback(i+1,HistoryArr[i]);
-            }
-            drawBarChartOnWeb(HistoryArr);
-            drawDoughnutChartOnWeb(HistoryArr);
-        }
-        return HistoryArr;
-    })
-    .then((HistoryArr)=>{
-        if(command == "simulation0"){
+        if(command == 0){
             showSimulName(HistoryArr[0]);
         }
-        else if(command == "simulation1"){
+        else if(command == 1){
             showSimulName(HistoryArr[1]);
         }
-        else if(command == "simulation2"){
+        else if(command == 2){
             showSimulName(HistoryArr[2]);
         }
     })
@@ -137,9 +166,8 @@ function getHistoryObjectFromFirestoreAndShow(command){
 
 /*-----------가중치-----------*/ 
 function getWeightAndDrawTableFromFirestore(){
-    db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2")
-  .get()
-  .then((doc) => {
+    docRef.get()
+    .then((doc) => {
       var weight = doc.data();
       drawWeightTable(weight.tableWeight,weight.algorithmWeight_crossWalk,weight.algorithmWeight_facilityCar,
         weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_turnPoint);
@@ -150,9 +178,7 @@ function getWeightAndDrawTableFromFirestore(){
 }
 
 function addTurnPointAndTableWeightToFireStore(turn,table){
-    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
-
-    weightRef.update({
+    docRef.update({
         algorithmWeight_turnPoint : firebase.firestore.FieldValue.increment(turn),
         tableWeight: firebase.firestore.FieldValue.increment(table)
     })
@@ -165,9 +191,7 @@ function addTurnPointAndTableWeightToFireStore(turn,table){
     
 }
 function addDangerWeightToFirestore(c,a,b){
-    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
-
-    weightRef.update({
+    docRef.update({
         algorithmWeight_crossWalk: firebase.firestore.FieldValue.increment(c),
         algorithmWeight_facilityCar: firebase.firestore.FieldValue.increment(a),
         algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(b) 
@@ -181,9 +205,7 @@ function addDangerWeightToFirestore(c,a,b){
 }
 
 function setDangerWeightToFirestore(n1, n2, n3, n4){
-    var weightRef = db.collection("PersonalData").doc("kstL3GdcSqbnZcNsFjm669zUFih2");
-    
-    weightRef.update({
+    docRef.update({
         algorithmWeight_crossWalk: n1,
         algorithmWeight_facilityCar: n2,
         algorithmWeight_facilityNoCar: n3,
