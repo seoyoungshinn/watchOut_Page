@@ -103,7 +103,7 @@ function setHistoryObjectForHistory(){
         console.log("Error getting documents: ", error);
     });
 }
-function setHistoryObjectForPreference(){
+function setHistoryObjectForPreference(command){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
@@ -128,35 +128,6 @@ function setHistoryObjectForPreference(){
         else if(command == 2){
             showRouteName(HistoryArr[2]);
             checkDangerAndShowQuestion(HistoryArr[2]);
-        }
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-}
-
-function setHistoryObjectForSimulation(){
-    docRef.collection("History")
-    .withConverter(historyConverter)
-    .get()
-    .then((querySnapshot) => { //History객체 생성
-        var HistoryArr = [];
-        querySnapshot.forEach((doc) => {
-        var history = doc.data();
-        history.setName(doc.id);
-        HistoryArr.push(history);
-        });
-        return HistoryArr;
-    })
-    .then((HistoryArr)=>{
-        if(command == 0){
-            showSimulName(HistoryArr[0]);
-        }
-        else if(command == 1){
-            showSimulName(HistoryArr[1]);
-        }
-        else if(command == 2){
-            showSimulName(HistoryArr[2]);
         }
     })
     .catch((error) => {
