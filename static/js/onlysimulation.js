@@ -15,13 +15,13 @@ firebase.initializeApp(firebaseConfig);
 
 /* ------------------RealTimeDatabase-------------------- */
 //json으로 저장된 dong아래 lat이랑 lon배열 가져옴
-function getAllDataFromRealTimeDatabase() {
-    const dbRef = firebase.database().ref('dong');
+function getAllDataFromRealTimeDatabase(des) {
+    const dbRef = firebase.database().ref(des);
     dbRef.get().then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val().lat[2]); //lat배열
-            console.log(snapshot.val().lon); //lon배열
-            console.log(snapshot.val().start);
+            console.log(snapshot.val().elevator);
+
+            drawResMap(snapshot.val().lat,snapshot.val().lon); //tmap.js내 지도 그리는 함수 
         } else {
             console.log("No data available");
         }
