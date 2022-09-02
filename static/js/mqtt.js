@@ -25,17 +25,6 @@ function onConnect() {
 
 }
 
-function simulationOnConnect() {
-    console.log("접속 완료");
-    document.getElementById("state").innerHTML = '접속 완료';
-    isConnected = true;
-
-    subscribe("des");
-    subscribe("topic");
-    subscribe("route_res");
-    subscribe("mid");
-}
-
 function onFailure(message) {
     document.getElementById("state").innerHTML = '접속 실패';
     console.log("접속 실패");
@@ -190,25 +179,15 @@ function subscribe(topic) {
 }
 
 
-function mqttConnection(title) {
+function mqttConnection() {
 
     mqtt = new Paho.MQTT.Client(host, port, "javascript_client");
 
-    if(title == "simul"){
-        var options = {
-            timeout: 3,
-            onSuccess: simulationOnConnect,
-            onFailure: onFailure
-        };
-    }
-
-    else{
-        var options = {
-            timeout: 3,
-            onSuccess: onConnect,
-            onFailure: onFailure
-        };
-    }
+    var options = {
+        timeout: 3,
+        onSuccess: onConnect,
+        onFailure: onFailure
+    };
 
     mqtt.onMessageArrived = onMessageArrived;
     mqtt.onConnectionLost = onConnectionLost;
