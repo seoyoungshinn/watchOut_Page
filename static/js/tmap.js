@@ -57,8 +57,8 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
             var map = new Tmapv2.Map("resMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "850px",  //크기바꾸는 곳
-                height: "500px",
+                width: "800px",  //크기바꾸는 곳
+                height: "400px",
                 zoom: 15,
                 draggable: true
             });
