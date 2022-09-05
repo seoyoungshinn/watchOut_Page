@@ -11,6 +11,10 @@ def welcome():
 def boot():
     return render_template('bootmap.html')
 
+@app.route('/watchnow')
+def watchnow():
+    return render_template('watchnow.html')
+
 @app.route('/history')
 def history():
     return render_template('history.html')
