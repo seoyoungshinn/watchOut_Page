@@ -53,7 +53,7 @@ function onMessageArrived(msg) {
             break;
 
         case "des":
-            document.getElementById("des").innerHTML = msg.payloadString + '</span>';
+            document.getElementById("des").innerHTML += msg.payloadString + '</span>';
             break;
 
         //출력되는 메시지
