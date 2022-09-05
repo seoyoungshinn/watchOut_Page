@@ -103,6 +103,29 @@ function setHistoryObjectForHistory(){
         console.log("Error getting documents: ", error);
     });
 }
+
+function setHistoryObjectForAnalysis(){
+    docRef.collection("History")
+    .withConverter(historyConverter)
+    .get()
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
+        querySnapshot.forEach((doc) => {
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
+        });
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        drawBarChartOnWeb(HistoryArr);
+        drawDoughnutChartOnWeb(HistoryArr);
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
 function setHistoryObjectForPreference(command){
     docRef.collection("History")
     .withConverter(historyConverter)
@@ -148,10 +171,11 @@ function getWeightAndDrawTableFromFirestore(){
     });
 }
 
-function addTurnPointAndTableWeightToFireStore(turn,table){
+function addTurnPointAndTableWeightToFireStore(turn,table_danger,table_road){
     docRef.update({
         algorithmWeight_turnPoint : firebase.firestore.FieldValue.increment(turn),
-        tableWeight: firebase.firestore.FieldValue.increment(table)
+        tableWeight_danger: firebase.firestore.FieldValue.increment(table_danger),
+        tableWeight_road: firebase.firestore.FieldValue.increment(table_road),
     })
     .then(() => {
         console.log("addturnWeight success");

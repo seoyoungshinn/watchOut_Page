@@ -181,6 +181,10 @@ function getAllValues(){
 function changeWeightPriority(){
     var answer2 = document.getElementById('a2');
     var tableWeight = 0 , turnType = 0;
+    //
+        tableWeight_danger = 1;
+        tableWeight_road = 1;
+    //
     var turn_value , cross_value, danA_value , danB_value;
 
     //유지면 냅두고
@@ -220,7 +224,7 @@ function changeWeightPriority(){
         }
       }
 
-    addTurnPointAndTableWeightToFireStore(turnType,tableWeight);
+    addTurnPointAndTableWeightToFireStore(turnType,tableWeight_danger,tableWeight_road);
     setDangerWeightToFirestore(cross_value,danA_value,danB_value,turn_value);
 }
 

@@ -5,11 +5,11 @@ app = Flask(__name__)
     
 @app.route('/')
 def welcome():
-    return render_template('login.html')
+    return render_template('ff/Slogin.html')
 
 @app.route('/bootmap')
 def boot():
-    return render_template('bootmap.html')
+    return render_template('ex/bootmap.html')
 
 @app.route('/watchnow')
 def watchnow():
@@ -19,13 +19,21 @@ def watchnow():
 def history():
     return render_template('history.html')
 
+@app.route('/analysis')
+def analysis():
+    return render_template('analysis.html')
+
+@app.route('/favorites')
+def favorites():
+    return render_template('favorites.html')
+
 @app.route('/feedback')
 def feedback():
-    return render_template('feedback.html')
+    return render_template('ff/feedback.html')
 
 @app.route('/preference')
 def preference():
-    return render_template('preference.html')
+    return render_template('ff/preference.html')
 
 @app.route('/simulation')
 def simulation():
@@ -33,7 +41,11 @@ def simulation():
 
 @app.route('/json')
 def json():
-    return render_template('json.html')
+    return render_template('ex/json.html')
+
+@app.route('/exhistory')
+def exhistory():
+    return render_template('ex/exhistory.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

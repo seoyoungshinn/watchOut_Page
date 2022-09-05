@@ -1,6 +1,6 @@
 /*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
 function drawBarChartOnWeb(historyArr){
-    var colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"];
+    var colors = ["#5286b8", "#94b9da","#002c64","#5b9ad1","#00070e"];
     var labelsArr = [];
     var dataArr = [];
     for(var i = 0 ; i < 5; i++){
