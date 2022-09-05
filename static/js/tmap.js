@@ -150,42 +150,4 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
         document.getElementById("heartDiv").innerHTML = heartRate;
     }
 
-    // function setDisplay(){
-    //     if($('input:radio[id=fM]').is(':checked')){
-    //         $('#fourMap').css('display','block');
-    //         $('#resMap').css('display','none');
-    
-    //     }else if ($('input:radio[id=rM]').is(':checked')) {
-    //          $('#resMap').css('display','block');
-    //          $('#fourMap').css('display','none');
-    //     }
-    //     else if ($('input:radio[id=both]').is(':checked')) {
-    //          $('#fourMap').css('display','block');
-    //          $('#resMap').css('display','block');
-    //     }
-    // }
-
-
-    ///////////////////////////////////
-    ///////////////////////////////////
-    /////////////////////////////////
-    /////////////////////////////
-
-
-    // midpoint 버튼클릭마다 주는 함수
-
-    var lat = [];
-    var lon = [];
-    var i = 0;
-
-    function getMid(latArr, lonArr) {
-        lat = latArr;
-        lon = lonArr;
-        console.log("getMid");
-    }
-
-    function pushPoint() {
-        addCurrentMarker(lat[i],lon[i]);
-        i++;
-        console.log(lat[i]+","+lon[i]);
-    }
+   
