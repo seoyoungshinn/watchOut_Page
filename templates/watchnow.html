@@ -50,8 +50,8 @@
 			routetime = routeArr[3];
 			etc = routeArr[4];
 		}
-		function win_open() {
-      		openWin = window.open("/popup","a","fullscreen=yes");
+		function win_open(url,name) {
+      		openWin = window.open(url,name,"fullscreen=yes");
 			var showAlert = setTimeout(function() {
    				showInfo();
 			}, 1000);
@@ -130,7 +130,7 @@
 			</div>
     	</div>
 		<div id = "buttons "style="width:1200px;">
-			<button onclick="win_open();" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">최종 경로 정보</button>
+			<button onclick="win_open('/routeinfo','routeInfo');" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">최종 경로 정보</button>
 			<button style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right;">후보 경로 보기</button>
 		</div>
 		</div>

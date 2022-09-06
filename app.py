@@ -51,9 +51,9 @@ def json():
 def exhistory():
     return render_template('ex/exhistory.html')
 
-@app.route('/popup')
-def popup():
-    return render_template('ff/popup.html')
+@app.route('/routeinfo')
+def routeinfo():
+    return render_template('ff/routeinfo.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")
