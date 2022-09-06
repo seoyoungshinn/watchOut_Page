@@ -18,17 +18,38 @@
             color: #333489;
             text-align: center;
             width:300px;
-            height:500px;
+            height:450px;
             margin:auto;
             padding:2rem;
-            font-size: 25px;
+            font-size: 26px;
             font-weight: bold;
+            border-radius: 3rem;
         }
         .bar {
             background-color:#B0BFFF;
-            width:250px;
+            width:290px;
             height:10px;
             border-radius: 2rem;
+            margin-top:1.5rem;
+            margin-bottom:1.5rem;
+        }
+        .info{
+            color:#333489;
+            padding: 1rem;
+            font-size:20px;
+        }
+        .close{
+            background-color: #B0BFFF;
+            color:black;
+            border-radius: 0.5rem;
+            padding-left:30px;
+            padding-right:30px;
+            padding-top:10px;
+            padding-bottom:10px;
+            font-size:20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left:800px;
         }
     </style>
 </head>
@@ -38,12 +59,17 @@
           window.close();
         };
     </script>
-	<a href="#" id="close" onclick="win_close()">창닫기</a>
-
+    <div style="height:50px; padding-top:20px;">
+        <a href="#" class="close" onclick="win_close()">창닫기</a>
+    </div>
     <div class="box" style="margin: auto;">
-        최종경로정보
+        최종 경로 정보
         <hr class="bar">
-        <div id="routeInfo"></div>
+        <div class = "info" id="endname"></div>
+        <div class = "info" id="routescore"></div>
+        <div class = "info" id="routelength"></div>
+        <div class = "info" id="routetime"></div>
+        <div class = "info" id="etc"></div>
     </div>
 </body>
 </html>

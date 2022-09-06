@@ -35,8 +35,33 @@
 <body style="background-color: #b0bffb">
 	<script type = "text/javascript">
 		mqttConnection();
-		function win_open(page, name) {
-      		window.open(page,name,"fullscreen=yes");
+		var endname;
+		var routescore;
+		var routelength;
+		var routetime;
+		var etc;
+		var openWin;
+		function parsing(routeInfo) {
+			var routeArr = routeInfo.split("!");
+			console.log(routeArr);
+			endname = routeArr[0];
+			routescore = routeArr[1];
+			routelength = routeArr[2];
+			routetime = routeArr[3];
+			etc = routeArr[4];
+		}
+		function win_open() {
+      		openWin = window.open("/popup","a","fullscreen=yes");
+			var showAlert = setTimeout(function() {
+   				showInfo();
+			}, 1000);
+		};
+		function showInfo() {
+			openWin.document.getElementById("endname").innerHTML = endname;
+			openWin.document.getElementById("routescore").innerHTML = routescore;
+			openWin.document.getElementById("routelength").innerHTML = routelength;
+			openWin.document.getElementById("routetime").innerHTML = routetime;
+			openWin.document.getElementById("etc").innerHTML = etc;
 		};
 	</script>
 	<header>
@@ -83,7 +108,11 @@
 	</nav>
 	</header>
 	<main>
-        <div style="height:80px"></div>
+        <div style="height:80px; padding-top:58px;">
+			<div style="text-align: right;">
+				<div id="state"></div>
+			</div>
+		</div>
 		<div class="container marketing" style="max-width:1200px">
     	<div class="row featurette">
 			<div id="section" style="width:900px; height:430px; float:left; padding:10px;">
@@ -95,13 +124,13 @@
 				<!--알고리즘으로 고른 지도-->
 				<div id = "resMap" ></div>
 			</div>
-			<div id="massege" style="width:300px; height:430px; background-color: #5A78AF; color:#000259; text-align: center; padding: 10px;">
+			<div id="massege" style="width:300px; height:430px; background-color: #737CC5; color:#000259; text-align: center; padding: 10px;">
 				<h3 style="padding-bottom: 5px; font-weight: bold;">실시간 행동</h3>
 				<div id = "topic"></div>
 			</div>
     	</div>
 		<div id = "buttons "style="width:1200px;">
-			<button onclick="win_open('/popup', 'a')" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">최종 경로 정보</button>
+			<button onclick="win_open();" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">최종 경로 정보</button>
 			<button style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right;">후보 경로 보기</button>
 		</div>
 		</div>

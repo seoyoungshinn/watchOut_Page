@@ -9,19 +9,22 @@ var isConnected = false;
 var exHeartRate = 0;
 var nowHeartRate = 0;
 
+var routeInfo = "hi";
+
 /*------------------MQTT--------------------*/
 function onConnect() {
     console.log("접속 완료");
     document.getElementById("state").innerHTML = '접속 완료';
     isConnected = true;
 
-    subscribe("route");
+    subscribe("selectedRouteInfor")
+    //subscribe("route");
     subscribe("now");
-    subscribe("saftyScore");
+    //subscribe("saftyScore");
     subscribe("des");
     subscribe("topic");
     subscribe("route_res");
-    subscribe("mid");
+    //subscribe("mid");
 
 }
 
@@ -41,6 +44,11 @@ function onConnectionLost(responseObject) {
 
 function onMessageArrived(msg) {
     switch (msg.destinationName) {
+        
+        case "selectedRouteInfor":
+            routeInfo = msg.payloadString;
+            parsing(routeInfo);
+            break;
 
         //4가지경로 점수테이블
         case "saftyScore":
@@ -53,7 +61,7 @@ function onMessageArrived(msg) {
             break;
 
         case "des":
-            document.getElementById("des").innerHTML += msg.payloadString + '</span>';
+            document.getElementById("des").innerHTML = msg.payloadString + '</span>';
             break;
 
         //출력되는 메시지
