@@ -5,11 +5,7 @@ app = Flask(__name__)
     
 @app.route('/')
 def welcome():
-    return render_template('ff/Slogin.html')
-
-@app.route('/bootmap')
-def boot():
-    return render_template('ex/bootmap.html')
+    return render_template('ff/login.html')
 
 @app.route('/watchnow')
 def watchnow():
@@ -23,9 +19,17 @@ def history():
 def analysis():
     return render_template('analysis.html')
 
+@app.route('/bootmap')
+def boot():
+    return render_template('ex/bootmap.html')
+
 @app.route('/favorites')
 def favorites():
     return render_template('favorites.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
 
 @app.route('/feedback')
 def feedback():
