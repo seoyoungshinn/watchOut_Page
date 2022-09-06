@@ -17,63 +17,40 @@
 
 	<style>
 
-		.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        #progress {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: block;
+            width: 200px;
+            height: 35px;
+            border-radius: 1rem;
+            color: #35495e;
         }
-      }
-
-		table{
-            border-collapse: collapse;
-            border-spacing: 0;
+        #progress::-webkit-progress-bar {
+            background-color: #35495e;
+            border-radius: 8px;
+        }
+        #progress::-webkit-progress-value {
+            background-color:#eee ;
+            border-radius: 8px;
         }
 
-		th, td{
-           
-		   border: 1px solid #000;
-		   font-size: 20px;
-	   	}
-		
-		.heart {
-   			width: 30px;
-			height: 30px;
-			background: #8B4513;
-			position: relative;
-			transform: rotate(45deg);
-  		}
 
-  		.heart::before,
-  		.heart::after {
-    		content: "";
-    		width: 30px;
-			height: 30px;
-			position: absolute;
-			border-radius: 50%;
-			background: #8B4513;
-		}
-		.heart::before {
-			left: -50%;
-		}
-		.heart::after {
-			top: -50%;
-		}
-		
+@keyframes progressbar { 
+  0%  { 
+    width: 0%;
+  } 
+  100% { 
+    width: 80%;
+  }  
+}
 
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
-	<script type = "text/javascript">
-		setHistoryObjectForAnalysis();
-	</script>
+	
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#333489;">
 		<div class="container-fluid">
@@ -120,8 +97,42 @@
 		</div>
 	</nav>
 	</header>
+    <main>
+        <div style="height:106px"></div>
+        <div style="width: 200px;" >
+            
+            <a style="float: left;">0</a>
+            <a style="margin-left: 80px; margin-right: 60px;">50</a>
+            <a style="float: right;">100</a>
+            <progress id ="progress" class="progressTag" value="22" max="100"></progress>
 
-    ㅇㅇ
+            <script type = "text/javascript">
+		
+                function tag () {
+            let progress = document.getElementById("progress");
+            let interval = 1;
+            let updatesPerSecond = 1000 / 60;
+            let end = progress.max * 0.8;
+            
+            function animator () {
+                progress.value = progress.value + interval;
+                if ( progress.value + interval < end){
+                setTimeout(animator, updatesPerSecond);
+                } else { 
+                progress.value = end;
+                }
+            }
+            
+            setTimeout(() => {
+                animator();
+            }, updatesPerSecond)
+            }
+        
+        tag();
+            </script>
+          </div>
+    </main>
+    
     
 </body>
 </html>
