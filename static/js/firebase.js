@@ -28,11 +28,31 @@ function getParameterByName(name) {
 
 /*-----------즐겨찾기-----------*/ 
 function getFavoritesFromFirestoreAndShow(){
-    docRef.collection("Favorites").orderBy("frequency", "desc").limit(5).get().then((querySnapshot) => {
+    
+
+    docRef.collection("Favorites").orderBy("frequency", "desc").limit(5).get()
+    .then((querySnapshot) => {
+        var favorites = [];
         querySnapshot.forEach((doc) => {
             showFavoritesOnWeb(doc.id , doc.data());
         });
     });
+
+    docRef.collection("Favorites").limit(4).get()
+    .then((querySnapshot) => {
+        var favorites = [];
+        querySnapshot.forEach((doc) => {
+            var fav =[];
+            fav.push(doc.id);
+            fav.push(doc.data().frequency);
+            favorites.push(fav);
+        });
+        return favorites;
+    })
+    .then((favorites) => {
+        drawFavoriteBarChartOnWeb(favorites);
+    });
+    
 }
 
 /*-----------기록-----------*/ 
@@ -96,8 +116,8 @@ function setHistoryObjectForHistory(){
             showHistoryOnWeb(i,HistoryArr[i]);
             showForFeedback(i+1,HistoryArr[i]);
         }
-        drawBarChartOnWeb(HistoryArr);
-        drawDoughnutChartOnWeb(HistoryArr);
+        drawHistoryBarChartOnWeb(HistoryArr);
+        drawHistoryDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -118,8 +138,8 @@ function setHistoryObjectForAnalysis(){
         return HistoryArr;
     })
     .then((HistoryArr)=>{
-        drawBarChartOnWeb(HistoryArr);
-        drawDoughnutChartOnWeb(HistoryArr);
+        drawHistoryBarChartOnWeb(HistoryArr);
+        drawHistoryDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
