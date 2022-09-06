@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Watch Out!</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <style>
+        .box {
+            background-color: white;
+            color: #333489;
+            text-align: center;
+            width:300px;
+            height:500px;
+            margin:auto;
+            padding:2rem;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .bar {
+            background-color:#B0BFFF;
+            width:250px;
+            height:10px;
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body style="background: #000239;">
+    <script type="text/javascript">
+        function win_close() {
+          window.close();
+        };
+    </script>
+	<a href="#" id="close" onclick="win_close()">창닫기</a>
+
+    <div class="box" style="margin: auto;">
+        최종경로정보
+        <hr class="bar">
+        <div id="routeInfo"></div>
+    </div>
+</body>
+</html>

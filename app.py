@@ -50,6 +50,10 @@ def json():
 @app.route('/exhistory')
 def exhistory():
     return render_template('ex/exhistory.html')
+
+@app.route('/popup')
+def popup():
+    return render_template('ff/popup.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")
