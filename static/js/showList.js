@@ -5,21 +5,21 @@ function showFavoritesOnWeb(id,data){
             favNameDiv.textContent = id;
             favNameDiv.setAttribute(
                 'style',
-                'color:darkslategrey; font-size: 1.5rem !important; flex: 0 0 auto;width: 66.66666667%;'
+                'color:white; font-size: 1.5rem !important;  flex: 0 0 auto; padding-left:2rem; padding-right:2rem;'
               );
 
             let favFrequencySpan = document.createElement('span');
             favFrequencySpan.textContent = data.frequency + "회";
             favFrequencySpan.setAttribute(
                 'style',
-                'font-size: 1.0rem; color:#adb5bd; float:right;'
+                'font-size:1.2rem; color:#adb5bd; float:right;'
             )
 
             let favaddressDiv = document.createElement('div');
             favaddressDiv.textContent = data.address;
             favaddressDiv.setAttribute(
                 'style',
-                'color:#6c757d'
+                'color:#dee2e6; padding-left:2rem;padding-right:2rem;'
             );
 
             let p =  document.createElement('p');
