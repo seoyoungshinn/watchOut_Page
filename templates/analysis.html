@@ -14,60 +14,6 @@
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
-
-	<style>
-
-		.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-		table{
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-		th, td{
-           
-		   border: 1px solid #000;
-		   font-size: 20px;
-	   	}
-		
-		.heart {
-   			width: 30px;
-			height: 30px;
-			background: #8B4513;
-			position: relative;
-			transform: rotate(45deg);
-  		}
-
-  		.heart::before,
-  		.heart::after {
-    		content: "";
-    		width: 30px;
-			height: 30px;
-			position: absolute;
-			border-radius: 50%;
-			background: #8B4513;
-		}
-		.heart::before {
-			left: -50%;
-		}
-		.heart::after {
-			top: -50%;
-		}
-		
-
-	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
@@ -80,9 +26,6 @@
 			<a style="margin-left:5px; margin-right:20px;">
 				<img src= "./static/image/logo.png" height="90px" width="120px">
 			</a>
-		  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button> -->
 		  <div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:60px; font-size: 24px; font-weight: bold; margin-top:30px; padding-left:10px; padding-right:10px;">
 			  <li class="nav-item" style="padding-left:10px;">
@@ -121,14 +64,14 @@
 	</nav>
 	</header>
 	<main>
-		<div style="height:80px"></div>
-        <div class="row align-items-md-stretch" style="float:left; width:580px; height:460px; margin-left:2.5rem;">
-            <div class="p-5 mb-4" style=" border-radius: 4rem !important; background-color: #9AB9FF;">
+		<div style="height:75px"></div>
+        <div class="row align-items-md-stretch" style="float:left; width:580px; height:400px; margin-left:2.5rem;">
+            <div style="padding:0.5rem; border-radius: 4rem !important; background-color: #9AB9FF;">
                 <canvas id="showPie" style="width:400px; height:300px; "></canvas>
             </div>
     	</div>
-        <div class="row align-items-md-stretch" style="float:right; width:580px; height:460px; margin-right:2.5rem;">
-            <div class="p-5 mb-4" style=" border-radius: 4rem !important; background-color: #5A78AF">
+        <div class="row align-items-md-stretch" style="float:right; width:580px; height:400px; margin-right:2.5rem;">
+            <div style="padding:0.5rem; border-radius: 4rem !important; background-color: #5A78AF">
                 <canvas id="showBar" style="width:400px; height:300px; "></canvas>
             </div>
         </div>

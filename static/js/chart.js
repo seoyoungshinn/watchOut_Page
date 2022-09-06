@@ -1,4 +1,6 @@
-/*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/ 
+/*-----------차트(소요시간차이 , 경로이탈부분비율)-----------*/
+
+
 function drawBarChartOnWeb(historyArr){
     var colors = ["#5286b8", "#94b9da","#002c64","#5b9ad1","#00070e"];
     var labelsArr = [];
@@ -11,7 +13,8 @@ function drawBarChartOnWeb(historyArr){
         var timeData = elapsedTime/1000 - historyArr[i].expectedTime ; //예상소요시간과차이(s)
         dataArr.push(timeData);
     }
-    new Chart(document.getElementById("showBar"), {
+    Chart.defaults.global.defaultFontColor = "#eee";
+     new Chart(document.getElementById("showBar"), {
         type: 'bar',
         data: {
           labels: labelsArr,
@@ -27,14 +30,15 @@ function drawBarChartOnWeb(historyArr){
           legend: { display: false },
           title: {
             display: true,
-            text: '예상 소요 시간과 실제 소요 시간의 차이 (최근 5가지)'
+            text: '예상 소요 시간과 실제 소요 시간의 차이 (최근 5가지)',
+            fontColor: 'black'
           }
         }
       });
 }
 
 function drawDoughnutChartOnWeb(historyArr){
-    var labels = ["횡단보도" , "직진길", "분기점", "위험요소A","위험요소B"];
+    var labels = ["횡단보도" , "직진길", "분기점", "차도 분리 요소","차도 비분리 요소"];
     var crossWalk = 0;
     var straightRoad = 0;
     var noCar = 0;
@@ -56,7 +60,7 @@ function drawDoughnutChartOnWeb(historyArr){
           datasets: [
               {
                 label: "dd (millions)",
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                backgroundColor: ["#25316D", "#5F6F94","#97D2EC","#FEF5AC","#3e95cd"],
                 data: [crossWalk,straightRoad,noCar,withCar,turnPoint]
               }
           ]
@@ -64,8 +68,10 @@ function drawDoughnutChartOnWeb(historyArr){
         options: {
           title: {
             display: true,
-            text: '경로이탈한 위치의 타입 비율'
+            text: '경로이탈한 위치의 타입 비율',
+            fontColor: 'black'
           }
         }
     });
 }
+
