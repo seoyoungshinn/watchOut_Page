@@ -98,13 +98,13 @@
 				<a class="nav-link active" style="margin-left:20px; margin-right: 20px;">ㅣ</a>
 			  </li>
 			  <li class="nav-item" style="padding-left:10px;">
-				<a class="nav-link"  href="/watchnow">WatchNow</a>
+				<a class="nav-link active"  href="/watchnow">WatchNow</a>
 			  </li>
 			  <li class="nav-item" style="padding-left:10px;">
 				<a class="nav-link active" href="/history">History</a>
 			  </li>
 			  <li class="nav-item" style="padding-left:10px;">
-				<a class="nav-link active" style="color: #b0bffb" href="/analysis">Analysis</a>
+				<a class="nav-link" style="color: #b0bffb" href="/analysis">Analysis</a>
 			  </li>
 			  <li class="nav-item" style="padding-left:10px;">
 				<a class="nav-link active" href="/favorites">Favorite</a>
@@ -113,39 +113,25 @@
 				<a class="nav-link active" style="margin-left:20px; margin-right: 20px;">ㅣ</a>
 			  </li>
 			  <li class="nav-item" style="padding-left:10px;">
-				<a class="nav-link active" href="/feedback">Settings</a>
+				<a class="nav-link active" href="/settings">Settings</a>
 			  </li>
 			</ul>
 		  </div>
 		</div>
 	</nav>
 	</header>
-    <div class="container py-4" style="height:950px; float: right;">
-        <div class="row align-items-md-stretch" style="float:right; width:550px;">
-            <div class="p-5 mb-4 bg-light rounded-3" style="height:900px;">
-                <div class="container-fluid" style="margin-top:1.0rem; margin-bottom:1.5rem;">
-                    <h1 class="fw-bold" style="font-size: 2.7rem;">데이터수치화 그래프</h1>
-                    <!-- 데이터수치화시작 -->
-                    <p class="col-md-8 fs-4" style = "width:400px;">경로요소/예상 시간 차이</p>
-                    <canvas id="showPie" style="width:400px; height:300px; margin-top:2rem; margin-bottom:2rem;"></canvas>
-                    <canvas id="showBar" style="width:400px; height:300px; margin-top:2rem; margin-bottom:2rem;"></canvas>
-                    <!-- 데이터수치화끝 -->
-                  </div>
+	<main>
+		<div style="height:80px"></div>
+        <div class="row align-items-md-stretch" style="float:left; width:580px; height:460px; margin-left:2.5rem;">
+            <div class="p-5 mb-4" style=" border-radius: 4rem !important; background-color: #9AB9FF;">
+                <canvas id="showPie" style="width:400px; height:300px; "></canvas>
+            </div>
+    	</div>
+        <div class="row align-items-md-stretch" style="float:right; width:580px; height:460px; margin-right:2.5rem;">
+            <div class="p-5 mb-4" style=" border-radius: 4rem !important; background-color: #5A78AF">
+                <canvas id="showBar" style="width:400px; height:300px; "></canvas>
             </div>
         </div>
-    </div><div class="container py-4" style="height:950px;  float: right;">
-            <div class="row align-items-md-stretch" style="float:right; width:550px;">
-                <div class="p-5 mb-4 bg-light rounded-3" style="height:900px;">
-                    <div class="container-fluid" style="margin-top:1.0rem; margin-bottom:1.5rem;">
-                        <h1 class="fw-bold" style="font-size: 2.7rem;">데이터수치화 그래프</h1>
-                        <!-- 데이터수치화시작 -->
-                        <p class="col-md-8 fs-4" style = "width:400px;">경로요소/예상 시간 차이</p>
-                        <canvas id="showPie" style="width:400px; height:300px; margin-top:2rem; margin-bottom:2rem;"></canvas>
-                        <canvas id="showBar" style="width:400px; height:300px; margin-top:2rem; margin-bottom:2rem;"></canvas>
-                        <!-- 데이터수치화끝 -->
-                      </div>
-                </div>
-            </div>
-        </div>
+	</main>
 </body>
 </html>
