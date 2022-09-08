@@ -54,6 +54,10 @@ def exhistory():
 @app.route('/routeinfo')
 def routeinfo():
     return render_template('ff/routeinfo.html')
+
+@app.route('/viewfour')
+def viewfour():
+    return render_template('ff/viewfour.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

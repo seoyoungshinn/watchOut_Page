@@ -9,7 +9,7 @@ var isConnected = false;
 var exHeartRate = 0;
 var nowHeartRate = 0;
 
-var routeInfo = "hi";
+var routeInfo, fourScore;
 
 /*------------------MQTT--------------------*/
 function onConnect() {
@@ -20,7 +20,7 @@ function onConnect() {
     subscribe("selectedRouteInfor")
     //subscribe("route");
     subscribe("now");
-    //subscribe("saftyScore");
+    subscribe("saftyScore");
     subscribe("des");
     subscribe("topic");
     subscribe("route_res");
@@ -47,17 +47,13 @@ function onMessageArrived(msg) {
         
         case "selectedRouteInfor":
             routeInfo = msg.payloadString;
-            parsing(routeInfo);
+            parsingInfo(routeInfo);
             break;
 
         //4가지경로 점수테이블
         case "saftyScore":
-            drawTypeTable();
-            var split = msg.payloadString.split("!");
-            for (var i = 0; i < split.length; i++) {
-                var safty = split[i].split(",");
-                drawDataTables(i, safty); //4개 표
-            }
+            fourScore = msg.payloadString;
+            saveTableData(fourScore);
             break;
 
         case "des":
@@ -73,7 +69,6 @@ function onMessageArrived(msg) {
         case "route":
             if (msg.payloadString == "restart") {
                 console.log("restart");
-                // $('input:radio[name=myname]').prop('checked', false);
 
                 $('#fourMap').css('display', 'block');
                 $('#resMap').css('display', 'block');
@@ -83,14 +78,12 @@ function onMessageArrived(msg) {
                 var sTables = document.getElementById("saftyTables");
                 var btn = document.getElementById("btn");
                 var heart = document.getElementById("heartDiv");
-           //     var wTables = document.getElementById("weightTable");
 
                 fMap.innerHTML = '';
                 rMap.innerHTML = '';
                 sTables.innerHTML = '';
                 heart.innerHTML = '';
                 btn.innerHTML = '';
-             //   wTables.innerHTML = '';
 
                 break;
             }
@@ -121,8 +114,7 @@ function onMessageArrived(msg) {
                 arr_lon[i] = box[1];
             }
 
-            drawFourMap(arr_lat, arr_lon);
-            // document.getElementById("both").checked = true;
+            saveMapData(arr_lat, arr_lon);
             document.getElementById("btn").innerHTML += '<div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;"><button onclick="MapType(\'ROAD\')">ROAD</button><button onclick="MapType(\'HYBRID\')">HYBRID</button></div>';
             break;
 
@@ -202,4 +194,3 @@ function mqttConnection() {
 
     mqtt.connect(options);
 }
-

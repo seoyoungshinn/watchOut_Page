@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Watch Out!</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./static/js/table.js" type="text/javascript"></script>
+    <script src="./static/js/tmap.js" type="text/javascript"></script>
+    <script src="./static/js/watchnow.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <style>
+    
+    .close{
+        background-color: #B0BFFF;
+        color:black;
+        border-radius: 0.5rem;
+        padding-left:30px;
+        padding-right:30px;
+        padding-top:10px;
+        padding-bottom:10px;
+        font-size:20px;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left:800px;
+    }
+        
+    </style>
+</head>
+<body style="background: #000239;" onload="viewAll();">
+    <script type="text/javascript">
+        function win_close() {
+            window.close();
+        };
+
+        function viewAll(){
+            var showAlert = setTimeout(function() {
+                showFourMap();
+                showFourScore();
+			}, 1000);
+        }
+    </script>
+    <div style="color:white; font-size:25px; padding-top:5px; font-weight: bold;">후보 경로 보기</div>
+    <div style="height:50px; padding-top:5px; float:right;">
+        <a href="#" class="close" onclick="win_close()">창닫기</a>
+    </div>
+    <div>
+		<div id = "btn"></div> 
+        <div id="fourmap"></div>
+        <div id="weightTable"></div>
+    </div>
+    <div>
+        <div>현재 나의 우선순위</div>
+        <div>차도 분리 시설</div>
+    </div>
+    <div>*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
+
+</body>
+</html>

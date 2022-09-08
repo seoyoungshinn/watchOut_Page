@@ -6,7 +6,8 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
     /*------------Tmap 지도------------*/ 
 
         //경로 4가지 그리는 지도
-        function drawFourMap(arr_lat,arr_lon){  
+        function drawFourMap(arr_lat,arr_lon){ 
+             
             var lat1 = arr_lat[0].split(",");
             var lon1 = arr_lon[0].split(",");      
             

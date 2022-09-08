@@ -13,6 +13,7 @@
     <script src="./static/js/tmap.js" type="text/javascript"></script>
 	<script src="./static/js/table.js" type="text/javascript"></script>
 	<script src="./static/js/firebase.js" type="text/javascript"></script>
+	<script src="./static/js/watchnow.js" type="text/javascript"></script>
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
 
@@ -35,34 +36,6 @@
 <body style="background-color: #b0bffb">
 	<script type = "text/javascript">
 		mqttConnection();
-		var endname;
-		var routescore;
-		var routelength;
-		var routetime;
-		var etc;
-		var openWin;
-		function parsing(routeInfo) {
-			var routeArr = routeInfo.split("!");
-			console.log(routeArr);
-			endname = routeArr[0];
-			routescore = routeArr[1];
-			routelength = routeArr[2];
-			routetime = routeArr[3];
-			etc = routeArr[4];
-		}
-		function win_open(url,name) {
-      		openWin = window.open(url,name,"fullscreen=yes");
-			var showAlert = setTimeout(function() {
-   				showInfo();
-			}, 1000);
-		};
-		function showInfo() {
-			openWin.document.getElementById("endname").innerHTML = endname;
-			openWin.document.getElementById("routescore").innerHTML = routescore;
-			openWin.document.getElementById("routelength").innerHTML = routelength;
-			openWin.document.getElementById("routetime").innerHTML = routetime;
-			openWin.document.getElementById("etc").innerHTML = etc;
-		};
 	</script>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#333489;">
@@ -124,14 +97,14 @@
 				<!--알고리즘으로 고른 지도-->
 				<div id = "resMap" ></div>
 			</div>
-			<div id="massege" style="width:300px; height:430px; background-color: #737CC5; color:#000259; text-align: center; padding: 10px;">
+			<div id="massege" style="width:300px; height:430px; background-color: #717DCB; color:#000259; text-align: center; padding: 10px;">
 				<h3 style="padding-bottom: 5px; font-weight: bold;">실시간 행동</h3>
 				<div id = "topic"></div>
 			</div>
     	</div>
 		<div id = "buttons "style="width:1200px;">
-			<button onclick="win_open('/routeinfo','routeInfo');" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">최종 경로 정보</button>
-			<button style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right;">후보 경로 보기</button>
+			<button onclick="win_open('/viewfour','viewfour');" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right; margin-left:10px;">후보 경로 보기</button>
+			<button onclick="win_open('/routeinfo','routeInfo');" style="background-color:white; border-color: white; border-radius: 0.5rem; width:160px; height:40px; font-size:20px; font-weight: bold; float:right;">최종 경로 정보</button>
 		</div>
 		</div>
 	</main>
