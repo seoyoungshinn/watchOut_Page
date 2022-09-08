@@ -18,8 +18,8 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
            var map = new Tmapv2.Map("fourMap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
-                width: "580px", //크기바꾸는곳
-                height: "400px",
+                width: "400px", //크기바꾸는곳
+                height: "250px",
                 zoom: 15
             });
             

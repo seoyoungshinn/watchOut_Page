@@ -9,7 +9,7 @@ var routetime;
 var etc;
 var openWin;
 
-var fourScore = getScore();
+var fourScore;
 
 function win_open(url,name) {
     openWin = window.open(url,name,"fullscreen=yes");
@@ -56,5 +56,5 @@ function showFourScore() {
 }
 
 function showFourMap() {
-    drawFourMap(arr_lat, arr_lon);
+    drawFourMap(latArr, lonArr);
 }

@@ -30,6 +30,22 @@
         text-decoration: none;
         margin-left:800px;
     }
+    .rank{
+        background-color: white;
+        width:300px;
+        height:350px;
+        border-radius: 1rem;
+        text-align: center;
+        color: #333489;
+        font-weight: bold;
+    }
+    .fac{
+        width:300px;
+        height:150px;
+        background-color: #B0BFFF;
+        border-radius: 0.5rem;
+        color:black;
+    }
         
     </style>
 </head>
@@ -50,16 +66,21 @@
     <div style="height:50px; padding-top:5px; float:right;">
         <a href="#" class="close" onclick="win_close()">창닫기</a>
     </div>
-    <div>
+    <div style="width:600px; height:550px; float:left;">
 		<div id = "btn"></div> 
         <div id="fourmap"></div>
         <div id="weightTable"></div>
     </div>
-    <div>
-        <div>현재 나의 우선순위</div>
-        <div>차도 분리 시설</div>
+    <div style="width:600px; height:550px; float:right;">
+        <div class="rank">현재 나의 우선순위</div>
+        <div class="fac">
+            <a style="font-weight: bold;">차도 분리 시설</a><br>
+            <a> : 엘레베이터, 육교, 지하보도, 계단</a><br>
+            <a style="font-weight: bold;">차도 비분리 시설</a><br>
+            <a> : 터널, 고가도로, 대형 시설물 이동통로</a>
+        </div>
     </div>
-    <div>*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
+    <div style="float:right">*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
 
 </body>
 </html>
