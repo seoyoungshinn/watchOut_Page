@@ -13,40 +13,9 @@
     <script src="./static/js/showList.js" type="text/javascript"></script>
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
-
-	<style>
-
-        #progress {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            display: block;
-            width: 300px;
-            height: 35px;
-            border-radius: 1rem;
-            color: #005493;
-        }
-        #progress::-webkit-progress-bar {
-            background-color: #005493;
-            border-radius: 14px;
-        }
-        #progress::-webkit-progress-value {
-            background-color:#b0bfff;
-            border-radius: 14px;
-        }
-
-
-        hr {
-            border: none;
-            border-top: 5px dashed;
-            border-color: black;
-            width: 100%;
-        }
-
-
-	</style>
-	<link href="./static/css/carousel.css" rel="stylesheet">
+	<link href="./static/css/bootstrap.css" rel="stylesheet">
+    <link href="./static/css/carousel.css" rel="stylesheet">
+    <link href="./static/css/settings.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
 	
@@ -96,48 +65,81 @@
     <main>
         <div style="height:60px"></div>
         <main>
-            <div class="row align-items-md-stretch" style="float:left; width:650px; height:450px; margin-left:2.5rem;">
-            <div style="padding:0.5rem; border-radius: 4rem !important; background-color:#717DCB;" >
+            <div class="left_box">
                 <h2 style="color: #333489; font-weight: bold; text-align: center;">우선순위 Setting</h2>
-                <div style="color: #333489;margin-left:60px; float:left; font-size:20px; height:60px; padding-top:25px; font-weight: bold;">
+                <div class = "priority_name" style="margin-left:60px; float:left;">
                     도로 상태
                 </div>
-                <div style="color: #333489; margin-right:60px;float:right; font-size:20px; height:60px; padding-top:25px; font-weight: bold;">
+                <div class = "priority_name" style="margin-right:60px;float:right;">
                     위험 시설
                 </div>
-                 <div style="width: 300px; margin:auto;" >
-                    <a style="float: left; margin-right: 19px;">0</a>
-                    <a style="margin-right:14px;">1</a>
-                    <a style="margin-right:14px;">2</a>
-                    <a style="margin-right:14px;">3</a>
-                    <a style="margin-right:14px;">4</a>
-                    <a style="margin-right:14px;">5</a>
-                    <a style="margin-right:14px;">6</a>
-                    <a style="margin-right:14px;">7</a>
-                    <a style="margin-right:14px;">8</a>
-                    <a style="margin-right:14px;">9</a>
-                    <a style="float: right;">10</a>
-                    <progress id ="progress" class="priorityTag" value="50" max="100">
-                        <div>90</div>
+                 <div id ="progress_box" style="width: 300px; margin:auto;" >
+                    <p style="float: left; margin-right: 19px;">0</p>
+                    <a>1</a>
+                    <a>2</a>
+                    <a>3</a>
+                    <a>4</a>
+                    <a>5</a>
+                    <a>6</a>
+                    <a>7</a>
+                    <a>8</a>
+                    <a>9</a>
+                    <p style="float: right;">10</p>
+                    <progress id ="progress" class="priorityTag" value="50" max="100" style="width: 300px;">
                     </progress>
                   </div>
                 <hr>
-                <a style="float: left;">0</a>
-                <a style="margin-left: 80px; margin-right: 60px;">50</a>
-                <a style="float: right;">100</a>
-            <progress id ="progress" class="progressTag" value="22" max="100"></progress>
-            </div>
-            </div>
-            <div class="row align-items-md-stretch" style="float:right; width:514px; height:450px; margin-right:2.5rem;">
-                <div style="padding:0.5rem; border-radius: 4rem !important; background-color: #97A7FE;">
-                
+                <div class = "danger">
+                    <div class ="name">횡단보도</div>
+                    <div id = "crossScore" class="score">80</div>
+                    <div style="width: 250px; float: left;">
+                        <a style="float: left;">0</a>
+                        <a style="margin-left: 105px; margin-right: 60px;">50</a>
+                        <a style="float: right;">100</a>
+                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                    </div>
                 </div>
+                <div class = "danger">
+                    <div class ="name">분기점</div>
+                    <div id = "crossScore" class="score">80</div>
+                    <div class = "progress_box">
+                        <a style="float: left;">0</a>
+                        <a style="margin-left: 105px; margin-right: 60px;">50</a>
+                        <a style="float: right;">100</a>
+                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                    </div>
+                </div>
+                <div class = "danger">
+                        <div class ="name">차도 분리시설</div>
+                        <div id = "crossScore" class="score">80</div>
+                        <div class = "progress_box">
+                            <a style="float: left;">0</a>
+                            <a style="margin-left: 105px; margin-right: 60px;">50</a>
+                            <a style="float: right;">100</a>
+                            <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                        </div>
+                </div>
+                <div class = "danger">
+                    <div class ="name">차도 비분리시설</div>
+                    <div id = "crossScore" class="score">80</div>
+                    <div class = "progress_box">
+                        <a style="float: left;">0</a>
+                        <a style="margin-left: 105px; margin-right: 60px;">50</a>
+                        <a style="float: right;">100</a>
+                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                    </div>
+            </div>
+            </div>
+            <div class="right_box">
+                    <button class="btn btn-outline-secondary" type="button">Help</button>
+                    <div class = "user_priority"></div>
+                
             </div>
 	</main>
 </body>
 </html>
 <script type = "text/javascript">               
-    function tag (tagName) {
+    function updateProgressBar (tagName) {
         let progress = document.querySelector(tagName);
         let interval = 1;
         let updatesPerSecond = 1000 / 60;
@@ -158,5 +160,5 @@
                     }, updatesPerSecond);
         }   
 
-        tag(".priorityTag");
+        updateProgressBar(".priorityTag");
     </script>

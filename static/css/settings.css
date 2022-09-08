@@ -1,0 +1,113 @@
+
+        .priority_name{
+            color: #333489; 
+            font-size:20px; 
+            height:60px; 
+            padding-top:25px; 
+            font-weight: bold;
+        }
+        #progress {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: block;
+            height: 35px;
+            border-radius: 1rem;
+            color: #005493;
+        }
+        #progress::-webkit-progress-bar {
+            background-color: #005493;
+            border-radius: 14px;
+        }
+        #progress::-webkit-progress-value {
+            background-color:#b0bfff;
+            border-radius: 14px;
+        }
+        
+        .left_box{
+            padding:0.5rem; 
+            border-radius: 4rem !important; 
+            background-color:#717DCB;
+            margin-left:70px;
+            float:left; width:650px; height:450px;
+        }
+
+        .danger{
+            width:650px; 
+            height: 70px;
+        }
+
+        .name{
+            width:200px;
+            color: #333489;
+            font-size: 25px;
+            font-weight:bold; 
+            margin-left:20px; 
+            margin-right:20px;
+            float: left;
+            padding-top:25px;
+            text-align: center;
+        }
+        .score{
+            background-color: #91979e;
+            color: black; 
+            border-radius: 10px;
+            font-size: 25px;
+            width: 60px; 
+            height:40px;
+            float: right;
+            margin-top:20px; 
+            margin-right:70px;
+            text-align: center; 
+        }
+        .progress_box{
+            width: 250px; float: left;
+        }
+        hr {
+            border: none;
+            border-top: 5px dashed;
+            border-color: black;
+            width: 100%;
+        }
+
+        #progress_box a {margin-right:14px;}
+
+
+
+
+        .right_box{
+            padding:0.5rem; 
+            border-radius: 4rem !important; 
+            background-color: #97A7FE;
+            margin-right: 70px;
+            float:right; 
+            width:450px; 
+            height:450px; 
+        }
+
+        .right_box button {
+           border-width: 1px;
+           border-radius: 0.5rem;
+            color : #343a40;
+            font-weight: bold;
+            font-style: italic;
+            width: 100px;
+            height: 50px;
+            margin-left:60px;
+            margin-top: 10px;
+            background-color: white;
+        }
+
+        .user_priority{
+            padding:0.5rem; 
+            border-radius:3rem !important; 
+            background-color: white;
+            width: 80%;
+            height: 80%;
+            margin-top: 20px;
+            margin-left: 50px;
+        }
+
+        
+
+        
