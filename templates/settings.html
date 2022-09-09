@@ -63,10 +63,10 @@
         </nav>
 	</header>
     <main>
-        <div style="height:60px"></div>
+        <div style="height:40px"></div>
         <main>
             <div class="left_box">
-                <h2 style="color: #333489; font-weight: bold; text-align: center;">우선순위 Setting</h2>
+                <h2 style="">우선순위 Setting</h2>
                 <div class = "priority_name" style="margin-left:60px; float:left;">
                     도로 상태
                 </div>
@@ -91,8 +91,8 @@
                 <hr>
                 <div class = "danger">
                     <div class ="name">횡단보도</div>
-                    <div id = "crossScore" class="score">80</div>
-                    <div style="width: 250px; float: left;">
+                    <input type="text"  maxlength="3" id = "crossScore" class="score">
+                    <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
@@ -101,7 +101,7 @@
                 </div>
                 <div class = "danger">
                     <div class ="name">분기점</div>
-                    <div id = "crossScore" class="score">80</div>
+                    <input type="text"  maxlength="3" id = "crossScore" class="score">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
@@ -111,7 +111,7 @@
                 </div>
                 <div class = "danger">
                         <div class ="name">차도 분리시설</div>
-                        <div id = "crossScore" class="score">80</div>
+                        <input type="text"  maxlength="3" id = "crossScore" class="score">
                         <div class = "progress_box">
                             <a style="float: left;">0</a>
                             <a style="margin-left: 105px; margin-right: 60px;">50</a>
@@ -121,19 +121,46 @@
                 </div>
                 <div class = "danger">
                     <div class ="name">차도 비분리시설</div>
-                    <div id = "crossScore" class="score">80</div>
+                    <input type="text" id = "crossScore" class="score" maxlength="3">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
                         <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
                     </div>
-            </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn btn-outline-secondary" type="button" style="margin-right: 100px;">초기화</button>
+                    <button class="btn btn-outline-secondary" type="button">적용하기</button>
+                </div>
             </div>
             <div class="right_box">
                     <button class="btn btn-outline-secondary" type="button">Help</button>
-                    <div class = "user_priority"></div>
-                
+                    <div class = "user_priority">
+                        <p class="my">현재 나의 우선순위</p>
+                        <div id ="progress_box" style="width: 300px; margin:auto;" >
+                            <p style="float: left; margin-right: 19px;">0</p>
+                            <a>1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
+                            <a>6</a>
+                            <a>7</a>
+                            <a>8</a>
+                            <a>9</a>
+                            <p style="float: right;">10</p>
+                            <progress id ="progress" class="priorityTag" value="50" max="100" style="width: 300px;"></progress>
+                            <div><a style="float: left;">도로상태</a> <a style="float: right;">위험 시설</a></div>
+                            <div class = "priority">
+                                <div>1 횡단보도 (80)</div>
+                                <div>2 차도 분리시설 (35)</div>
+                                <div>3 분기점 (30)</div>
+                                <div>4 차도 비분리시설 (25)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
             </div>
 	</main>
 </body>

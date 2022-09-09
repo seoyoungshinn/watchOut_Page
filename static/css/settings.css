@@ -1,4 +1,7 @@
 
+        main h2{
+            color: #333489; font-weight: bold; text-align: center;
+        }
         .priority_name{
             color: #333489; 
             font-size:20px; 
@@ -32,9 +35,21 @@
             float:left; width:650px; height:450px;
         }
 
+        .left_box button{
+            border-width: 1px;
+            border-radius: 0.5rem;
+             color : black;
+             font-weight: bold;
+             font-style: italic;
+             width: 130px;
+             height: 45px;
+             background-color: white;
+             opacity: 0.75;
+            }
+
         .danger{
             width:650px; 
-            height: 70px;
+            height: 65px;
         }
 
         .name{
@@ -49,30 +64,30 @@
             text-align: center;
         }
         .score{
-            background-color: #91979e;
             color: black; 
             border-radius: 10px;
             font-size: 25px;
+            font-weight: bold;
             width: 60px; 
             height:40px;
             float: right;
             margin-top:20px; 
             margin-right:70px;
             text-align: center; 
+            opacity: 0.75;
         }
         .progress_box{
             width: 250px; float: left;
         }
+
+        #progress_box a {margin-right:14px;}
+        
         hr {
             border: none;
             border-top: 5px dashed;
             border-color: black;
             width: 100%;
         }
-
-        #progress_box a {margin-right:14px;}
-
-
 
 
         .right_box{
@@ -88,26 +103,49 @@
         .right_box button {
            border-width: 1px;
            border-radius: 0.5rem;
-            color : #343a40;
+            color : black;
             font-weight: bold;
             font-style: italic;
             width: 100px;
-            height: 50px;
+            height: 40px;
             margin-left:60px;
-            margin-top: 10px;
+            margin-top: 15px;
             background-color: white;
+            opacity: 0.5;
         }
 
         .user_priority{
+            opacity: 0.75;
             padding:0.5rem; 
             border-radius:3rem !important; 
             background-color: white;
             width: 80%;
             height: 80%;
-            margin-top: 20px;
+            margin-top: 15px;
             margin-left: 50px;
+            color: #333489;  
         }
 
+        .my
+        {
+            font-size:25px; 
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5px;
+        }
+
+        .priority{
+            text-align: center; 
+            margin-top:50px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .priority div {
+            margin-bottom: 10px;
+        }
+
+        
         
 
         
