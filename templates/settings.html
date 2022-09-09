@@ -5,20 +5,19 @@
 	<title>Watch Out!</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
+  <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 	<script src="./static/js/firebase.js" type="text/javascript"></script>
-    <script src="./static/js/showList.js" type="text/javascript"></script>
+  <script src="./static/js/settings.js" type="text/javascript"></script>
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<link href="./static/css/bootstrap.css" rel="stylesheet">
-    <link href="./static/css/carousel.css" rel="stylesheet">
-    <link href="./static/css/settings.css" rel="stylesheet">
+  <link href="./static/css/carousel.css" rel="stylesheet">
+  <link href="./static/css/settings.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
-	
 	<header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
@@ -91,42 +90,42 @@
                 <hr>
                 <div class = "danger">
                     <div class ="name">횡단보도</div>
-                    <input type="text"  maxlength="3" id = "crossScore" class="score">
+                    <input type="text" maxlength="3" id = "cross" class="score" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
-                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                        <progress id ="progress" class="cross" value="0" max="100" style="width: 250px;"></progress>
                     </div>
                 </div>
                 <div class = "danger">
                     <div class ="name">분기점</div>
-                    <input type="text"  maxlength="3" id = "crossScore" class="score">
+                    <input type="text" maxlength="3" id = "turn" class="score" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
-                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                        <progress id ="progress" class="turn" value="0" max="100" style="width: 250px;"></progress>
                     </div>
                 </div>
                 <div class = "danger">
                         <div class ="name">차도 분리시설</div>
-                        <input type="text"  maxlength="3" id = "crossScore" class="score">
+                        <input type="text" maxlength="3" id = "dangerA" class="score" onchange="changePriorityScore(this)">
                         <div class = "progress_box">
                             <a style="float: left;">0</a>
                             <a style="margin-left: 105px; margin-right: 60px;">50</a>
                             <a style="float: right;">100</a>
-                            <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                            <progress id ="progress" class="dangerA" value="0" max="100" style="width: 250px;"></progress>
                         </div>
                 </div>
                 <div class = "danger">
                     <div class ="name">차도 비분리시설</div>
-                    <input type="text" id = "crossScore" class="score" maxlength="3">
+                    <input type="text" maxlength="3" id = "dangerB" class="score" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
-                        <progress id ="progress" class="progressTag" value="22" max="100" style="width: 250px;"></progress>
+                        <progress id ="progress" class="dangerB" value="0" max="100" style="width: 250px;"></progress>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
@@ -164,28 +163,42 @@
             </div>
 	</main>
 </body>
-</html>
-<script type = "text/javascript">               
-    function updateProgressBar (tagName) {
-        let progress = document.querySelector(tagName);
-        let interval = 1;
-        let updatesPerSecond = 1000 / 60;
-        let state = 0;
-        let max = progress.value;
 
-            function animator () {
-                state = state + interval;
-                progress.value = state;
-                if ( progress.value + interval < max+1){
-                    setTimeout(animator, updatesPerSecond);
-                } else { 
-                    progress.value = max;
-                    }
+<script>
+
+function changePriorityScore(input){
+    var value = input.value;
+    if(value >-1 && value<101){
+      updateProgressBar("."+input.id,input.value);
+    }
+    else{
+      //0~100외 값 입력 시 입력 값을 0으로 바꿔버림(다시입력하라규..이게맞나)
+      input.value = 0;
+    }
+  }
+  function updateProgressBar (tagName , input_value) {
+    let progress = document.querySelector(tagName);
+    let interval = 1;
+    let updatesPerSecond = 1000 / 60;
+    let state = 0;
+    let max = input_value;
+
+        function animator () {
+            state = state + interval;
+            progress.value = state;
+            if ( progress.value + interval < max){
+                setTimeout(animator, updatesPerSecond);
+            } else { 
+                progress.value = max;
                 }
-            setTimeout(() => {
-                animator();
-                    }, updatesPerSecond);
-        }   
+            }
+        setTimeout(() => {
+            animator();
+                }, updatesPerSecond);
+    }   
 
-        updateProgressBar(".priorityTag");
-    </script>
+    //updateProgressBar();
+
+    
+</script>
+</html>
