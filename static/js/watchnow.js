@@ -11,13 +11,18 @@ var openWin;
 
 var fourScore;
 
+function saveMsg(str){
+    var save = document.getElementById("save");
+    save.value = str;
+}
+
 function win_open(url,name) {
     openWin = window.open(url,name,"fullscreen=yes");
-    var showAlert = setTimeout(function() {
-        if(url=="/routeinfo"){
-            showResInfo();
-        }
-    }, 1000);
+    // var showAlert = setTimeout(function() {
+    //     if(url=="/routeinfo"){
+    //         showResInfo();
+    //     }
+    // }, 1000);
 };
 
 function parsingInfo(routeInfo) {
@@ -29,13 +34,17 @@ function parsingInfo(routeInfo) {
     routetime = routeArr[3];
     etc = routeArr[4];
 }
+
 function showResInfo() {
-    openWin.document.getElementById("endname").innerHTML = endname;
+    openWin.document.getElementById("endname").innerHTML =endname;
     openWin.document.getElementById("routescore").innerHTML = routescore;
     openWin.document.getElementById("routelength").innerHTML = routelength;
     openWin.document.getElementById("routetime").innerHTML = routetime;
     openWin.document.getElementById("etc").innerHTML = etc;
 };
+
+
+//////////////////////////////////////////
 
 function saveMapData(arr_lat, arr_lon) {
     latArr = arr_lat;
@@ -55,6 +64,6 @@ function showFourScore() {
     }
 }
 
-function showFourMap() {
+function showFourMap() { //이건 어디서쓰는거야?..
     drawFourMap(latArr, lonArr);
 }

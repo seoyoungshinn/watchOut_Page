@@ -72,4 +72,10 @@
         <div class = "info" id="etc"></div>
     </div>
 </body>
+    <script>
+        var mqttSaveMsg = window.opener.document.getElementById( "save" ).value;
+        console.log(mqttSaveMsg);
+        document.getElementById("endname").innerHTML = mqttSaveMsg;
+        //parsingInfo(mqttSaveMsg);
+    </script>
 </html>
