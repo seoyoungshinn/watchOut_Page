@@ -17,6 +17,7 @@
   <link href="./static/css/carousel.css" rel="stylesheet">
   <link href="./static/css/settings.css" rel="stylesheet">
 </head>
+<script>getWeightFromFirebaseForSettings();</script>
 <body style="background: #b0bfff;">
 	<header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
@@ -24,9 +25,6 @@
                 <a style="margin-left:5px; margin-right:20px;">
                     <img src= "./static/image/logo.png" height="60px" width="90px">
                 </a>
-              <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button> -->
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:14px; padding-left:14px; padding-right:14px;">
                   <li class="nav-item" style="padding-left:14px; font-size: 17px;">
@@ -65,7 +63,7 @@
         <div style="height:40px"></div>
         <main>
             <div class="left_box">
-                <h2 style="">우선순위 Setting</h2>
+                <h2>우선순위 Setting</h2>
                 <div class = "priority_name" style="margin-left:60px; float:left;">
                     도로 상태
                 </div>
@@ -90,17 +88,17 @@
                 <hr>
                 <div class = "danger">
                     <div class ="name">횡단보도</div>
-                    <input type="text" maxlength="3" id = "cross" class="score" onchange="changePriorityScore(this)">
+                    <input type="text" maxlength="3" id = "cross" class="score" value = "0" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
                         <progress id ="progress" class="cross" value="0" max="100" style="width: 250px;"></progress>
-                    </div>
+                      </div>
                 </div>
                 <div class = "danger">
                     <div class ="name">분기점</div>
-                    <input type="text" maxlength="3" id = "turn" class="score" onchange="changePriorityScore(this)">
+                    <input type="text" maxlength="3" id = "turn" class="score" value = "0" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
@@ -110,27 +108,27 @@
                 </div>
                 <div class = "danger">
                         <div class ="name">차도 분리시설</div>
-                        <input type="text" maxlength="3" id = "dangerA" class="score" onchange="changePriorityScore(this)">
+                        <input type="text" maxlength="3" id = "noCar" class="score" value = "0" onchange="changePriorityScore(this)">
                         <div class = "progress_box">
                             <a style="float: left;">0</a>
                             <a style="margin-left: 105px; margin-right: 60px;">50</a>
                             <a style="float: right;">100</a>
-                            <progress id ="progress" class="dangerA" value="0" max="100" style="width: 250px;"></progress>
+                            <progress id ="progress" class="noCar" value="0" max="100" style="width: 250px;"></progress>
                         </div>
                 </div>
                 <div class = "danger">
                     <div class ="name">차도 비분리시설</div>
-                    <input type="text" maxlength="3" id = "dangerB" class="score" onchange="changePriorityScore(this)">
+                    <input type="text" maxlength="3" id = "withCar" class="score" value = "0" onchange="changePriorityScore(this)">
                     <div class = "progress_box">
                         <a style="float: left;">0</a>
                         <a style="margin-left: 105px; margin-right: 60px;">50</a>
                         <a style="float: right;">100</a>
-                        <progress id ="progress" class="dangerB" value="0" max="100" style="width: 250px;"></progress>
+                        <progress id ="progress" class="withCar" value="0" max="100" style="width: 250px;"></progress>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
                     <button class="btn btn-outline-secondary" type="button" style="margin-right: 100px;">초기화</button>
-                    <button class="btn btn-outline-secondary" type="button">적용하기</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="apply();">적용하기</button>
                 </div>
             </div>
             <div class="right_box">
@@ -149,13 +147,13 @@
                             <a>8</a>
                             <a>9</a>
                             <p style="float: right;">10</p>
-                            <progress id ="progress" class="priorityTag" value="50" max="100" style="width: 300px;"></progress>
-                            <div><a style="float: left;">도로상태</a> <a style="float: right;">위험 시설</a></div>
-                            <div class = "priority">
-                                <div>1 횡단보도 (80)</div>
+                            <progress id ="progress" class="currentTag" value="0" max="100" style="width: 300px;"></progress>
+                            <div><a style="float: left;">도로상태</a> <a style="float: right;">위험시설</a></div>
+                            <div id = "priority" class = "priority">
+                                <!-- <div>1 횡단보도 (80)</div>
                                 <div>2 차도 분리시설 (35)</div>
                                 <div>3 분기점 (30)</div>
-                                <div>4 차도 비분리시설 (25)</div>
+                                <div>4 차도 비분리시설 (25)</div> -->
                             </div>
                         </div>
                     </div>
@@ -163,42 +161,4 @@
             </div>
 	</main>
 </body>
-
-<script>
-
-function changePriorityScore(input){
-    var value = input.value;
-    if(value >-1 && value<101){
-      updateProgressBar("."+input.id,input.value);
-    }
-    else{
-      //0~100외 값 입력 시 입력 값을 0으로 바꿔버림(다시입력하라규..이게맞나)
-      input.value = 0;
-    }
-  }
-  function updateProgressBar (tagName , input_value) {
-    let progress = document.querySelector(tagName);
-    let interval = 1;
-    let updatesPerSecond = 1000 / 60;
-    let state = 0;
-    let max = input_value;
-
-        function animator () {
-            state = state + interval;
-            progress.value = state;
-            if ( progress.value + interval < max){
-                setTimeout(animator, updatesPerSecond);
-            } else { 
-                progress.value = max;
-                }
-            }
-        setTimeout(() => {
-            animator();
-                }, updatesPerSecond);
-    }   
-
-    //updateProgressBar();
-
-    
-</script>
 </html>

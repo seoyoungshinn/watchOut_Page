@@ -219,6 +219,19 @@ function addDangerWeightToFirestore(c,a,b){
     });
 }
 
+function getWeightFromFirebaseForSettings(){
+    docRef.get()
+    .then((doc) => {
+      var weight = doc.data();
+      sortPriority(weight.algorithmWeight_crossWalk,weight.algorithmWeight_facilityCar,
+        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_turnPoint);
+        drawTableWeightBar(weight.tableWeight_road);
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+}
+
 function setDangerWeightToFirestore(n1, n2, n3, n4){
     docRef.update({
         algorithmWeight_crossWalk: n1,
