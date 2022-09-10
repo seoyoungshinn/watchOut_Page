@@ -114,7 +114,7 @@ function setHistoryObjectForHistory(){
     .then((HistoryArr)=>{
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(i,HistoryArr[i]);
-            // showForFeedback(i+1,HistoryArr[i]);
+            showForFeedback(i+1,HistoryArr[i]);
         }
         // drawHistoryBarChartOnWeb(HistoryArr);
         // drawHistoryDoughnutChartOnWeb(HistoryArr);

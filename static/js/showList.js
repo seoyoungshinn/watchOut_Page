@@ -83,12 +83,12 @@ function showHistoryOnWeb(num,history){
 }
 
 function showForFeedback(index, history){
-    var dateTagName = "historyTofeedback-date-" + index; //날짜
+    var dateTagName = "date" + index; //날짜
     
     var dateDiv = document.getElementById(dateTagName);
     dateDiv.textContent = history.departureTime.toLocaleDateString();
 
-    var desTagName = "historyTofeedback-des-" + index;
+    var desTagName = "des" + index;
     var desDiv = document.getElementById(desTagName);
     desDiv.textContent = history.dpName + " -> " + history.arrivedName;
 

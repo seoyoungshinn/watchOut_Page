@@ -43,12 +43,41 @@
       margin-right:15px;
       font-size:20px;
     }
+
+    .box2{
+      width:1080px;
+      height:400px;
+      margin:auto;
+      text-align:center;
+    }
+    .round {
+      width: 200px;
+      height: 200px; 
+      border-radius: 70%;
+      overflow: hidden;
+      margin:20px;
+    }
+    .img {
+      height: 100%;
+    }
+    .small {
+      text-align: center;
+      width:300px;
+      height:400px;
+      float:left;
+      margin-right:30px;
+      margin-left:30px;
+    }
+
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
 	<script type = "text/javascript">
     setHistoryObjectForHistory();
+    function gogo(num){
+      location.href = '/simulation?num='+num;
+    }
 	</script>
 	<header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
@@ -92,7 +121,7 @@
 	</header>
     
   <main>
-    <div style="height:50px;"></div>
+    <div style="height:60px;"></div>
     <div class="box">
       <div class="list" style=" margin-bottom:20px;" id="historyList0">
         <button class="right">더보기</button>
@@ -105,6 +134,32 @@
       <div class="list" style=" margin-bottom:20px;" id="historyList2">
         <button class="right">더보기</button>
         <button class="right">평가 하기</button>
+      </div>
+    </div>
+
+    <div style="height:50px"></div>
+    <div class="box2">
+      <div class="small">
+        <button class="round" id="gosimul0" onclick="gogo(0);">
+            <img class="img" src="./static/image/road1.jpg">
+        </button>
+        <p id ="date1"></p>
+        <p id ="des1"></p>
+      </div>
+
+      <div class="small">
+        <button class="round" id="gosimul1" onclick="gogo(1);">
+            <img class="img" src="./static/image/road2.jpg">
+        </button>
+        <p id ="date2"></p>
+        <p id ="des2"></p>
+      </div>
+      <div class="small">
+        <button class="round" id="gosimul2" onclick="gogo(2);">
+            <img class="img" src="./static/image/road3.jpg">
+        </button>
+        <p id ="date3"></p>
+        <p id ="des3"></p>
       </div>
     </div>
   </main>
