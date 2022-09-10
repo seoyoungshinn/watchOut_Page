@@ -37,69 +37,49 @@ function showFavoritesOnWeb(id,data){
 }
 
 function showHistoryOnWeb(num,history){
-    let backgroundDiv = document.createElement('div');
-    backgroundDiv.setAttribute(
+    let leftDiv = document.createElement('div');
+    leftDiv.setAttribute(
         'style',
-        'float:left;'
+        'float:left;width:150px;height:100px;font-size:20px;color:white;text-align:center;'
     );
-    let firstDiv = document.createElement('div');
-    let dateSpan = document.createElement('span');
-    dateSpan.textContent = history.departureTime.toLocaleDateString();
-    dateSpan.setAttribute(
+    let a1 = document.createElement('a');
+    a1.setAttribute(
         'style',
-        'display:inline-block; width:90px;'
+        'font-weight: bold; font-size: 24px;'
     );
-    let departureTimeSpan = document.createElement('span');
-    departureTimeSpan.textContent = history.departureTime.getHours()+":"+history.departureTime.getMinutes()+":"+history.departureTime.getSeconds();
-    departureTimeSpan.setAttribute(
+    a1.innerHTML = history.departureTime.toLocaleDateString();
+    let a2 = document.createElement('a');
+    a2.innerHTML = '&#128062';
+    let a3 = document.createElement('a');
+    a3.innerHTML = " "+history.stepNum +'<br>';
+    let a4 = document.createElement('a');
+    a4.innerHTML = '&#128151';
+    let a5 = document.createElement('a');
+    a5.setAttribute(
         'style',
-        'display:inline-block; width:60px;'
+        'color:#FF2600;'
     );
-    let departureNameSpan = document.createElement('span');
-    departureNameSpan.textContent ="S: "+ history.dpName;
-    departureNameSpan.setAttribute(
-        'style',
-        'padding: 5px; color:darkslategrey;font-size:13px;font-weight:bold;'
-    );
+    a5.innerHTML = " 123 ";
+    let a6 = document.createElement('a');
+    a6.innerHTML = "/ "+ history.heartRateAverage;
+    leftDiv.appendChild(a1);
+    leftDiv.appendChild(a2);
+    leftDiv.appendChild(a3);
+    leftDiv.appendChild(a4);
+    leftDiv.appendChild(a5);
+    leftDiv.appendChild(a6);
 
-    firstDiv.appendChild(dateSpan);
-    firstDiv.appendChild(departureTimeSpan);
-    firstDiv.appendChild(departureNameSpan);
-
-    let secondDiv = document.createElement('div');
-    let healthSpan = document.createElement('span');
-    healthSpan.textContent = history.stepNum+" "+ history.heartRateAverage;
-    healthSpan.setAttribute(
+    let centerDiv = document.createElement('div');
+    centerDiv.setAttribute(
         'style',
-        'display:inline-block; color:#dc3545; width:90px;'
+        'font-size: 20px; color:white; float:left; margin-left: 55px; height:100px; width:450px; padding-top:20px;  text-align: left;'
     );
-   
-    let arrivedTimeSpan = document.createElement('span');
-    arrivedTimeSpan.textContent = history.arrivedTime.getHours()+":"+history.arrivedTime.getMinutes()+":"+history.arrivedTime.getSeconds();
-    arrivedTimeSpan.setAttribute(
-        'style',
-        'display:inline-block; width:60px;'
-    );
-    let arrivedNameSpan = document.createElement('span');
-    arrivedNameSpan.textContent ="E: "+ history.arrivedName;
-    arrivedNameSpan.setAttribute(
-        'style',
-        'padding: 5px; color:darkslategrey; font-size:13px; font-weight:bold;'
-    );
-    secondDiv.appendChild(healthSpan);
-    secondDiv.appendChild(arrivedTimeSpan);
-    secondDiv.appendChild(arrivedNameSpan);
+    centerDiv.innerHTML = "S &nbsp; "+history.departureTime.getHours()+" : "+history.departureTime.getMinutes()+"&nbsp; "+history.dpName+"<br>"+"E &nbsp; "+history.arrivedTime.getHours()+" : "+history.arrivedTime.getMinutes()+"&nbsp; "+history.arrivedName;
+    
 
-    backgroundDiv.appendChild(firstDiv);
-    backgroundDiv.appendChild(secondDiv);
-
-    let ListDiv = document.getElementById('historyList'+num);
-    backgroundDiv.setAttribute(
-        'style',
-        'padding: 1rem; border-radius: 0.3rem !important; background-color: blanchedalmond; margin:10px;',
-    );
-    ListDiv.appendChild(backgroundDiv);
-
+    let listDiv = document.getElementById('historyList'+num);
+    listDiv.appendChild(leftDiv);
+    listDiv.appendChild(centerDiv);
 }
 
 function showForFeedback(index, history){

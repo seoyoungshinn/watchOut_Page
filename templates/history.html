@@ -16,63 +16,39 @@
 	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
 
 	<style>
-
-		.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-		table{
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-		th, td{
-           
-		   border: 1px solid #000;
-		   font-size: 20px;
-	   	}
-		
-		.heart {
-   			width: 30px;
-			height: 30px;
-			background: #8B4513;
-			position: relative;
-			transform: rotate(45deg);
-  		}
-
-  		.heart::before,
-  		.heart::after {
-    		content: "";
-    		width: 30px;
-			height: 30px;
-			position: absolute;
-			border-radius: 50%;
-			background: #8B4513;
-		}
-		.heart::before {
-			left: -50%;
-		}
-		.heart::after {
-			top: -50%;
-		}
-		
-
+    .box{
+      width:950px;
+      height:400px;
+      background-color: white;
+      text-align: center;
+      margin:auto;
+      padding-top:30px;
+    }
+    .list{
+      width:900px;
+      height:100px;
+      background-color: #333489;
+      border-radius: 1rem;
+      margin:auto;
+    }
+    .right{
+      float:right;
+      height:70px;
+      width: 75px;
+      background-color: #b0bfff;
+      border-radius: 0.7rem;
+      border-style: none;
+      font-weight:bold;
+      margin-top:15px;
+      margin-right:15px;
+      font-size:20px;
+    }
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
 	<script type = "text/javascript">
-		setHistoryObjectForAnalysis();
+    setHistoryObjectForHistory();
 	</script>
 	<header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
@@ -80,16 +56,13 @@
                 <a style="margin-left:5px; margin-right:20px;">
                     <img src= "./static/image/logo.png" height="60px" width="90px">
                 </a>
-              <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button> -->
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:15px; padding-left:10px; padding-right:10px;">
                   <li class="nav-item" style="padding-left:10px; font-size: 17px;">
                     <a class="nav-link active" aria-current="page" href="/bootmap">Team</a>
                   </li>
                   <li class="nav-item" style="padding-left:10px;font-size: 17px;">
-                    <a class="nav-link active sty">App</a>
+                    <a class="nav-link active">App</a>
                   </li>
                   <li class="nav-item" style="padding-left:10px;font-size: 17px;">
                     <a class="nav-link active">Web</a>
@@ -118,5 +91,22 @@
         </nav>
 	</header>
     
+  <main>
+    <div style="height:50px;"></div>
+    <div class="box">
+      <div class="list" style=" margin-bottom:20px;" id="historyList0">
+        <button class="right">더보기</button>
+        <button class="right">평가 하기</button>
+      </div>
+      <div class="list" style=" margin-bottom:20px;" id="historyList1">
+        <button class="right">더보기</button>
+        <button class="right">평가 하기</button>
+      </div>
+      <div class="list" style=" margin-bottom:20px;" id="historyList2">
+        <button class="right">더보기</button>
+        <button class="right">평가 하기</button>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
