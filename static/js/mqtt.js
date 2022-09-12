@@ -46,7 +46,7 @@ function onMessageArrived(msg) {
     switch (msg.destinationName) {
         
         case "selectedRouteInfor":
-            saveMsg(msg.payloadString);
+            saveMsg("res",msg.payloadString);
             break;
 
         //4가지경로 점수테이블

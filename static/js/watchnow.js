@@ -1,38 +1,30 @@
 var fourScore;
 var latArr;
 var lonArr;
-
-var endname;
-var routescore;
-var routelength;
-var routetime;
-var etc;
 var openWin;
 
 var fourScore;
 
-function saveMsg(str){
-    var save = document.getElementById("save");
-    save.value = str;
+function saveMsg(id,str){
+    var save = document.getElementById(id);
+    save.innerHTML = str;
 }
 
 function win_open(url,name) {
     openWin = window.open(url,name,"fullscreen=yes");
-    // var showAlert = setTimeout(function() {
-    //     if(url=="/routeinfo"){
-    //         showResInfo();
-    //     }
-    // }, 1000);
 };
 
-function parsingInfo(routeInfo) {
-    var routeArr = routeInfo.split("!");
-    console.log(routeArr);
-    endname = routeArr[0];
-    routescore = routeArr[1];
-    routelength = routeArr[2];
-    routetime = routeArr[3];
-    etc = routeArr[4];
+function parsingInfoAndShow(routeInfo) {
+    var str ="";
+    var routeArr = routeInfo.split(",");
+    document.getElementById("endname").innerHTML = routeArr[0];
+    document.getElementById("routescore").innerHTML = routeArr[1];
+    document.getElementById("routelength").innerHTML = routeArr[2];
+    document.getElementById("routetime").innerHTML= routeArr[3];
+    for(var i = 4 ; i < routeArr.length ; i++){
+        str += routeArr[i];
+    }
+    document.getElementById("etc").innerHTML = str;
 }
 
 function showResInfo() {
