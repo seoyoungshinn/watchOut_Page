@@ -72,7 +72,6 @@
 </body>
     <script>
         var mqttSaveMsg = window.opener.document.getElementById( "res" ).textContent;
-        document.getElementById("endname").innerHTML = mqttSaveMsg;
         if(mqttSaveMsg == "empty"){
             document.getElementById("endname").innerHTML = "워치에서 온 정보가 없습니다"
         }

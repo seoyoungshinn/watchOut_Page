@@ -10,7 +10,7 @@ function changePriorityScore(input){
     }
 }
 
-function updateProgressBar (tagName , input_value) {
+function updateProgressBar(tagName , input_value) {
     let progress = document.querySelector(tagName);
     let interval = 1;
     let updatesPerSecond = 1000 / 60;
@@ -42,11 +42,9 @@ function apply(){
 
 function sortPriority(crossWalk,withCar,noCar,turnPoint){
      var arr = [crossWalk,withCar,noCar,turnPoint];
-     arr.sort(); //내림차순
-     arr.reverse(); //오름차순
+     arr.sort((a, b) => a - b);
+     arr.reverse();
      
-     var div = document.getElementById("priority");
-
      for(var i = 0 ; i < arr.length ; i++){
         var stringDiv = document.createElement('div');
         var str;
@@ -68,6 +66,8 @@ function sortPriority(crossWalk,withCar,noCar,turnPoint){
                 break;
         }
         stringDiv.innerHTML = i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")";
+        console.log(i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")");
+        var div = document.getElementById("priority");
         div.appendChild(stringDiv);
      }
 }

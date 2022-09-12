@@ -19,6 +19,7 @@ function onConnect() {
 
     subscribe("selectedRouteInfor")
     //subscribe("route");
+    subscribe("preference")
     subscribe("now");
     subscribe("saftyScore");
     subscribe("des");
@@ -46,13 +47,17 @@ function onMessageArrived(msg) {
     switch (msg.destinationName) {
         
         case "selectedRouteInfor":
-            saveMsg("res",msg.payloadString);
+            saveMsg("selectedRouteInfor",msg.payloadString);
             break;
 
         //4가지경로 점수테이블
         case "saftyScore":
-            fourScore = msg.payloadString;
-            saveTableData(fourScore);
+            saveMsg("saftyScore",msg.payloadString);
+            break;
+
+        case "preference": 
+            //도로상태,위험시설,분기점,횡단보도,차도비분리,차도분리
+            saveMsg("preference",msg.payloadString);
             break;
 
         case "des":
@@ -162,6 +167,7 @@ function onMessageArrived(msg) {
             getMid(lat_res,lon_res);
 
             break;
+
     }
 }
 

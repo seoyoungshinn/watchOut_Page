@@ -1,9 +1,7 @@
-var fourScore;
-var latArr;
-var lonArr;
 var openWin;
 
-var fourScore;
+var preferArr;
+var saftyArr
 
 function saveMsg(id,str){
     var save = document.getElementById(id);
@@ -14,6 +12,7 @@ function win_open(url,name) {
     openWin = window.open(url,name,"fullscreen=yes");
 };
 
+///////////////////////////routeInfo.html
 function parsingInfoAndShow(routeInfo) {
     var str ="";
     var routeArr = routeInfo.split(",");
@@ -36,11 +35,14 @@ function showResInfo() {
 };
 
 
-//////////////////////////////////////////
+//////////////////////////////////////////viewfour.html
 
-function saveMapData(arr_lat, arr_lon) {
-    latArr = arr_lat;
-    lonArr = arr_lon;
+function parsingPreference(preference){
+    preferArr = preference.split(",");
+}
+
+function parsingSaftyScore(saftyScore){
+    saftyArr = saftyScore.split("!"); //4개로 나눠짐
 }
 
 function saveTableData(scoreArr) {
@@ -56,6 +58,26 @@ function showFourScore() {
     }
 }
 
-function showFourMap() { //이건 어디서쓰는거야?..
-    drawFourMap(latArr, lonArr);
+function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
+    var preferenceDivMsg = window.opener.document.getElementById( "preference" ).textContent;
+    var saftyScoreDivMsg = window.opener.document.getElementById( "saftyScore" ).textContent;
+
+    if(preferenceDivMsg == "empty"){
+        document.getElementById("progress_box").innerHTML = "워치에서 온 선호도정보가 없습니다"; //확인해봐야해
+    }
+    else{
+        parsingPreference(preferenceDivMsg);
+    }
+
+    if(saftyScoreDivMsg == "empty"){
+        document.getElementById("saftyTable").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
+    }
+    else{
+        parsingSaftyScore(saftyScoreDivMsg);
+    }
+    
+    sortPriority(preferArr[3],preferArr[5],preferArr[4],preferArr[2]); //progressBar.js
+    drawTypeTable(); //테이블함수들 바꾸삼
 }
+
+
