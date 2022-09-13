@@ -77,7 +77,7 @@
         <div class="rank">
             <p class="title">현재 나의 우선순위</p>
                         <div id ="progress_box" style="width: 300px; margin:auto;" >
-                            <p style="float: left; margin-right: 19px;">0</p>
+                            <span style="float: left; margin-right: 19px;">0</span>
                             <a>1</a>
                             <a>2</a>
                             <a>3</a>
@@ -87,7 +87,7 @@
                             <a>7</a>
                             <a>8</a>
                             <a>9</a>
-                            <p style="float: right;">10</p>
+                            <span style="float: right;">10</span>
                             <progress id ="progress" class="currentTag" value="0" max="100" style="width: 300px;"></progress>
                             <div><a style="float: left; font-size: 15px;">도로상태</a> <a style="float: right;font-size: 15px;">위험시설</a></div>
                             <div id = "priority" class = "priority">
@@ -102,14 +102,11 @@
         <div class="fac">
             <a style="font-weight: bold;">차도 분리 시설</a><br>
             <a> : 엘레베이터, 육교, 지하보도, 계단</a><br>
+            <br>
             <a style="font-weight: bold;">차도 비분리 시설</a><br>
             <a> : 터널, 고가도로, 대형 시설물 이동통로</a>
         </div>
     </div>
     <div style="float:right">*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
-
-    <script>
-        updateProgressBar(".currentTag",30); //이거 위치 옮기고
-    </script>
 </body>
 </html>

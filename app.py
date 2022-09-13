@@ -51,13 +51,13 @@ def json():
 def exhistory():
     return render_template('ex/exhistory.html')
 
-@app.route('/routeinfo')
+@app.route('/watchinfo')
 def routeinfo():
-    return render_template('ff/routeinfo.html')
+    return render_template('ff/watchinfo.html')
 
-@app.route('/viewfour')
+@app.route('/watchfour')
 def viewfour():
-    return render_template('ff/viewfour.html')
+    return render_template('ff/watchfour.html')
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

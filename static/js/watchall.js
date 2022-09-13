@@ -75,8 +75,9 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
     else{
         parsingSaftyScore(saftyScoreDivMsg);
     }
-    
+
     sortPriority(preferArr[3],preferArr[5],preferArr[4],preferArr[2]); //progressBar.js
+    updateProgressBar(".currentTag",preferArr[0]*100);
     drawTypeTable(); //테이블함수들 바꾸삼
 }
 
