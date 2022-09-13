@@ -7,6 +7,22 @@ app = Flask(__name__)
 def welcome():
     return render_template('ff/login.html')
 
+@app.route('/menupage')
+def menupage():
+    return render_template('menuPage.html')    
+
+@app.route('/teamInfo')
+def teamInfo():
+    return render_template('teamInfo.html')
+
+@app.route('/appInfo')
+def appInfo():
+    return render_template('appInfo.html')
+
+@app.route('/webInfo')
+def webInfo():
+    return render_template('webInfo.html')
+
 @app.route('/watchnow')
 def watchnow():
     return render_template('watchnow.html')

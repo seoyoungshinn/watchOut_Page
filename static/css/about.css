@@ -1,0 +1,14 @@
+body {
+
+   background-color: #000239;
+   background-image: url('../imgs/BG.png');
+   background-size: 100% 100%;
+
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 25vh;
+}

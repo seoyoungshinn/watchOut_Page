@@ -4,37 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>team 🍒</title>
-    <link rel = "stylesheet" href = "./css/main.css">
-    <link rel = "stylesheet" href = "./css/scroll.css">
+    <title>teamInfo 🍒</title>
+    <link rel = "stylesheet" href = "./static/css/main.css">
+    <link rel = "stylesheet" href = "./static/css/scroll.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+        body{
+            background-color: #002C64;
+            font-family: 'Roboto Slab', serif;
+        }
     </style>
 </head>
 <body>
 
 <div id="container">
-    <header id = "header"> 
-        <nav class ="menu">
-            <a href = "menuPage.html"> <img src= "./imgs/iconEye.png"></a>
 
 
-            <ul>
-                <li><a href = " " <b>WatchNow</b></a></li>
-                <li><a href = " " <b>History</b></a></li>
-                <li><a href = " " <b>Analysis</b></a></li>
-                <li><a href = " " <b>Favorites</b></a></li>
 
-                <li><a href = " " <b> | </b></a></li>
-                <li><a href = " " <b>Settings</b></a></li>
-            
 
-            </ul>
-        </nav>
-    </header> 
+
+  <header id = "header"> 
+    <nav class ="menu">
+        <a href = "/menupage"> <img src= "./static/image/introduce/iconEye.png"></a>
+
+        <ul>
+            <li><a href = "/teamInfo" style="color: #5A78AF" <b>Team</b></a></li>
+            <li><a href = "/appInfo" <b>App</b></a></li>
+            <li><a href = "/webInfo" <b>Web</b></a></li>
+            <li><a href = " " <b> | </b></a></li>
+            <li><a href = "/watchnow"  <b> WatchNow</b></a></li>
+            <li><a href = "/history" <b>History</b></a></li>
+            <li><a href = "/analysis" <b>Analysis</b></a></li>
+            <li><a href = "/favorites" <b>Favorites</b></a></li>
+
+            <li><a href = " " <b> | </b></a></li>
+            <li><a href = "/settings" <b>Settings</b></a></li>
+        
+        </ul>
+    </nav>
+</header> 
+
+
+
+
+
+
   <div class="list">
       <div class="one">
-        <span class="profile"><img src="./imgs/icon.png" width="440px;" height="440px" alt=""/></span> 
+        <span class="profile"><img src="./static/image/introduce/icon.png" width="440px;" height="440px" alt=""/></span> 
         <h3><strong>Team 흰지팡이</strong> <br>한성대학교 컴퓨터공학부</h3>
       </div>
   </div>
@@ -72,17 +90,17 @@
           <div class = "favorites">
 
               <div class="lists">
-                  <img class = "list_img" src="./imgs/person/sim3.png" alt="">
+                  <img class = "list_img" src="./static/image/introduce/person/sim3.png" alt="">
                   <p class = "list_text"> 임슬아</p>
               </div>
 
               <div class="lists">
-                  <img class = "list_img" src="./imgs/person/sim2.png" alt="">
+                  <img class = "list_img" src="./static/image/introduce/person/sim2.png" alt="">
                   <p class = "list_text"> 이한별</p>
               </div>
 
               <div class="lists">
-                  <img class = "list_img" src="./imgs/person/sim.png" alt="">
+                  <img class = "list_img" src="./static/image/introduce/person/sim.png" alt="">
                   <p class = "list_text"> 서영신</p>
               </div>
           </div>
@@ -91,7 +109,7 @@
 
   <div class="list">
       <div class = "four">
-          <img class = "contact_img" src ="./imgs/bg.jpg">
+          <img class = "contact_img" src ="./static/image/introduce/bg.jpg">
           <a href="https://velog.io/@subtitle1" class="ct">Velog</a>
           <a href="mailto:stella.kim.96211@gmail.com" class="ct">Gmail</a>
           <a href="https://github.com/subtitle1" class="ct">Github</a>
