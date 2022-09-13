@@ -92,7 +92,7 @@ function showdesAndTime(value) {
 
 function startSimulation(){
     //시뮬레이션시작
-    var timer = setInterval(pushPoint,500);
+    var timer1 = setInterval(pushMsg,1000);
     var i = 0;
     var y = 0;
     var turn_i = 0;
@@ -102,42 +102,55 @@ function startSimulation(){
     var underpass_i = 0;
     var MsgArr = ["목적지를 입력했습니다.","목적지:동성중학교","길 안내를 시작합니다."];
 
+
+
     function pushMsg(){
         document.getElementById("sentence").innerHTML = MsgArr[y] + '</span><br/>';
+        console.log(MsgArr[y]);
+        if(y == 2){
+            stopTimer(timer1);
+        }
         y++;
     }
+
+    var timer2 = setInterval(pushPoint,500);
 
     function pushPoint(){
         addCurrentMarker(lat_arr[i],lon_arr[i]);
 
         if(i == lat_arr.length){
-            stopTimer();
+            stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
             document.getElementById("sentence").innerHTML = "분기점을 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             turn_i ++;
         }
-        else if(i == cross_arr[cross_i]) {
+        else if(i == parseInt(cross_arr[cross_i])) {
             document.getElementById("sentence").innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             cross_i ++;
         }
-        else if(i == elevator_arr[elevator_i]) {
+        else if(i == parseInt(elevator_arr[elevator_i])) {
             document.getElementById("sentence").innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             elevator_i ++;
         }
-        else if(i == overpass_arr[overpass_i]) {
+        else if(i == parseInt(overpass_arr[overpass_i])) {
             document.getElementById("sentence").innerHTML = "육교를 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             overpass_i ++;
         }
-        else if(i == underpass_arr[underpass_i]) {
+        else if(i == parseInt(underpass_arr[underpass_i])) {
             document.getElementById("sentence").innerHTML = "지하보도를 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             underpass_i ++;
         }
 
         i++;
     }
 
-    function stopTimer(){
+    function stopTimer(timer){
         clearInterval(timer);
     }
 }
