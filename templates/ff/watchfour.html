@@ -35,7 +35,7 @@
     .rank{
         background-color: white;
         width:350px;
-        height:350px;
+        height:400px;
         border-radius: 1rem;
         color: #333489;
         
@@ -47,14 +47,33 @@
     }
     .fac{
         width:350px;
-        height:150px;
+        height:200px;
         background-color: #B0BFFF;
         border-radius: 0.5rem;
         color:black;
-        margin-top: 20px;
+        margin-top: 40px;
         font-size:  20px;
     }
         
+    .priority div{
+        margin-bottom: 35px;
+    }
+  
+    table,td, th{
+        border : 3px solid black;
+    }
+
+    .fac a {
+        margin-left: 10px;
+        font-size: 18px;
+    }
+
+    .explain{
+        margin-top: 230px;
+        float:right;
+        font-size: 13px;
+        color:#B0BFFF;
+    }
     </style>
 </head>
 <body style="background: #000239;"  onload="showAll();">
@@ -67,7 +86,7 @@
     <div style="height:50px; padding-top:5px; float:right;">
         <a href="#" class="close" onclick="win_close()">창닫기</a>
     </div>
-    <div style="width:700px; height:550px; float:left;margin-left: 50px;margin-right: 50px;">
+    <div style="width:700px; height:700px; float:left;margin-left: 70px;">
 		<div id = "btn" style="display: none;">
             <div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;">
                 <button onclick="MapType('ROAD')">ROAD</button>
@@ -75,11 +94,11 @@
             </div>
         </div>  
         <div id="fourmap"></div>
-        <div id="saftyTables"></div>
+        <div id="saftyTables" style="margin-top: 40px; margin-bottom: 40px;"></div>
     </div>
-    <div style="width:400px; height:550px; float:right;">
+    <div style="width:350px; height:550px; float:right; margin-right: 70px;">
         <div class="rank">
-            <p class="title">현재 나의 우선순위</p>
+            <div class="title">현재 나의 우선순위</div>
                         <div id ="progress_box" style="width: 300px; margin:auto;" >
                             <span style="float: left; margin-right: 19px;">0</span>
                             <a>1</a>
@@ -94,7 +113,7 @@
                             <span style="float: right;">10</span>
                             <progress id ="progress" class="currentTag" value="0" max="100" style="width: 300px;"></progress>
                             <div><a style="float: left; font-size: 15px;">도로상태</a> <a style="float: right;font-size: 15px;">위험시설</a></div>
-                            <div id = "priority" class = "priority">
+                            <div id = "priority" class = "priority" >
                                 <!-- <div>1 횡단보도 (80)</div>
                                 <div>2 차도 분리시설 (35)</div>
                                 <div>3 분기점 (30)</div>
@@ -104,6 +123,7 @@
         </div>
         
         <div class="fac">
+            <br>
             <a style="font-weight: bold;">차도 분리 시설</a><br>
             <a> : 엘레베이터, 육교, 지하보도, 계단</a><br>
             <br>
@@ -111,6 +131,7 @@
             <a> : 터널, 고가도로, 대형 시설물 이동통로</a>
         </div>
     </div>
-    <div style="float:right">*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
+    <div class ="explain" >*우선순위가 높을수록 최종 경로 선정에 큰 영향을 미칩니다.</div>
+    
 </body>
 </html>

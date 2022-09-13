@@ -224,8 +224,8 @@ function getWeightFromFirebaseForSettings(){
     docRef.get()
     .then((doc) => {
       var weight = doc.data();
-      sortPriority(weight.algorithmWeight_crossWalk,weight.algorithmWeight_facilityCar,
-        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_turnPoint);
+      sortPriority(weight.algorithmWeight_turnPoint,weight.algorithmWeight_crossWalk,
+        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_facilityCar);
         drawTableWeightBar(weight.tableWeight_road);
     })
     .catch((error) => {
@@ -233,17 +233,24 @@ function getWeightFromFirebaseForSettings(){
     });
 }
 
-function setDangerWeightToFirestore(n1, n2, n3, n4){
+function setDangerWeightToFirestore(n0,n1, n2, n3, n4){
+    var road = n0/100;
+    var danger = Math.round((1 - road) * 10) / 10;
+    
     docRef.update({
-        algorithmWeight_crossWalk: n1,
-        algorithmWeight_facilityCar: n2,
-        algorithmWeight_facilityNoCar: n3,
-        algorithmWeight_turnPoint : n4,
+        tableWeight_road : Math.abs(road),
+        tableWeight_danger :Math.abs(danger),
+        algorithmWeight_turnPoint : n1,
+        algorithmWeight_crossWalk: n2,
+        algorithmWeight_facilityNoCar: n3, //차도분리
+        algorithmWeight_facilityCar: n4, //차도비분리
     })
     .then(() => {
+        alert("설정이 완료되었습니다");
         console.log("set Weight success");
     })
     .catch((error) => {
+        alert("실패");
         console.error("Error setting weight document: ", error);
     });
 }
