@@ -37,6 +37,7 @@ function showResInfo() {
 function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
         var preferenceDivMsg = window.opener.document.getElementById( "preference" ).textContent;
         var saftyScoreDivMsg = window.opener.document.getElementById( "saftyScore" ).textContent;
+        var index = window.opener.document.getElementById("route_num").textContent;
         var route = window.opener.document.getElementById( "route" ).textContent;
 
         if(preferenceDivMsg == "empty"){
@@ -53,9 +54,13 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
         }
         else{
             var saftyArr = parsingSaftyScore(saftyScoreDivMsg);
+            
             drawTypeTable(); 
             for (var i = 0; i < saftyArr.length; i++) {
-                drawDataTables(i, saftyArr[i]); //4개 표
+                if(i == index){
+                    drawDataTables(i,true,saftyArr[i]);
+                }
+                drawDataTables(i,false,saftyArr[i]); //4개 표
             }
         }
 
@@ -63,7 +68,7 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
             document.getElementById("fourmap").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
         }
         else{
-            parsingRouteAnddrawMap(route);
+             parsingRoute(route);
         }
     }
 
@@ -78,7 +83,7 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
         return arr;
     }
 
-    function parsingRouteAnddrawMap(route){
+    function parsingRoute(route){
         var arr_lat = [];
         var arr_lon = [];
         var split = route.split("!");

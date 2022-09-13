@@ -25,7 +25,7 @@ function onConnect() {
     subscribe("des");
     subscribe("topic");
     subscribe("route_res");
-    //subscribe("mid");
+    subscribe("route_num");
 
 }
 
@@ -95,8 +95,9 @@ function onMessageArrived(msg) {
             document.getElementById("route").innerHTML = msg.payloadString;
             break;
 
-
-        //알고리즘으로 고른 경로
+        case "route_num":
+            document.getElementById("route_num").innerHTML = msg.payloadString;
+            break;
 
         case "route_res":
             var lat_res = [];

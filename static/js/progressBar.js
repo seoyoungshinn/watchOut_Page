@@ -66,7 +66,6 @@ function sortPriority(crossWalk,withCar,noCar,turnPoint){
                 break;
         }
         stringDiv.innerHTML = i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")";
-        console.log(i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")");
         var div = document.getElementById("priority");
         div.appendChild(stringDiv);
      }
