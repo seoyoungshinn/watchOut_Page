@@ -58,13 +58,14 @@ function getFavoritesFromFirestoreAndShow(){
 /*-----------기록-----------*/ 
 //History 객체
 class History {
-    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,stepNum,expectedTime,
+    constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,heartRateMax,stepNum,expectedTime,
         expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint,hasDanger,hasDangerA,hasDangerB,hasCrossWalk) {
         this.arrivedTime =new Date(arrivedTime);
         this.departureTime = new Date(departureTime);
         this.arrivedName = arrivedName;
         this.dpName =dpName;
         this.heartRateAverage = heartRateAverage;
+        this.heartRateMax = heartRateMax;
         this.stepNum = stepNum;
         this.expectedTime = expectedTime;
         this.expCrossWalk = expCrossWalk;
@@ -92,7 +93,7 @@ var historyConverter = {
         const data = snapshot.data(options);
         return new History(
             data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
-            data.heartRateAverage,data.stepNum,data.expectedTime,
+            data.heartRateAverage,data.heartRateMax,data.stepNum,data.expectedTime,
             data.expCrossWalk,data.expStraightRoad,data.expNoCar,data.expWithCar,data.expTurnPoint,
             data.hasDanger,data.hasDangerA,data.hasDangerB,data.hasCrossWalk);
     }

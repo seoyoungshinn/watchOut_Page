@@ -59,7 +59,7 @@ function showHistoryOnWeb(num,history){
         'style',
         'color:#FF2600;'
     );
-    a5.innerHTML = " 123 ";
+    a5.innerHTML = " "+history.heartRateMax+" ";
     let a6 = document.createElement('a');
     a6.innerHTML = "/ "+ history.heartRateAverage;
     leftDiv.appendChild(a1);
