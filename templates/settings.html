@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
-                    <button class="btn btn-outline-secondary" type="button" style="margin-right: 100px;">초기화</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick = "reset();" style="margin-right: 100px;">초기화</button>
                     <button class="btn btn-outline-secondary" type="button" onclick="apply();">적용하기</button>
                 </div>
             </div>
@@ -150,15 +150,25 @@
                             <progress id ="progress" class="currentTag" value="0" max="100" style="width: 300px;"></progress>
                             <div><a style="float: left;">도로상태</a> <a style="float: right;">위험시설</a></div>
                             <div id = "priority" class = "priority">
-                                <!-- <div>1 횡단보도 (80)</div>
-                                <div>2 차도 분리시설 (35)</div>
-                                <div>3 분기점 (30)</div>
-                                <div>4 차도 비분리시설 (25)</div> -->
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>    
             </div>
 	</main>
 </body>
+<script>
+  function apply(){
+    var cross = Number(document.getElementById("cross").value);
+    var withCar = Number(document.getElementById("withCar").value);
+    var noCar = Number(document.getElementById("noCar").value);
+    var turn = Number(document.getElementById("turn").value);
+
+    setDangerWeightToFirestore(turn,cross,noCar,withCar);
+  }
+
+  function reset(){
+    //분기점:30, 횡단보도:60, nocar:80, withcar:100
+    setDangerWeightToFirestore(30,60,80,100);
+  }
+</script>
 </html>

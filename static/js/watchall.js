@@ -41,16 +41,16 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
         var route = window.opener.document.getElementById( "route" ).textContent;
 
         if(preferenceDivMsg == "empty"){
-            document.getElementById("progress_box").innerHTML = "워치에서 온 선호도정보가 없습니다"; //확인해봐야해
+            document.getElementById("progress_box").innerHTML = "워치에서 온 선호도정보가 없습니다"; 
         }
         else{
-            var preferArr = parsingPreference(preferenceDivMsg);
-            sortPriority(preferArr[3],preferArr[5],preferArr[4],preferArr[2]); //progressBar.js
+            var preferArr = parsingPreference(preferenceDivMsg); //도로상태-위험시설-분기점-횡단보도-차도비분리-차도분리순서로옴
+            sortPriority(preferArr[2],preferArr[3],preferArr[5],preferArr[4]); //progressBar.js
             updateProgressBar(".currentTag",preferArr[0]*100); 
         }
 
         if(saftyScoreDivMsg == "empty"){
-            document.getElementById("saftyTables").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
+            document.getElementById("saftyTables").innerHTML = "워치에서 온 표정보가 없습니다"; 
         }
         else{
             var saftyArr = parsingSaftyScore(saftyScoreDivMsg);

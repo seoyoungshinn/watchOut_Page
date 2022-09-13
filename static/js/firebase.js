@@ -224,8 +224,8 @@ function getWeightFromFirebaseForSettings(){
     docRef.get()
     .then((doc) => {
       var weight = doc.data();
-      sortPriority(weight.algorithmWeight_crossWalk,weight.algorithmWeight_facilityCar,
-        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_turnPoint);
+      sortPriority(weight.algorithmWeight_turnPoint,weight.algorithmWeight_crossWalk,
+        weight.algorithmWeight_facilityNoCar,weight.algorithmWeight_facilityCar);
         drawTableWeightBar(weight.tableWeight_road);
     })
     .catch((error) => {
@@ -235,10 +235,10 @@ function getWeightFromFirebaseForSettings(){
 
 function setDangerWeightToFirestore(n1, n2, n3, n4){
     docRef.update({
-        algorithmWeight_crossWalk: n1,
-        algorithmWeight_facilityCar: n2,
-        algorithmWeight_facilityNoCar: n3,
-        algorithmWeight_turnPoint : n4,
+        algorithmWeight_turnPoint : n1,
+        algorithmWeight_crossWalk: n2,
+        algorithmWeight_facilityNoCar: n3, //차도분리
+        algorithmWeight_facilityCar: n4, //차도비분리
     })
     .then(() => {
         console.log("set Weight success");

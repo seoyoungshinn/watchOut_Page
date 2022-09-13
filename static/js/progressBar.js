@@ -31,17 +31,8 @@ function updateProgressBar(tagName , input_value) {
                 }, updatesPerSecond);
     }   
 
-function apply(){
-    var cross = Number(document.getElementById("cross").value);
-    var withCar = Number(document.getElementById("withCar").value);
-    var noCar = Number(document.getElementById("noCar").value);
-    var turn = Number(document.getElementById("turn").value);
-
-    setDangerWeightToFirestore(cross, withCar, noCar, turn);
-}
-
-function sortPriority(crossWalk,withCar,noCar,turnPoint){
-     var arr = [crossWalk,withCar,noCar,turnPoint];
+function sortPriority(turnPoint,crossWalk,noCar,withCar){
+     var arr = [turnPoint,crossWalk,noCar,withCar];
      arr.sort((a, b) => a - b);
      arr.reverse();
      

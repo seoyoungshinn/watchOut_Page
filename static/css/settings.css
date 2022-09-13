@@ -66,6 +66,7 @@
         .score{
             color: black; 
             border-radius: 10px;
+            border-style: solid;
             font-size: 25px;
             font-weight: bold;
             width: 60px; 
