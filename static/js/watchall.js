@@ -1,8 +1,5 @@
 var openWin;
 
-var preferArr;
-var saftyArr
-
 function saveMsg(id,str){
     var save = document.getElementById(id);
     save.innerHTML = str;
@@ -37,27 +34,6 @@ function showResInfo() {
 
 //////////////////////////////////////////viewfour.html
 
-function parsingPreference(preference){
-    preferArr = preference.split(",");
-}
-
-function parsingSaftyScore(saftyScore){
-    saftyArr = saftyScore.split("!"); //4개로 나눠짐
-}
-
-function saveTableData(scoreArr) {
-    fourScore = scoreArr;
-}
-
-function showFourScore() {
-    drawTypeTable();
-    var split = fourScore.split("!");
-    for (var i = 0; i < split.length; i++) {
-        var safty = split[i].split(",");
-        drawDataTables(i, safty); //4개 표
-    }
-}
-
 function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
     var preferenceDivMsg = window.opener.document.getElementById( "preference" ).textContent;
     var saftyScoreDivMsg = window.opener.document.getElementById( "saftyScore" ).textContent;
@@ -66,19 +42,32 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
         document.getElementById("progress_box").innerHTML = "워치에서 온 선호도정보가 없습니다"; //확인해봐야해
     }
     else{
-        parsingPreference(preferenceDivMsg);
+        var preferArr = parsingPreference(preferenceDivMsg);
+        sortPriority(preferArr[3],preferArr[5],preferArr[4],preferArr[2]); //progressBar.js
+        updateProgressBar(".currentTag",preferArr[0]*100); 
     }
 
     if(saftyScoreDivMsg == "empty"){
         document.getElementById("saftyTables").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
     }
     else{
-        parsingSaftyScore(saftyScoreDivMsg);
+        var saftyArr = parsingSaftyScore(saftyScoreDivMsg);
+        drawTypeTable(); 
+        for (var i = 0; i < saftyArr.length; i++) {
+            drawDataTables(i, saftyArr[i]); //4개 표
+        }
+    }
     }
 
-    sortPriority(preferArr[3],preferArr[5],preferArr[4],preferArr[2]); //progressBar.js
-    updateProgressBar(".currentTag",preferArr[0]*100);
-    drawTypeTable(); //테이블함수들 바꾸삼
-}
+    function parsingPreference(preference){
+        var arr = preference.split(",");
+        return arr;
+    }
+    
+    function parsingSaftyScore(saftyScore){
+        var arr = saftyScore.split("!"); //4개로 나눠짐
+        return arr;
+    }
+    
 
 

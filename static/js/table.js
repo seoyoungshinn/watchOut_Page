@@ -4,7 +4,7 @@
     let table = document.createElement('table');
     table.setAttribute(
         'style',
-        'border-collapse:collapse;border-color:#ccc;border-spacing:0;'
+        'border-collapse:collapse;border-color:#333489;border-spacing:0;'
     );
     let thead = document.createElement('thead');
     let tbody = document.createElement('tbody');
@@ -17,7 +17,7 @@
     let row_2 = document.createElement('tr');
     row_2.setAttribute(
         'style',
-        'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
+        'background-color:#f0f0f0;border-color:black;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
     );
     let row_2_data_1 = document.createElement('th');
     
@@ -54,6 +54,7 @@
 }
 
 function drawDataTables(index,saftyparams){ //값 부분
+    var saftyparamsArr = saftyparams.split(",");
 
     let table = document.createElement('table');
     table.setAttribute(
@@ -73,8 +74,8 @@ function drawDataTables(index,saftyparams){ //값 부분
         'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
     );
     let heading_1 = document.createElement('th');
-    heading_1.innerHTML = index+1+"번";
-    heading_1.style.color = color[index];
+    heading_1.innerHTML = "경로"+(index+1);
+    heading_1.rowSpan = 2;
     heading_1.style.backgroundColor = "#f9f9f9";
     heading_1.style.borderColor = "inherit";
     heading_1.style.textAlign = "center";
@@ -87,21 +88,16 @@ function drawDataTables(index,saftyparams){ //값 부분
     row_1.append(heading_1);
 
 
-    for(var i = 0 ; i < 5 ; i++){
+    for(var i = 0 ; i < 3 ; i++){
         let row_1_data =  document.createElement('th');
         row_1_data.setAttribute(
             'style',
             'background-color:#f9f9f9;border-color:inherit;text-align:center;color:#333;vertical-align:top;width:8ch;'
         );
-        if (i<2){
-            row_1_data.innerHTML = saftyparams[i] +"개";
-        }
-        else {
-            row_1_data.innerHTML = saftyparams[i] +"점";
-        }
+        row_1_data.innerHTML = saftyparamsArr[i];
         row_1.appendChild(row_1_data);
     }
-    thead.appendChild(row_1);
+   
 
 
     let row_2 = document.createElement('tr');
@@ -109,28 +105,31 @@ function drawDataTables(index,saftyparams){ //값 부분
         'style',
         'background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;'
     );
-    let row_2_name = document.createElement('td');
-    row_2_name.innerHTML = "특이사항";
-    row_2_name.setAttribute(
-        'style',
-        'border-color:inherit;text-align:center;vertical-align:top;'
-    );
-    row_2.appendChild(row_2_name);
+    // let row_2_name = document.createElement('td');
+    // row_2_name.innerHTML = "???";
+    // row_2_name.setAttribute(
+    //     'style',
+    //     'border-color:inherit;text-align:center;vertical-align:top;'
+    // );
+    // row_2.appendChild(row_2_name);
     let row_2_data = document.createElement('td');
-    if (saftyparams.length == 6){
-        row_2_data.innerHTML = saftyparams[5];
+
+    var str = "";
+    for(var i = 3 ; i < saftyparamsArr.length;i++){
+        str += saftyparamsArr[i];
     }
-    else {
-        row_2_data.innerHTML = "";
-    }
+
+    row_2_data.innerHTML = str;
     row_2_data.setAttribute(
         'style',
         'border-color:inherit;text-align:center;vertical-align:top;'
     );
     row_2_data.colSpan = 5;
     row_2.appendChild(row_2_data); //특이사항 있으면 넣기
+    thead.appendChild(row_1);
+    thead.appendChild(row_2);
 
-    tbody.appendChild(row_2);
+    //tbody.appendChild(row_2);
 
 }
 

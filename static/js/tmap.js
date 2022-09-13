@@ -1,6 +1,6 @@
 //Tmap지도 관련 변수
 var index = 0;
-var fourMap, resMap;
+var resMap;
 var markers = [];
 var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
     /*------------Tmap 지도------------*/ 
@@ -44,7 +44,7 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
                 });
             }
 
-            fourMap = map;
+           resMap = map;
 
         } 
 
@@ -137,11 +137,9 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
     //지도타입 변경 함수
     function MapType(type){
         if("HYBRID" == type){
-            fourMap.setMapType(Tmapv2.Map.MapType.HYBRID);
-            resMap.setMapType(Tmapv2.Map.MapType.HYBRID);
+           resMap.setMapType(Tmapv2.Map.MapType.HYBRID);
         }else if("ROAD" == type){
-            fourMap.setMapType(Tmapv2.Map.MapType.ROAD);
-            resMap.setMapType(Tmapv2.Map.MapType.ROAD);
+            resMap.setMapType(Tmapv2.Map.MapType.ROAD); 
         }
     }
 

@@ -37,7 +37,6 @@
         width:350px;
         height:350px;
         border-radius: 1rem;
-
         color: #333489;
         
     }
@@ -68,12 +67,17 @@
     <div style="height:50px; padding-top:5px; float:right;">
         <a href="#" class="close" onclick="win_close()">창닫기</a>
     </div>
-    <div style="width:600px; height:550px; float:left;">
-		<div id = "btn"></div> 
+    <div style="width:700px; height:550px; float:left;margin-left: 50px;margin-right: 50px;">
+		<div id = "btn" style="display: none;">
+            <div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;">
+                <button onclick="MapType('ROAD')">ROAD</button>
+                <button onclick="MapType('HYBRID')">HYBRID</button>
+            </div>
+        </div>  
         <div id="fourmap"></div>
         <div id="saftyTables"></div>
     </div>
-    <div style="width:600px; height:550px; float:right;">
+    <div style="width:400px; height:550px; float:right;">
         <div class="rank">
             <p class="title">현재 나의 우선순위</p>
                         <div id ="progress_box" style="width: 300px; margin:auto;" >
