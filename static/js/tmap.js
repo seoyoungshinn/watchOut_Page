@@ -15,7 +15,7 @@ var color = ["#00FFFF", "#FF1493", "#2F4F4F", "#ADFF2F"];
             var latitude =  lat1[i];
             var longitude = lon1[i];
 
-           var map = new Tmapv2.Map("fourMap",  
+           var map = new Tmapv2.Map("fourmap",  
             {
                 center: new Tmapv2.LatLng(latitude,longitude),
                 width: "400px", //크기바꾸는곳

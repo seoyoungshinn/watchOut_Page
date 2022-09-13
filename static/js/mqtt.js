@@ -18,7 +18,7 @@ function onConnect() {
     isConnected = true;
 
     subscribe("selectedRouteInfor")
-    //subscribe("route");
+    subscribe("route");
     subscribe("preference")
     subscribe("now");
     subscribe("saftyScore");
@@ -92,19 +92,7 @@ function onMessageArrived(msg) {
                 }
                 break;
             }
-
-            var arr_lat = [];
-            var arr_lon = [];
-            var split = msg.payloadString.split("!");
-
-            for (var i = 0; i < split.length; i++) {
-                var box = split[i].split("/")
-                arr_lat[i] = box[0];
-                arr_lon[i] = box[1];
-            }
-
-            saveMapData(arr_lat, arr_lon);
-            $('#btn').css('display', 'block');
+            document.getElementById("route").innerHTML = msg.payloadString;
             break;
 
 
