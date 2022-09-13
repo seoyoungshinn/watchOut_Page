@@ -71,40 +71,25 @@ function onMessageArrived(msg) {
 
         //4가지 경로
         case "route":
-            if (msg.payloadString == "restart") {
-                console.log("restart");
 
-                $('#fourMap').css('display', 'block');
+            if (msg.payloadString == "restart" || msg.payloadString == "out") {
                 $('#resMap').css('display', 'block');
+                $('#btn').css('display', 'none');
 
-                var fMap = document.getElementById("fourMap");
                 var rMap = document.getElementById("resMap");
-                var sTables = document.getElementById("saftyTables");
-                var btn = document.getElementById("btn");
                 var heart = document.getElementById("heartDiv");
 
-                fMap.innerHTML = '';
                 rMap.innerHTML = '';
-                sTables.innerHTML = '';
                 heart.innerHTML = '';
-                btn.innerHTML = '';
 
-                break;
-            }
-            else if (msg.payloadString == "out") {
-                var fMap = document.getElementById("fourMap");
-                var rMap = document.getElementById("resMap");
-                var sTables = document.getElementById("saftyTables");
-                var btn = document.getElementById("btn");
-                var heart = document.getElementById("heartDiv");
+                document.getElementById("selectedRouteInfor").innerHTML = 'empty';
+                document.getElementById("saftyScore").innerHTML = 'empty';
+                document.getElementById("preference").innerHTML = 'empty';
+                document.getElementById("route").innerHTML = 'empty';
 
-                fMap.innerHTML = '';
-                rMap.innerHTML = '';
-                sTables.innerHTML = '';
-                heart.innerHTML = '';
-                btn.innerHTML = ''; 
-
-                document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
+                if(msg.payloadString == "out"){
+                    document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
+                }
                 break;
             }
 
@@ -119,7 +104,7 @@ function onMessageArrived(msg) {
             }
 
             saveMapData(arr_lat, arr_lon);
-            document.getElementById("btn").innerHTML += '<div class="map_act_btn_wrap clear_box" style="position: absolute;z-index: 1;padding-left: 10px;"><button onclick="MapType(\'ROAD\')">ROAD</button><button onclick="MapType(\'HYBRID\')">HYBRID</button></div>';
+            $('#btn').css('display', 'block');
             break;
 
 
@@ -138,10 +123,10 @@ function onMessageArrived(msg) {
             drawResMap(lat_res, lon_res);
             addStartEndMarker(lat_res, lon_res);
             document.getElementById("topic").innerHTML += "알고리즘으로 선택된 길과 현재위치를 볼려면 라디오 버튼을 클릭하세요" + '</span><br/>';
+            $('#btn').css('display', 'block');
             break;
 
         case "now":
-            console.log(msg.payloadString);
             var arr_now = msg.payloadString.split(',');
             //현재위치 갱신
             addCurrentMarker(arr_now[0], arr_now[1]);
