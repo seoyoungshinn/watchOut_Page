@@ -20,7 +20,7 @@
         'background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;'
     );
     let row_2_data_1 = document.createElement('th');
-    row_2_data_1.innerHTML = "Type";
+    
     row_2_data_1.setAttribute(
         'style',
         'border-color:inherit;text-align:center;vertical-align:top; width:7.5ch; font-size:20px;'
@@ -28,32 +28,20 @@
     row_2.appendChild(row_2_data_1);
 
     let row_2_data_2 = document.createElement('th');
-    row_2_data_2.innerHTML = "분기점";
+    row_2_data_2.innerHTML = "도로 점수";
     row_2_data_2.setAttribute(
         'style',
         'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_3 = document.createElement('th');
-    row_2_data_3.innerHTML = "횡단보도";
+    row_2_data_3.innerHTML = "위험 점수";
     row_2_data_3.setAttribute(
         'style',
         'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
     let row_2_data_4 = document.createElement('th');
-    row_2_data_4.innerHTML = "도로타입";
+    row_2_data_4.innerHTML = "총 점수";
     row_2_data_4.setAttribute(
-        'style',
-        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
-    );
-    let row_2_data_5 = document.createElement('th');
-    row_2_data_5.innerHTML = "위험시설";
-    row_2_data_5.setAttribute(
-        'style',
-        'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
-    );
-    let row_2_data_6 = document.createElement('th');
-    row_2_data_6.innerHTML = "총 점수";
-    row_2_data_6.setAttribute(
         'style',
         'border-color:inherit;text-align:center;vertical-align:top; font-size:20px; width:8ch;'
     );
@@ -61,11 +49,8 @@
     row_2.appendChild(row_2_data_2);
     row_2.appendChild(row_2_data_3);
     row_2.appendChild(row_2_data_4);
-    row_2.appendChild(row_2_data_5);
-    row_2.appendChild(row_2_data_6);
 
     thead.appendChild(row_2);
-
 }
 
 function drawDataTables(index,saftyparams){ //값 부분

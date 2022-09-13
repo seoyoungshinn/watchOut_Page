@@ -70,7 +70,7 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
     }
 
     if(saftyScoreDivMsg == "empty"){
-        document.getElementById("saftyTable").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
+        document.getElementById("saftyTables").innerHTML = "워치에서 온 표정보가 없습니다"; //확인해봐야해
     }
     else{
         parsingSaftyScore(saftyScoreDivMsg);
