@@ -78,34 +78,51 @@
 		getAllDataFromRealTimeDatabase(num);
 	</script>
 	<header>
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:#FFC091;">
-		<div class="container-fluid">
-		  <a class="navbar-brand" style="color:#3c3c3c;">Watch Out!</a>
-		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="navbar-nav me-auto mb-2 mb-md-0">
-			  <li class="nav-item">
-				<a class="nav-link" aria-current="page" href="/bootmap" style="color:#5a5a5a;">Home</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="/history" style="color:#5a5a5a;">History</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="/feedback" style="color:#5a5a5a;">Feedback</a>
-			  </li>
-			</ul>
-		  </div>
-		</div>
-	</nav>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a style="margin-left:5px; margin-right:20px;">
+                    <img src= "./static/image/logo.png" height="60px" width="90px">
+                </a>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:15px; padding-left:10px; padding-right:10px;">
+                  <li class="nav-item" style="padding-left:10px; font-size: 17px;">
+                    <a class="nav-link active" aria-current="page" href="/bootmap">Team</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active">App</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active">Web</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:400px;font-size: 17px;">
+                    <a class="nav-link active"  href="/watchnow">WatchNow</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/history">History</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/analysis">Analysis</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/favorites">Favorite</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" style="margin-left:10px;">ㅣ</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/settings">Settings</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
 	</header>
 
 	<main>
 		<div class="container marketing">
     	<div class="row featurette">
             <div style="padding-top:2rem">
-				<div id="simultime" style="font-size:30px; font-weight:bold; float: left; margin-bottom:1rem;"></div>
+				<div id="simultime" style="font-size:30px; font-weight:bold; float: left; margin-bottom:0.2rem;"></div>
 				<div style="width:890px">
 					<div id="simulname" style="font-size:20px; font-weight:bold; float: left;"></div>
 					<div style="width:100px; float: right; margin-top:0.7rem;">
@@ -122,11 +139,11 @@
 				<div id = "resMap" ></div>
 			</div>
 			<div style="float:right; padding:10px; width:250px;">
-				<div id="massege" style="height:170px; background-color: #A0522D; margin-bottom: 15px; color:white; text-align: center; padding: 10px;">
+				<div id="massege" style="height:170px; background-color: #A0522D; margin-bottom: 15px; color:white; text-align: center; padding: 10px; width:100%;">
 				   <h3 style="padding-top:5px; padding-bottom: 10px;">실시간 메세지</h3>
 				   <div id = "sentence"></div>
 				</div>
-				<div style="height:350px; background-color: #A0522D; color:white; text-align: center; padding: 10px;">
+				<div style="height:350px; background-color: #A0522D; color:white; text-align: center; padding: 10px; width: 100%;">
 				   <h3 style="padding-top:5px; padding-bottom: 10px;">최종 루트 정보</h3>
 				</div>
 			 </div>
