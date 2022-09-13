@@ -83,7 +83,7 @@
     padding:50px;
     cursor:pointer;
     left:30px;
-    background: url('./static/image/left.png') center center / 100% no-repeat;
+    background: url('../image/left.png') center center / 100% no-repeat;
 }
 .section .slidelist .right{
     position:absolute;
@@ -93,7 +93,7 @@
     padding:50px;
     cursor:pointer;
     right:30px;
-    background: url('./static/image/right.png') center center / 100% no-repeat;
+    background: url('../image/right.png') center center / 100% no-repeat;
 }
 .section [id="slide0"]:checked ~ .slidewrap .slidelist > li {transform: translateX(0%);}
 .section [id="slide1"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-100%);}
