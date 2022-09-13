@@ -1,0 +1,16 @@
+body {
+    background-color: #e0d8cc;
+}
+
+.list2 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10px;
+}
+
+div.imageBox{
+    background-color: blue;
+    margin-top: 00px;
+    align-content: center;
+}
