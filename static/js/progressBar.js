@@ -1,13 +1,20 @@
 function changePriorityScore(input){
     var value = input.value;
     if(value >-1 && value<101){
-      updateProgressBar("."+input.id,input.value);
+      updateProgressBar("."+input.id,value);
     }
     else{
       alert("0~100사이 값만 입력해주세요");
       input.value = 0;
-      updateProgressBar("."+input.id,0);
     }
+}
+
+function resetProgressBar(tagName){
+    var progress = document.querySelector("."+tagName);
+    if(document.getElementById(tagName)){
+        document.getElementById(tagName).value = 0;
+    }
+    progress.value = 0;
 }
 
 function updateProgressBar(tagName , input_value) {
