@@ -162,15 +162,15 @@ function setHistoryObjectForPreference(command){
     })
     .then((HistoryArr)=>{
         if(command == 0){
-            showRouteName(HistoryArr[0]);
+            //showRouteName(HistoryArr[0]);
             checkDangerAndShowQuestion(HistoryArr[0]);
         }
         else if(command == 1){
-            showRouteName(HistoryArr[1]);
+            //showRouteName(HistoryArr[1]);
             checkDangerAndShowQuestion(HistoryArr[1]);
         }
         else if(command == 2){
-            showRouteName(HistoryArr[2]);
+            //showRouteName(HistoryArr[2]);
             checkDangerAndShowQuestion(HistoryArr[2]);
         }
     })

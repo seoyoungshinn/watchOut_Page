@@ -148,10 +148,11 @@ function startSimulation(){
     var underpass_i = 0;
     var MsgArr = ["목적지를 입력했습니다.","목적지:동성중학교","길 안내를 시작합니다."];
 
+    var sen = document.getElementById("sentence");
 
 
     function pushMsg(){
-        document.getElementById("sentence").innerHTML = MsgArr[y] + '</span><br/>';
+        sen.innerHTML = MsgArr[y] + '</span><br/>';
         console.log(MsgArr[y]);
         if(y == 2){
             stopTimer(timer1);
@@ -165,30 +166,31 @@ function startSimulation(){
         addCurrentMarker(lat_arr[i],lon_arr[i]);
 
         if(i == lat_arr.length){
+            sen.innerHTML = "목적지에 도착했습니다";
             stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
-            document.getElementById("sentence").innerHTML = "분기점을 만났습니다" + '</span><br/>';
+            sen.innerHTML = "분기점을 만났습니다" + '</span><br/>';
             console.log("분기점을 만났습니다");
             turn_i ++;
         }
         else if(i == parseInt(cross_arr[cross_i])) {
-            document.getElementById("sentence").innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
             console.log("횡단보도를 만났습니다");
             cross_i ++;
         }
         else if(i == parseInt(elevator_arr[elevator_i])) {
-            document.getElementById("sentence").innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
             console.log("엘레베이터를 만났습니다");
             elevator_i ++;
         }
         else if(i == parseInt(overpass_arr[overpass_i])) {
-            document.getElementById("sentence").innerHTML = "육교를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "육교를 만났습니다" + '</span><br/>';
             console.log("육교를 만났습니다");
             overpass_i ++;
         }
         else if(i == parseInt(underpass_arr[underpass_i])) {
-            document.getElementById("sentence").innerHTML = "지하보도를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "지하보도를 만났습니다" + '</span><br/>';
             console.log("지하보도를 만났습니다");
             underpass_i ++;
         }

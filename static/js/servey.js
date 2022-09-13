@@ -1,32 +1,33 @@
 
-function changeRouteScore(){
-    var score_value = document.getElementById('answer1');
-    var value = score_value.options[score_value.selectedIndex].value;
+// function changeRouteScore(){
+//     var score_value = document.getElementById('answer1');
+//     var value = score_value.options[score_value.selectedIndex].value;
 
-    if(value < 6){ 
-        $('#weightQ').css('visibility','visible');
-    }
-    else if(value >= 6){
-        $('#weightQ').css('visibility','hidden');
-    }
-}
+//     if(value < 6){ 
+//         $('#weightQ').css('visibility','visible');
+//     }
+//     else if(value >= 6){
+//         $('#weightQ').css('visibility','hidden');
+//     }
+// }
 
 function checkDangerAndShowQuestion(history){
     //danger ==true 인경우
-    var number = 4;
+    var number = 3;
     var crossNum = history.hasCrossWalk;
-    var questionDiv = document.getElementById('weightQ');
-    questionDiv.appendChild(makeQuestionDiv("횡단보도",crossNum,number));
-    questionDiv.appendChild(makeAnswerDiv("c0",number));
-    number++;
+    if(crossNum != 0){
+        console.log("green"+num);
+        makeQuestionDiv("횡단보도",crossNum,number);
+        number++;
+    }
     if(history.hasDanger == true){
         var dangerAarr = Array.from(history.hasDangerA.toString()); //dangerA = 엘베-육교-지하보도-계단
         var dangerBarr = Array.from(history.hasDangerB.toString()); //dangerB = 교량-터널-고가도로-대형시설통로
         if(dangerAarr != null) {
             for(var i = dangerAarr.length-1 ; i >= 0 ; i--){
                 if(dangerAarr[i] != "0"){
-                    questionDiv.appendChild(makeQuestionDiv("a"+i,dangerAarr[i],number));
-                    questionDiv.appendChild(makeAnswerDiv("a"+i,number));
+                    console.log("hi"+num);
+                    makeQuestionDiv("a"+i,dangerAarr[i],number);
                     number++;
                 }
             }  
@@ -34,28 +35,41 @@ function checkDangerAndShowQuestion(history){
         if(dangerBarr != null) {
             for(var i = dangerBarr.length-1 ; i >= 0 ; i--){
                 if(dangerBarr[i] != "0"){
-                    questionDiv.appendChild(makeQuestionDiv("b"+i,dangerBarr[i],number));
-                    questionDiv.appendChild(makeAnswerDiv("b"+i,number));
+                    console.log("black"+um);
+                    makeQuestionDiv("b"+i,dangerBarr[i],number);
                     number++;
                 }
             }  
         }
     }
-    
+    endQuestion(number);  
+    console.log("brown"+num);  
     //danger == false인 경우
-        //->아무것도x
+        //->아무것도x(
 }
 
 function makeQuestionDiv(name,num,index){
-    let col_lg_8Div = document.createElement('div');
-    col_lg_8Div.className = 'col-lg-8'
+    let first = document.getElementById('section');
+    let input = document.createElement('input');
+    input.type="radio";
+    input.name="slide";
+    input.id="slide"+index;
+    first.appendChild(input);
 
-    let label = document.createElement('label');
-    label.className = 'form-label';
-    label.textContent = "Q"+index;
-
-    let span = document.createElement('span');
-    span.className = 'question';
+    let ui = document.getElementById('slidelist');
+    let li = document.createElement('li');
+    let div1 = document.createElement('div');
+    div1.className = "select";
+    div1.style.textAlign = "center";
+    let div2 = document.createElement('div');
+    div2.setAttribute(
+        'style',
+        'color:#333489; font-size:40px; font-weight: bold;'
+    );
+    div2.innerHTML = "평가하기";
+    let spanQ = document.createElement('span');
+    spanQ.className = "question";
+    spanQ.innerHTML = "Q"+index+". ";
     var dangerName = name;
     switch(name) {
         case 'a0':
@@ -83,12 +97,64 @@ function makeQuestionDiv(name,num,index){
             dangerName = '대형시설물 이동통로';
             break;
     }
-    span.textContent = "이용하신 경로에는 "+dangerName+"이 있었습니다. 향후 "+dangerName+"이 최소화된 길을 안내받으시려면 '최소화'를 선택해주세요";
+    spanQ.innerHTML += "이용하신 경로에는 "+dangerName+"이 "+num+"개 있었습니다. 향후 "+dangerName+"이 최소화된 길을 안내받으시려면 '최소화'를 선택해주세요";
+    let label1 = document.createElement('label');
+    label1.className="right";
+    label1.htmlFor="slide"+index-1;
+    let answer = document.createElement('div');
+    answer.className="answer"
+    for(i=0;i<3;i++){
+        let input1 = document.createElement('input');
+        input1.type = "radio";
+        input1.name = "anss";
+        input1.id = "select"+i+index+11;
+        let label2 = document.createElement('label');
+        label2.htmlFor="select"+i+index+11;
+        input1.appendChild(label2);
+        answer.appendChild(input1);
+    }
+    let label3 = document.createElement('label');
+    label3.className="right";
+    label3.htmlFor="slide"+index+1;
+    div1.appendChild(div2);
+    div1.appendChild(spanQ);
+    div1.appendChild(label1);
+    div1.appendChild(answer);
+    div1.appendChild(label3);
+    li.appendChild(div1);
+    ui.appendChild(li);
 
-    col_lg_8Div.appendChild(label);
-    col_lg_8Div.appendChild(span);
+}
 
-    return col_lg_8Div;
+function endQuestion(num){
+    let first = document.getElementById('section');
+    let input = document.createElement('input');
+    input.type="radio";
+    input.name="slide";
+    input.id="slide"+num;
+    first.appendChild(input);
+
+    let ui = document.getElementById('slidelist');
+    let li = document.createElement('li');
+    let div1 = document.createElement('div');
+    div1.className = "select";
+    div1.style.textAlign = "center";
+    let div2 = document.createElement('div');
+    div2.setAttribute(
+        'style',
+        'color:#333489; font-size:40px; font-weight: bold;'
+    );
+    div2.innerHTML = "평가하기 끝!";
+    let spanQ = document.createElement('span');
+    spanQ.className = "question";
+    spanQ.innerHTML = "Q"+num+". ";
+
+    div1.appendChild(div2);
+    div1.appendChild(spanQ);
+    li.appendChild(div1);
+    ui.appendChild(li);
+
+
 }
 
 function makeAnswerDiv(name,index){

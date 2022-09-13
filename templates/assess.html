@@ -10,7 +10,7 @@
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 	<script src="./static/js/firebase.js" type="text/javascript"></script>
-    <script src="./static/js/list.js" type="text/javascript"></script>
+    <script src="./static/js/servey.js" type="text/javascript"></script>
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
@@ -26,7 +26,6 @@
         const urlParam = urlStr.searchParams;
         const num = urlParam.get('num');
         
-        getWeightAndDrawTableFromFirestore();
         setHistoryObjectForPreference(num);
       </script>
     <header>
@@ -72,28 +71,27 @@
 
     <main>
         <div style="height:40px;"></div>
-        <div class="section">
-            <input type="radio" name="slide" id="slide0" checked>
-            <input type="radio" name="slide" id="slide1">
+        <div class="section" id="section">
+            <input type="radio" name="slide" id="slide1" checked>
             <input type="radio" name="slide" id="slide2">
 
             <div class="slidewrap">
-                <ui class="slidelist" style="background-color: white; border-radius:1rem;">
+                <ui class="slidelist" id ="slidelist"style="background-color: white; border-radius:1rem;">
                     <li> 
                         <div class="select" style="text-align: center;">
                             <div style="color:#333489; font-size:40px; font-weight: bold;">평가하기</div>
                             <span class="question">Q1. 이용하신 경로에 대해 얼마나 만족하십니까?</span>
                             <div class="answer">
-                                <input type="radio" name= "shop" id="select1"><label for="select1" onclick="showBtn(1)">1</label>
-                                <input type="radio" name= "shop" id="select2"><label for="select2" onclick="showBtn(2)">2</label>
-                                <input type="radio" name= "shop" id="select3"><label for="select3" onclick="showBtn(3)">3</label>
-                                <input type="radio" name= "shop" id="select4"><label for="select4" onclick="showBtn(4)">4</label>
-                                <input type="radio" name= "shop" id="select5"><label for="select5" onclick="showBtn(5)">5</label>
-                                <input type="radio" name= "shop" id="select6"><label for="select6" onclick="showBtn(6)">6</label>
-                                <input type="radio" name= "shop" id="select7"><label for="select7" onclick="showBtn(7)">7</label>
-                                <input type="radio" name= "shop" id="select8"><label for="select8" onclick="showBtn(8)">8</label>
-                                <input type="radio" name= "shop" id="select9"><label for="select9" onclick="showBtn(9)">9</label>
-                                <input type="radio" name= "shop" id="select10"><label for="select10" onclick="showBtn(10)">10</label>
+                                <input type="radio" name= "ans" id="select1"><label for="select1" onclick="showBtn(1)">1</label>
+                                <input type="radio" name= "ans" id="select2"><label for="select2" onclick="showBtn(2)">2</label>
+                                <input type="radio" name= "ans" id="select3"><label for="select3" onclick="showBtn(3)">3</label>
+                                <input type="radio" name= "ans" id="select4"><label for="select4" onclick="showBtn(4)">4</label>
+                                <input type="radio" name= "ans" id="select5"><label for="select5" onclick="showBtn(5)">5</label>
+                                <input type="radio" name= "ans" id="select6"><label for="select6" onclick="showBtn(6)">6</label>
+                                <input type="radio" name= "ans" id="select7"><label for="select7" onclick="showBtn(7)">7</label>
+                                <input type="radio" name= "ans" id="select8"><label for="select8" onclick="showBtn(8)">8</label>
+                                <input type="radio" name= "ans" id="select9"><label for="select9" onclick="showBtn(9)">9</label>
+                                <input type="radio" name= "ans" id="select10"><label for="select10" onclick="showBtn(10)">10</label>
                             </div>
                             <script>
                                 function showBtn(num){
@@ -108,22 +106,23 @@
                                 }
                             </script>
 
-                            <label for="slide1" id="right" class="right" style="display: none;"></label>
+                            <label for="slide2" id="right" class="right" style="display: none;"></label>
                             <button class="btn" id="update" onclick="getAllValues()" style="display: none;">완료</button>
                         </div>
                     </li>
                     <li> 
-                        <a>
-                            <label for="slide0" class="left"></label>
-
-                            <label for="slide2" class="right"></label>
-                        </a>
-                    </li>
-                    <li> 
-                        <a>
+                        <div class="select" style="text-align: center;">
+                            <div style="color:#333489; font-size:40px; font-weight: bold;">평가하기</div>
+                            <span class="question">Q2. 이용하신 경로의 분기점 갯수는 만족하십니까?</span>
                             <label for="slide1" class="left"></label>
-                            <button class="btn" id="update" onclick="getAllValues()">완료</button>
-                        </a>
+                            <div class="answers">
+                                <input type="radio" name="anss" id="select11"><label for="select11">적음</label>
+                                <input type="radio" name="anss" id="select12"><label for="select12">적정</label>
+                                <input type="radio" name="anss" id="select13"><label for="select13">많음</label>
+                            </div>
+
+                            <label for="slide3" class="right"></label>
+                        </div>
                     </li>
                 </ui>
             </div>
