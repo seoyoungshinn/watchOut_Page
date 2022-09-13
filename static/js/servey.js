@@ -35,7 +35,7 @@ function checkDangerAndShowQuestion(history){
         if(dangerBarr != null) {
             for(var i = dangerBarr.length-1 ; i >= 0 ; i--){
                 if(dangerBarr[i] != "0"){
-                    console.log("black"+um);
+                    console.log("black"+num);
                     makeQuestionDiv("b"+i,dangerBarr[i],number);
                     number++;
                 }
@@ -49,18 +49,14 @@ function checkDangerAndShowQuestion(history){
 }
 
 function makeQuestionDiv(name,num,index){
-    let first = document.getElementById('section');
-    let input = document.createElement('input');
-    input.type="radio";
-    input.name="slide";
-    input.id="slide"+index;
-    first.appendChild(input);
 
     let ui = document.getElementById('slidelist');
     let li = document.createElement('li');
     let div1 = document.createElement('div');
-    div1.className = "select";
-    div1.style.textAlign = "center";
+    div1.setAttribute(
+        'style',
+        'padding: 15px 10px;height: 100%; text-align:center;'
+    )
     let div2 = document.createElement('div');
     div2.setAttribute(
         'style',
@@ -68,7 +64,10 @@ function makeQuestionDiv(name,num,index){
     );
     div2.innerHTML = "평가하기";
     let spanQ = document.createElement('span');
-    spanQ.className = "question";
+    spanQ.setAttribute(
+        'style',
+        'height:50px;font-size:18px;color:black;margin-top:80px;margin-left:120px;float:left;'
+    )
     spanQ.innerHTML = "Q"+index+". ";
     var dangerName = name;
     switch(name) {
@@ -97,42 +96,65 @@ function makeQuestionDiv(name,num,index){
             dangerName = '대형시설물 이동통로';
             break;
     }
-    spanQ.innerHTML += "이용하신 경로에는 "+dangerName+"이 "+num+"개 있었습니다. 향후 "+dangerName+"이 최소화된 길을 안내받으시려면 '최소화'를 선택해주세요";
-    let label1 = document.createElement('label');
-    label1.className="right";
-    label1.htmlFor="slide"+index-1;
+    spanQ.innerHTML += "이용하신 경로에는 "+dangerName+" "+num+"개가 있었습니다. <br>향후 "+dangerName+"이 최소화된 길을 안내받으시려면 '최소화'를 선택해주세요";
+    let labelleft = document.createElement('label');
+    labelleft.className="left";
+    labelleft.htmlFor="slide"+(index-1);
     let answer = document.createElement('div');
-    answer.className="answer"
-    for(i=0;i<3;i++){
-        let input1 = document.createElement('input');
-        input1.type = "radio";
-        input1.name = "anss";
-        input1.id = "select"+i+index+11;
-        let label2 = document.createElement('label');
-        label2.htmlFor="select"+i+index+11;
-        input1.appendChild(label2);
-        answer.appendChild(input1);
-    }
-    let label3 = document.createElement('label');
-    label3.className="right";
-    label3.htmlFor="slide"+index+1;
+    answer.setAttribute(
+        'style',
+        'margin-top:65px;margin-left:50px;width:120px;float:left;'
+    )
+    let input1 = document.createElement('input');
+    input1.type = "radio";
+    input1.name = "anss";
+    input1.setAttribute(
+        'style',
+        'display: none;'
+    )
+    input1.id = "select"+(index*2+8);
+    let label1 = document.createElement('label');
+    label1.htmlFor="select"+(index*2+8);
+    label1.textContent="유지";
+    label1.setAttribute(
+        'style',
+        'display: inline-block; cursor: pointer; height: 50px; width: 320px; border: 2px solid #333489;line-height: 24px;text-align: center;font-weight:bold;font-size:18px;margin-left:20px;top:50%;padding-top:20px;border-radius: 0.5rem; background-color: #E0EBFF; color: #333489; float:left;'
+    )
+    input1.appendChild(label1);
+    answer.appendChild(input1);
+
+    let input2 = document.createElement('input');
+    input2.type = "radio";
+    input2.name = "anss";
+    input2.setAttribute(
+        'style',
+        'display: none;'
+    )
+    input2.id = "select"+(index*2+9);
+    let label2 = document.createElement('label');
+    label2.htmlFor="select"+(index*2+9);
+    label2.textContent="최소화";
+    label2.setAttribute(
+        'style',
+        'display: inline-block;cursor: pointer;height: 50px;width: 120px;border: 2px solid #333489;line-height: 24px;text-align: center;font-weight:bold;font-size:18px;margin-left:20px;top:50%;padding-top:20px;border-radius: 0.5rem; background-color: #E0EBFF; color: #333489; float:left;'
+    )
+    input2.appendChild(label2);
+    answer.appendChild(input2);
+
+    let labelright = document.createElement('label');
+    labelright.className="right";
+    labelright.htmlFor="slide"+(index+1);
     div1.appendChild(div2);
     div1.appendChild(spanQ);
-    div1.appendChild(label1);
+    div1.appendChild(labelleft);
     div1.appendChild(answer);
-    div1.appendChild(label3);
+    div1.appendChild(labelright);
     li.appendChild(div1);
     ui.appendChild(li);
 
 }
 
 function endQuestion(num){
-    let first = document.getElementById('section');
-    let input = document.createElement('input');
-    input.type="radio";
-    input.name="slide";
-    input.id="slide"+num;
-    first.appendChild(input);
 
     let ui = document.getElementById('slidelist');
     let li = document.createElement('li');
@@ -145,12 +167,12 @@ function endQuestion(num){
         'color:#333489; font-size:40px; font-weight: bold;'
     );
     div2.innerHTML = "평가하기 끝!";
-    let spanQ = document.createElement('span');
-    spanQ.className = "question";
-    spanQ.innerHTML = "Q"+num+". ";
+    let labelleft = document.createElement('label');
+    labelleft.className="left";
+    labelleft.htmlFor="slide"+(num-1);
 
     div1.appendChild(div2);
-    div1.appendChild(spanQ);
+    div1.appendChild(labelleft);
     li.appendChild(div1);
     ui.appendChild(li);
 
