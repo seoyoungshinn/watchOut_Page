@@ -15,6 +15,7 @@ firebase.initializeApp(firebaseConfig);
 
 /* ------------------RealTimeDatabase-------------------- */
 var lat_arr,lon_arr,turn_arr,cross_arr,elevator_arr,overpass_arr,underpass_arr;
+var danger_msg="";
 
 function getAllDataFromRealTimeDatabase(num) {
     const dbRef = firebase.database().ref(num.toString());
@@ -35,6 +36,12 @@ function getAllDataFromRealTimeDatabase(num) {
 
         if(value.turn[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             turn_arr = value.turn;
+            var num = 0;
+            for(i = 0; i < turn_arr.length ; i++){
+                num++;
+            }
+            console.log(num);
+            danger_msg+=" 분기점 ("+num+"회)";
         }else{
             console.log("분기점이 없는 길임");
             turn_arr = 0;
@@ -42,6 +49,12 @@ function getAllDataFromRealTimeDatabase(num) {
        
         if(value.cross[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             cross_arr = value.cross;
+            var num = 0;
+            for(i = 0; i < cross_arr.length ; i++){
+                num++;
+            }
+            console.log(num);
+            danger_msg+=" 횡단보도 ("+num+"회)";
         }else{
             console.log("횡단보도가 없는 길임");
             cross_arr = 0;
@@ -50,6 +63,12 @@ function getAllDataFromRealTimeDatabase(num) {
 
         if(value.elevator[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             elevator_arr = value.elevator;
+            var num = 0;
+            for(i = 0; i < elevator_arr.length ; i++){
+                num++;
+            }
+            console.log(num);
+            danger_msg+=" 엘레베이터 ("+num+"회)";
         }else{
             console.log("엘베가 없는 길임");
             elevator_arr = 0;
@@ -57,6 +76,12 @@ function getAllDataFromRealTimeDatabase(num) {
 
         if(value.overpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             overpass_arr = value.overpass;
+            var num = 0;
+            for(i = 0; i < overpass_arr.length ; i++){
+                num++;
+            }
+            console.log(num);
+            danger_msg+=" 육교 ("+num+"회)";
         }else{
             console.log("육교가 없는 길임");
             overpass_arr = 0;
@@ -64,14 +89,22 @@ function getAllDataFromRealTimeDatabase(num) {
         
         if(value.underpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             underpass_arr = value.underpass;
+            var num = 0;
+            for(i = 0; i < underpass_arr.length ; i++){
+                num++;
+            }
+            console.log(num);
+            danger_msg+=" 지하보도 ("+num+"회)";
         }else{
             console.log("지하보도가 없는 길임");
             underpass_arr = 0;
         }
 
-        return value;
+        danger_msg+="가 포함된 경로입니다.";
+        showInfos(value);
+
     })
-    .then((value)=>{
+    .then(()=>{
             $('#startBtn').css('visibility','visible');
     }).catch((error) => {
         console.error(error);
@@ -90,9 +123,22 @@ function showdesAndTime(value) {
     id2.textContent =startName+" -> "+endName;
 }
 
+function showInfos(value){
+    console.log(danger_msg);
+    var id = document.getElementById('resinfo');
+    id.innerHTML += "경로점수 : "+value.score+"점 <br><br>";
+    id.innerHTML += "경로길이 : "+value.length+"m <br>";
+    id.innerHTML += danger_msg+"<br><br>";
+    id.innerHTML += "이탈횟수 : 5회<br><br>";
+    id.innerHTML += "최대 심박수 : 100 <br>";
+    id.innerHTML += "평균 심박수 : 82";
+
+}
+
 function startSimulation(){
     //시뮬레이션시작
-    var timer = setInterval(pushPoint,500);
+    var timer1 = setInterval(pushMsg,1000);
+    var timer2;
     var i = 0;
     var y = 0;
     var turn_i = 0;
@@ -102,42 +148,55 @@ function startSimulation(){
     var underpass_i = 0;
     var MsgArr = ["목적지를 입력했습니다.","목적지:동성중학교","길 안내를 시작합니다."];
 
+
+
     function pushMsg(){
         document.getElementById("sentence").innerHTML = MsgArr[y] + '</span><br/>';
+        console.log(MsgArr[y]);
+        if(y == 2){
+            stopTimer(timer1);
+            timer2 = setInterval(pushPoint,500);
+        }
         y++;
     }
+
 
     function pushPoint(){
         addCurrentMarker(lat_arr[i],lon_arr[i]);
 
         if(i == lat_arr.length){
-            stopTimer();
+            stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
             document.getElementById("sentence").innerHTML = "분기점을 만났습니다" + '</span><br/>';
+            console.log("분기점을 만났습니다");
             turn_i ++;
         }
-        else if(i == cross_arr[cross_i]) {
+        else if(i == parseInt(cross_arr[cross_i])) {
             document.getElementById("sentence").innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
+            console.log("횡단보도를 만났습니다");
             cross_i ++;
         }
-        else if(i == elevator_arr[elevator_i]) {
+        else if(i == parseInt(elevator_arr[elevator_i])) {
             document.getElementById("sentence").innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
+            console.log("엘레베이터를 만났습니다");
             elevator_i ++;
         }
-        else if(i == overpass_arr[overpass_i]) {
+        else if(i == parseInt(overpass_arr[overpass_i])) {
             document.getElementById("sentence").innerHTML = "육교를 만났습니다" + '</span><br/>';
+            console.log("육교를 만났습니다");
             overpass_i ++;
         }
-        else if(i == underpass_arr[underpass_i]) {
+        else if(i == parseInt(underpass_arr[underpass_i])) {
             document.getElementById("sentence").innerHTML = "지하보도를 만났습니다" + '</span><br/>';
+            console.log("지하보도를 만났습니다");
             underpass_i ++;
         }
 
         i++;
     }
 
-    function stopTimer(){
+    function stopTimer(timer){
         clearInterval(timer);
     }
 }
