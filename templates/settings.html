@@ -20,45 +20,45 @@
 <script>getWeightFromFirebaseForSettings();</script>
 <body style="background: #b0bfff;">
 	<header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <div class="container-fluid">
-                <a style="margin-left:5px; margin-right:20px;">
-                    <img src= "./static/image/logo.png" height="60px" width="90px">
-                </a>
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:14px; padding-left:14px; padding-right:14px;">
-                  <li class="nav-item" style="padding-left:14px; font-size: 17px;">
-                    <a class="nav-link active" aria-current="page" href="/bootmap">Team</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link active sty">App</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link active">Web</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:400px;font-size: 17px;">
-                    <a class="nav-link active"  href="/watchnow">WatchNow</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link active" href="/history">History</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link active" href="/analysis">Analysis</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link active" href="/favorites">Favorite</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" style="margin-left:14px;">ㅣ</a>
-                  </li>
-                  <li class="nav-item" style="padding-left:14px;font-size: 17px;">
-                    <a class="nav-link" style="color: #5A78AF;" href="/settings">Settings</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-        </nav>
-	</header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a style="margin-left:5px; margin-right:20px;">
+                <img src= "./static/image/logo.png" height="60px" width="90px">
+            </a>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:15px; padding-left:10px; padding-right:10px;">
+              <li class="nav-item" style="padding-left:10px; font-size: 17px;">
+                <a class="nav-link active"  href="/teamInfo">Team</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link active" href="/appInfo">App</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link active" href="/webInfo">Web</a>
+              </li>
+              <li class="nav-item" style="padding-left:400px;font-size: 17px;">
+                <a class="nav-link active"  href="/watchnow">WatchNow</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link" style="color: #5A78AF;" href="/history">History</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link active" href="/analysis">Analysis</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link active" href="/favorites">Favorite</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="margin-left:10px;">ㅣ</a>
+              </li>
+              <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                <a class="nav-link active" href="/settings">Settings</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
     <main>
         <div style="height:40px"></div>
         <main>
@@ -71,18 +71,18 @@
                     위험 시설
                 </div>
                  <div id ="progress_box" style="width: 300px; margin:auto;" >
-                    <p style="float: left; margin-right: 19px;">0</p>
-                    <a>1</a>
-                    <a>2</a>
-                    <a>3</a>
-                    <a>4</a>
-                    <a>5</a>
-                    <a>6</a>
-                    <a>7</a>
-                    <a>8</a>
-                    <a>9</a>
-                    <p style="float: right;">10</p>
-                    <progress id ="progress" class="priorityTag" value="50" max="100" style="width: 300px;">
+                    <p style="float: left; margin-right: 19px;" onclick="updateProgressBar('.priorityTag' ,0);">0</p>
+                    <a onclick="updateProgressBar('.priorityTag' ,10);">1</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,20);">2</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,30);">3</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,40);">4</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,50);">5</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,60);">6</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,70);">7</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,80);">8</a>
+                    <a onclick="updateProgressBar('.priorityTag' ,90);">9</a>
+                    <p style="float: right;" onclick="updateProgressBar('.priorityTag' ,100);">10</p>
+                    <progress id ="progress" class="priorityTag" value="0" max="100" style="width: 300px;">
                     </progress>
                   </div>
                 <hr>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 15px;">
-                    <button class="btn btn-outline-secondary" type="button" style="margin-right: 100px;">초기화</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick = "reset();" style="margin-right: 100px;">초기화</button>
                     <button class="btn btn-outline-secondary" type="button" onclick="apply();">적용하기</button>
                 </div>
             </div>
@@ -150,15 +150,36 @@
                             <progress id ="progress" class="currentTag" value="0" max="100" style="width: 300px;"></progress>
                             <div><a style="float: left;">도로상태</a> <a style="float: right;">위험시설</a></div>
                             <div id = "priority" class = "priority">
-                                <!-- <div>1 횡단보도 (80)</div>
-                                <div>2 차도 분리시설 (35)</div>
-                                <div>3 분기점 (30)</div>
-                                <div>4 차도 비분리시설 (25)</div> -->
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>    
             </div>
 	</main>
 </body>
+<script>
+  function apply(){
+    var road = document.querySelector(".priorityTag").value;
+    var cross = Number(document.getElementById("cross").value);
+    var withCar = Number(document.getElementById("withCar").value);
+    var noCar = Number(document.getElementById("noCar").value);
+    var turn = Number(document.getElementById("turn").value);
+
+    setDangerWeightToFirestore(road,turn,cross,noCar,withCar);
+    resetAllProgressBar();
+  }
+
+  function reset(){
+    //분기점:30, 횡단보도:60, nocar:80, withcar:100
+    setDangerWeightToFirestore(150,30,60,80,100);
+    resetAllProgressBar();
+  }
+
+  function resetAllProgressBar(){
+    resetProgressBar("priorityTag");
+    resetProgressBar("cross");
+    resetProgressBar("turn");
+    resetProgressBar("noCar");
+    resetProgressBar("withCar");
+  }
+</script>
 </html>

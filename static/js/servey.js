@@ -21,8 +21,8 @@ function checkDangerAndShowQuestion(history){
         number++;
     }
     if(history.hasDanger == true){
-        var dangerAarr = Array.from(history.hasDangerA.toString()); //dangerA = 엘베-육교-지하보도-계단
-        var dangerBarr = Array.from(history.hasDangerB.toString()); //dangerB = 교량-터널-고가도로-대형시설통로
+        var dangerAarr = Array.from(history.hasDangerA.toString()); //dangerA = 엘베-육교-지하보도-계단(차도분리)
+        var dangerBarr = Array.from(history.hasDangerB.toString()); //dangerB = 교량-터널-고가도로-대형시설통로(차도비분리)
         if(dangerAarr != null) {
             for(var i = dangerAarr.length-1 ; i >= 0 ; i--){
                 if(dangerAarr[i] != "0"){

@@ -1,0 +1,58 @@
+body {
+    overflow: hidden;
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Scroll down */
+
+#container{
+    width:100%;
+    height:100vh; 
+    overflow: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.list{
+    width:100%; 
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: center;
+}
+
+/* .list:nth-child(1){
+    background-color: rgb(0, 0, 0);
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+} */
+
+.list:nth-child(2){
+    background-color: #000239;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+.list:nth-child(3){
+    background-color: #5286B8;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+.list:nth-child(4){
+    background-color: #002C64;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}
+
+.list:nth-child(5){
+    background-color: #b39db3;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+}

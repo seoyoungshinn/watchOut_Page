@@ -1,13 +1,20 @@
 function changePriorityScore(input){
     var value = input.value;
     if(value >-1 && value<101){
-      updateProgressBar("."+input.id,input.value);
+      updateProgressBar("."+input.id,value);
     }
     else{
       alert("0~100사이 값만 입력해주세요");
       input.value = 0;
-      updateProgressBar("."+input.id,0);
     }
+}
+
+function resetProgressBar(tagName){
+    var progress = document.querySelector("."+tagName);
+    if(document.getElementById(tagName)){
+        document.getElementById(tagName).value = 0;
+    }
+    progress.value = 0;
 }
 
 function updateProgressBar(tagName , input_value) {
@@ -31,17 +38,8 @@ function updateProgressBar(tagName , input_value) {
                 }, updatesPerSecond);
     }   
 
-function apply(){
-    var cross = Number(document.getElementById("cross").value);
-    var withCar = Number(document.getElementById("withCar").value);
-    var noCar = Number(document.getElementById("noCar").value);
-    var turn = Number(document.getElementById("turn").value);
-
-    setDangerWeightToFirestore(cross, withCar, noCar, turn);
-}
-
-function sortPriority(crossWalk,withCar,noCar,turnPoint){
-     var arr = [crossWalk,withCar,noCar,turnPoint];
+function sortPriority(turnPoint,crossWalk,noCar,withCar){
+     var arr = [turnPoint,crossWalk,noCar,withCar];
      arr.sort((a, b) => a - b);
      arr.reverse();
      
@@ -66,7 +64,6 @@ function sortPriority(crossWalk,withCar,noCar,turnPoint){
                 break;
         }
         stringDiv.innerHTML = i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")";
-        console.log(i+1 + "&nbsp;&nbsp;&nbsp;" + str+"&nbsp;("+arr[i]+")");
         var div = document.getElementById("priority");
         div.appendChild(stringDiv);
      }
