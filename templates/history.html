@@ -75,8 +75,11 @@
 <body style="background: #b0bfff;">
 	<script type = "text/javascript">
     setHistoryObjectForHistory();
-    function gogo(num){
+    function goSi(num){
       location.href = '/simulation?num='+num;
+    }
+    function goAs(num){
+      location.href = '/assess?num='+num;
     }
 	</script>
 	<header>
@@ -125,22 +128,22 @@
     <div class="box">
       <div class="list" style=" margin-bottom:20px;" id="historyList0">
         <button class="right">더보기</button>
-        <button class="right">평가 하기</button>
+        <button class="right" onclick="goAs(0)">평가 하기</button>
       </div>
       <div class="list" style=" margin-bottom:20px;" id="historyList1">
         <button class="right">더보기</button>
-        <button class="right">평가 하기</button>
+        <button class="right" onclick="goAs(1)">평가 하기</button>
       </div>
       <div class="list" style=" margin-bottom:20px;" id="historyList2">
         <button class="right">더보기</button>
-        <button class="right">평가 하기</button>
+        <button class="right" onclick="goAs(2)">평가 하기</button>
       </div>
     </div>
 
     <div style="height:50px"></div>
     <div class="box2">
       <div class="small">
-        <button class="round" id="gosimul0" onclick="gogo(0);">
+        <button class="round" id="gosimul0" onclick="goSi(0);">
             <img class="img" src="./static/image/road1.jpg">
         </button>
         <p id ="date1"></p>
@@ -148,14 +151,14 @@
       </div>
 
       <div class="small">
-        <button class="round" id="gosimul1" onclick="gogo(1);">
+        <button class="round" id="gosimul1" onclick="goSi(1);">
             <img class="img" src="./static/image/road2.jpg">
         </button>
         <p id ="date2"></p>
         <p id ="des2"></p>
       </div>
       <div class="small">
-        <button class="round" id="gosimul2" onclick="gogo(2);">
+        <button class="round" id="gosimul2" onclick="goSi(2);">
             <img class="img" src="./static/image/road3.jpg">
         </button>
         <p id ="date3"></p>

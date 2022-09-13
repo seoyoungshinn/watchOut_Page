@@ -31,6 +31,14 @@ def favorites():
 def settings():
     return render_template('settings.html')
 
+@app.route('/simulation')
+def simulation():
+    return render_template('simulation.html')
+
+@app.route('/assess')
+def assess():
+    return render_template('assess.html')
+
 @app.route('/feedback')
 def feedback():
     return render_template('ff/feedback.html')
@@ -38,10 +46,6 @@ def feedback():
 @app.route('/preference')
 def preference():
     return render_template('ff/preference.html')
-
-@app.route('/simulation')
-def simulation():
-    return render_template('simulation.html')
 
 @app.route('/json')
 def json():
