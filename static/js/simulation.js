@@ -31,9 +31,6 @@ function getAllDataFromRealTimeDatabase(num) {
         lat_arr = value.lat;
         lon_arr = value.lon;
 
-        console.log(lat_arr);
-        console.log(lon_arr);
-
         if(value.turn[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             turn_arr = value.turn;
             var num = 0;
@@ -67,7 +64,6 @@ function getAllDataFromRealTimeDatabase(num) {
             for(i = 0; i < elevator_arr.length ; i++){
                 num++;
             }
-            console.log(num);
             danger_msg+=" 엘레베이터 ("+num+"회)";
         }else{
             console.log("엘베가 없는 길임");
@@ -83,7 +79,6 @@ function getAllDataFromRealTimeDatabase(num) {
             console.log(num);
             danger_msg+=" 육교 ("+num+"회)";
         }else{
-            console.log("육교가 없는 길임");
             overpass_arr = 0;
         }
         
@@ -93,10 +88,8 @@ function getAllDataFromRealTimeDatabase(num) {
             for(i = 0; i < underpass_arr.length ; i++){
                 num++;
             }
-            console.log(num);
             danger_msg+=" 지하보도 ("+num+"회)";
         }else{
-            console.log("지하보도가 없는 길임");
             underpass_arr = 0;
         }
 
@@ -153,7 +146,6 @@ function startSimulation(){
 
     function pushMsg(){
         sen.innerHTML = MsgArr[y] + '</span><br/>';
-        console.log(MsgArr[y]);
         if(y == 2){
             stopTimer(timer1);
             timer2 = setInterval(pushPoint,500);
@@ -170,28 +162,27 @@ function startSimulation(){
             stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
-            sen.innerHTML = "분기점을 만났습니다" + '</span><br/>';
-            console.log("분기점을 만났습니다");
+            sen.innerHTML =i+ "분기점을 만났습니다" + '</span><br/>';
             turn_i ++;
         }
         else if(i == parseInt(cross_arr[cross_i])) {
             sen.innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
-            console.log("횡단보도를 만났습니다");
             cross_i ++;
         }
         else if(i == parseInt(elevator_arr[elevator_i])) {
             sen.innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
-            console.log("엘레베이터를 만났습니다");
             elevator_i ++;
         }
         else if(i == parseInt(overpass_arr[overpass_i])) {
             sen.innerHTML = "육교를 만났습니다" + '</span><br/>';
-            console.log("육교를 만났습니다");
             overpass_i ++;
         }
         else if(i == parseInt(underpass_arr[underpass_i])) {
             sen.innerHTML = "지하보도를 만났습니다" + '</span><br/>';
-            console.log("지하보도를 만났습니다");
+            underpass_i ++;
+        }
+        else{
+            sen.innerHTML = "이동중입니다." + '</span><br/>';
             underpass_i ++;
         }
 

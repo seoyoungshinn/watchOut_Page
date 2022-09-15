@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebInfo 🍒</title>
     <link href="./static/css/main.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
@@ -34,23 +35,43 @@
 </head>
 <body>
     <header id = "header"> 
-        <nav class ="menu">
-            <a  href="/menupage"> <img src= "./static/image/introduce/iconEye.png"></a>
-    
-            <ul>
-                <li><a href = "/teamInfo">  <b>Team</b></a></li>
-                <li><a href = "/appInfo"> <b>App</b></a></li>
-                <li><a href = "/webInfo" style="color: #5A78AF"<b>Web</b></a></li>
-                <li><a aria-disabled=""> <b> | </b></a></li>
-                <li><a href = "/watchnow"> <b> WatchNow</b></a></li>
-                <li><a href = "/history"> <b>History</b></a></li>
-                <li><a href = "/analysis"> <b>Analysis</b></a></li>
-                <li><a href = "/favorites"> <b>Favorites</b></a></li>
-                <li><a aria-disabled=""> <b> | </b></a></li>
-                <li><a href = "/settings"> <b>Settings</b></a></li>
-
-            
-            </ul>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a style="margin-left:5px; margin-right:20px;">
+                    <img src= "./static/image/logo.png" height="60px" width="90px">
+                </a>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0" style ="height:45px; font-size: 20px; font-weight: bold; margin-top:15px; padding-left:10px; padding-right:10px;">
+                  <li class="nav-item" style="padding-left:10px; font-size: 17px;">
+                    <a class="nav-link active"  href="/teamInfo">Team</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/appInfo">App</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link" style="color: #5A78AF;" href="/webInfo">Web</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:400px;font-size: 17px;">
+                    <a class="nav-link active"  href="/watchnow">WatchNow</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active"  href="/history">History</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/analysis">Analysis</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/favorites">Favorite</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" style="margin-left:10px;">ㅣ</a>
+                  </li>
+                  <li class="nav-item" style="padding-left:10px;font-size: 17px;">
+                    <a class="nav-link active" href="/settings">Settings</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
         </nav>
     </header> 
 
