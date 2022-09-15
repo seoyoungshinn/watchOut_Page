@@ -29,7 +29,7 @@
     background-color: #333489;
     color: #fff;
 }
-.select input[name=anss]+label{
+.select input[name=anss2]+label{
     font-size:18px;
     border : 2px solid #333489;
     background-color: #E0EBFF;
@@ -38,7 +38,7 @@
     width:120px;
     margin-top:20px;
 }
-.select input[name=anss]:checked+label{
+.select input[name=anss2]:checked+label{
     background-color: #646496;
     color: #fff;
 }

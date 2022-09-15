@@ -16,26 +16,23 @@ function checkDangerAndShowQuestion(history){
     var number = 3;
     var crossNum = history.hasCrossWalk;
     if(crossNum != 0){
-        console.log("green"+num);
         makeQuestionDiv("횡단보도",crossNum,number);
         number++;
     }
     if(history.hasDanger == true){
-        var dangerAarr = Array.from(history.hasDangerA.toString()); //dangerA = 엘베-육교-지하보도-계단(차도분리)
-        var dangerBarr = Array.from(history.hasDangerB.toString()); //dangerB = 교량-터널-고가도로-대형시설통로(차도비분리)
-        if(dangerAarr != null) {
+        if(history.hasDangerA != null) { //dangerA = 엘베-육교-지하보도-계단(차도분리)
+            var dangerAarr = Array.from(history.hasDangerA.toString());
             for(var i = dangerAarr.length-1 ; i >= 0 ; i--){
                 if(dangerAarr[i] != "0"){
-                    console.log("hi"+num);
                     makeQuestionDiv("a"+i,dangerAarr[i],number);
                     number++;
                 }
             }  
         }
-        if(dangerBarr != null) {
+        if(history.hasDangerB != null) { //dangerB = 교량-터널-고가도로-대형시설통로(차도비분리)
+            var dangerBarr = Array.from(history.hasDangerB);
             for(var i = dangerBarr.length-1 ; i >= 0 ; i--){
                 if(dangerBarr[i] != "0"){
-                    console.log("black"+num);
                     makeQuestionDiv("b"+i,dangerBarr[i],number);
                     number++;
                 }
@@ -43,7 +40,6 @@ function checkDangerAndShowQuestion(history){
         }
     }
     endQuestion(number);  
-    console.log("brown"+num);  
     //danger == false인 경우
         //->아무것도x(
 }
@@ -108,7 +104,7 @@ function makeQuestionDiv(name,num,index){
     )
     let input1 = document.createElement('input');
     input1.type = "radio";
-    input1.name = "anss";
+    input1.name = "anss"+index;
     input1.setAttribute(
         'style',
         'display: none;'
@@ -121,21 +117,13 @@ function makeQuestionDiv(name,num,index){
         'style',
         'cursor: pointer;font-size: 18px;border: 2px solid #333489;background-color: #E0EBFF;color: #333489;float: left;width: 120px;margin-top: 20px; padding:10px;border-radius: 0.5rem; font-weight:bold;'
     )
-    if ((label1.htmlFor).checked){
-        label1.setAttribute(
-            'style',
-            'background-color: #646496;color: #fff;'
-        )
-    }
-    label1.onclick = function(){
-        console.log(label1.checked);
-    }
+
     answer.appendChild(input1);
     answer.appendChild(label1);
 
     let input2 = document.createElement('input');
     input2.type = "radio";
-    input2.name = "anss";
+    input2.name = "anss"+index;
     input2.setAttribute(
         'style',
         'display: none;'
@@ -148,11 +136,21 @@ function makeQuestionDiv(name,num,index){
         'style',
         'cursor: pointer;font-size: 18px;border: 2px solid #333489;background-color: #E0EBFF;color: #333489;float: left;width: 120px;margin-top: 20px; padding:10px;border-radius: 0.5rem; font-weight:bold;'
     )
-    label2.onclick = function(){
-        console.log("save~~");
-    }
     answer.appendChild(input2);
     answer.appendChild(label2);
+
+    label1.onclick = function(){
+        label1.style.backgroundColor = "#646496";
+        label1.style.color = "#fff";
+        label2.style.backgroundColor = "#E0EBFF";
+        label2.style.color = "#333489";
+    }
+    label2.onclick = function(){
+        label2.style.backgroundColor = "#646496";
+        label2.style.color = "#fff";
+        label1.style.backgroundColor = "#E0EBFF";
+        label1.style.color = "#333489";
+    }
 
     let labelright = document.createElement('label');
     labelright.className="right";
@@ -177,54 +175,99 @@ function endQuestion(num){
     let div2 = document.createElement('div');
     div2.setAttribute(
         'style',
-        'color:#333489; font-size:40px; font-weight: bold;'
+        'color:#333489; font-size:40px; font-weight: bold; margin-top:150px;'
     );
     div2.innerHTML = "평가하기 끝!";
     let labelleft = document.createElement('label');
     labelleft.className="left";
     labelleft.htmlFor="slide"+(num-1);
-
+    let btn = document.createElement('button');
+    btn.id="update";
+    btn.innerHTML = "완료";
+    btn.onclick = function() {
+        getAllDatas();
+    }
+    btn.className = "btn";
     div1.appendChild(div2);
     div1.appendChild(labelleft);
+    div1.appendChild(btn);
     li.appendChild(div1);
     ui.appendChild(li);
 
 
 }
 
-function makeAnswerDiv(name,index){
-    let col_md_4Div = document.createElement('div');
-    col_md_4Div.className = 'col-md-4'
+// function makeAnswerDiv(name,index){
+//     let col_md_4Div = document.createElement('div');
+//     col_md_4Div.className = 'col-md-4'
 
-    let label = document.createElement('label');
-    label.className = 'form-label';
-    label.textContent = "A"+index;
+//     let label = document.createElement('label');
+//     label.className = 'form-label';
+//     label.textContent = "A"+index;
 
-    let select = document.createElement('select');
-    select.className = "form-select";
-    select.setAttribute("id", name);
+//     let select = document.createElement('select');
+//     select.className = "form-select";
+//     select.setAttribute("id", name);
     
-    let option_keep = document.createElement('option');
-    option_keep.value = "keep";
-    option_keep.innerHTML = "유지";
-    let option_min = document.createElement('option');
-    option_min.value = "min";
-    option_min.innerHTML = "최소화";
+//     let option_keep = document.createElement('option');
+//     option_keep.value = "keep";
+//     option_keep.innerHTML = "유지";
+//     let option_min = document.createElement('option');
+//     option_min.value = "min";
+//     option_min.innerHTML = "최소화";
 
-    select.appendChild(option_keep);
-    select.appendChild(option_min);
+//     select.appendChild(option_keep);
+//     select.appendChild(option_min);
 
-    col_md_4Div.appendChild(label);
-    col_md_4Div.appendChild(select);
+//     col_md_4Div.appendChild(label);
+//     col_md_4Div.appendChild(select);
 
-    return col_md_4Div;
-}
+//     return col_md_4Div;
+// }
 
 function showRouteName(history) {
     var id = document.getElementById('routename');
     var aname = history.arrivedName;
     var dname = history.dpName;
     id.innerHTML = dname+"->"+aname;
+}
+
+function getAllDatas(){
+    var turnType = 0, crossWalk = 0 , dangerA = 0 , dangerB = 0;
+
+    for (i = 2; i<10; i++){
+        let anss = "anss"+i;
+        if(document.querySelector('input[name="'+anss+'"]')){
+            let data = document.querySelector('input[name="'+anss+'"]:checked').id;
+                switch (data) {
+                    case 'select11':
+                        turnType = -5;
+                        break;
+                    case 'select13':
+                        turnType = 5;
+                        break;
+                    case 'select15':
+                        crossWalk = -5;
+                        break;
+                    case 'select17':
+                    case 'select19':
+                    case 'select21':
+                    case 'select23':
+                        dangerA += -5;
+                        break;
+                    case 'select25':
+                    case 'select27':
+                    case 'select29':
+                    case 'select31':
+                        dangerB += -5;
+                        break;
+                    dafault:
+                        break;
+                }
+        }
+    }
+    console.log(turnType,crossWalk,dangerA,dangerB);
+    addDangerWeightToFirestore(turnType,crossWalk,dangerA,dangerB);
 }
 
 
