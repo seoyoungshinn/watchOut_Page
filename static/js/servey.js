@@ -66,7 +66,7 @@ function makeQuestionDiv(name,num,index){
     let spanQ = document.createElement('span');
     spanQ.setAttribute(
         'style',
-        'height:50px;font-size:18px;color:black;margin-top:80px;margin-left:120px;float:left;'
+        'height:50px;font-size:18px;color:black;margin-top:80px;margin-left:20px;float:left;width:800px;'
     )
     spanQ.innerHTML = "Q"+index+". ";
     var dangerName = name;
@@ -101,9 +101,10 @@ function makeQuestionDiv(name,num,index){
     labelleft.className="left";
     labelleft.htmlFor="slide"+(index-1);
     let answer = document.createElement('div');
+    answer.className = "answers"
     answer.setAttribute(
         'style',
-        'margin-top:65px;margin-left:50px;width:120px;float:left;'
+        'margin-top:35px;margin-right:120px;width:120px;float:right;'
     )
     let input1 = document.createElement('input');
     input1.type = "radio";
@@ -118,10 +119,19 @@ function makeQuestionDiv(name,num,index){
     label1.textContent="유지";
     label1.setAttribute(
         'style',
-        'display: inline-block; cursor: pointer; height: 50px; width: 320px; border: 2px solid #333489;line-height: 24px;text-align: center;font-weight:bold;font-size:18px;margin-left:20px;top:50%;padding-top:20px;border-radius: 0.5rem; background-color: #E0EBFF; color: #333489; float:left;'
+        'cursor: pointer;font-size: 18px;border: 2px solid #333489;background-color: #E0EBFF;color: #333489;float: left;width: 120px;margin-top: 20px; padding:10px;border-radius: 0.5rem; font-weight:bold;'
     )
-    input1.appendChild(label1);
+    if ((label1.htmlFor).checked){
+        label1.setAttribute(
+            'style',
+            'background-color: #646496;color: #fff;'
+        )
+    }
+    label1.onclick = function(){
+        console.log(label1.checked);
+    }
     answer.appendChild(input1);
+    answer.appendChild(label1);
 
     let input2 = document.createElement('input');
     input2.type = "radio";
@@ -136,10 +146,13 @@ function makeQuestionDiv(name,num,index){
     label2.textContent="최소화";
     label2.setAttribute(
         'style',
-        'display: inline-block;cursor: pointer;height: 50px;width: 120px;border: 2px solid #333489;line-height: 24px;text-align: center;font-weight:bold;font-size:18px;margin-left:20px;top:50%;padding-top:20px;border-radius: 0.5rem; background-color: #E0EBFF; color: #333489; float:left;'
+        'cursor: pointer;font-size: 18px;border: 2px solid #333489;background-color: #E0EBFF;color: #333489;float: left;width: 120px;margin-top: 20px; padding:10px;border-radius: 0.5rem; font-weight:bold;'
     )
-    input2.appendChild(label2);
+    label2.onclick = function(){
+        console.log("save~~");
+    }
     answer.appendChild(input2);
+    answer.appendChild(label2);
 
     let labelright = document.createElement('label');
     labelright.className="right";
