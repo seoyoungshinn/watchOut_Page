@@ -199,21 +199,24 @@ function addTurnPointAndTableWeightToFireStore(turn,table_danger,table_road){
         tableWeight_road: firebase.firestore.FieldValue.increment(table_road),
     })
     .then(() => {
-        console.log("addturnWeight success");
+        alert("평가하기가 완료되었습니다 감사합니다");
     })
     .catch((error) => {
         console.error("Error adding turnWeight document: ", error);
     });
     
 }
-function addDangerWeightToFirestore(c,a,b){
+
+
+function addDangerWeightToFirestore(turn,cross,dangerA,dangerB){ //assess
     docRef.update({
-        algorithmWeight_crossWalk: firebase.firestore.FieldValue.increment(c),
-        algorithmWeight_facilityCar: firebase.firestore.FieldValue.increment(a),
-        algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(b) 
+        algorithmWeight_turnPoint:firebase.firestore.FieldValue.increment(turn),
+        algorithmWeight_crossWalk:firebase.firestore.FieldValue.increment(cross),
+        algorithmWeight_facilityCar: firebase.firestore.FieldValue.increment(dangerA),
+        algorithmWeight_facilityNoCar: firebase.firestore.FieldValue.increment(dangerB) 
     })
     .then(() => {
-        console.log("addDangerWeight success");
+        alert("평가하기가 완료되었습니다 감사합니다");
     })
     .catch((error) => {
         console.error("Error adding dangerWeight document: ", error);

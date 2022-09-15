@@ -162,7 +162,7 @@ function startSimulation(){
             stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
-            sen.innerHTML =i+ "분기점을 만났습니다" + '</span><br/>';
+            sen.innerHTML ="분기점을 만났습니다" + '</span><br/>';
             turn_i ++;
         }
         else if(i == parseInt(cross_arr[cross_i])) {

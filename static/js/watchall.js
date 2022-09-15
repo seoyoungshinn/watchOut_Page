@@ -60,7 +60,9 @@ function showAll(){ //태그들이 생성된 후에 그려줘야하는 함수
                 if(i == index){
                     drawDataTables(i,true,saftyArr[i]);
                 }
-                drawDataTables(i,false,saftyArr[i]); //4개 표
+                else{
+                    drawDataTables(i,false,saftyArr[i]); //3개 표
+                }
             }
         }
 
