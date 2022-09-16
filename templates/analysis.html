@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
-	<title>Watch Out!</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <meta charset="EUC-KR">
+   <title>Watch Out!</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-	<script src="./static/js/firebase.js" type="text/javascript"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+   <script src="./static/js/firebase.js" type="text/javascript"></script>
     <script src="./static/js/chart.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-	<link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
-	<link href="./static/css/carousel.css" rel="stylesheet">
+   <link href="./static/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+   <link href="./static/css/carousel.css" rel="stylesheet">
 </head>
 <body style="background: #b0bfff;">
-	<script type = "text/javascript">
-		getHistoryObjectForAnalysis();
-	</script>
-	<header>
+   <script type = "text/javascript">
+      getHistoryObjectForAnalysis();
+   </script>
+   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a style="margin-left:5px; margin-right:20px;">
+            <a style="margin-left:5px; margin-right:20px;" href="/menupage">
                 <img src= "./static/image/logo.png" height="60px" width="90px">
             </a>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -60,18 +60,18 @@
         </div>
     </nav>
 </header>
-	<main>
-		<div style="height:60px"></div>
+   <main>
+      <div style="height:60px"></div>
         <div class="row align-items-md-stretch" style="float:left; width:580px; height:400px; margin-left:2.5rem;">
             <div style="padding:0.5rem; border-radius: 4rem !important; background-color: #97A7FE;">
                 <canvas id="showPie" style="width:400px; height:300px; "></canvas>
             </div>
-    	</div>
+       </div>
         <div class="row align-items-md-stretch" style="float:right; width:580px; height:400px; margin-right:2.5rem;">
             <div style="padding:0.5rem; border-radius: 4rem !important; background-color:#717DCB; ">
                 <canvas id="showBar" style="width:400px; height:300px; "></canvas>
             </div>
         </div>
-	</main>
+   </main>
 </body>
 </html>
