@@ -28,11 +28,8 @@ function getParameterByName(name) {
 
 /*-----------즐겨찾기-----------*/ 
 function getFavoritesFromFirestoreAndShow(){
-    
-
     docRef.collection("Favorites").orderBy("frequency", "desc").limit(5).get()
     .then((querySnapshot) => {
-        var favorites = [];
         querySnapshot.forEach((doc) => {
             showFavoritesOnWeb(doc.id , doc.data());
         });
@@ -120,6 +117,7 @@ function getHistoryObjectForHistory(){
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(i,HistoryArr[i]);
             showForFeedback(i+1,HistoryArr[i]);
+            storeForHistoryInfo(i,HistoryArr[i]);
         }
     })
     .catch((error) => {

@@ -3,9 +3,7 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Watch Out!</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -79,10 +77,9 @@
       location.href = '/simulation?num='+num;
     }
     function goAssess(num){
-      location.href = '/assess?num='+num;
+      location.href = '/history/assess?num='+num;
     }
-    function win_open(url,name,num) {
-      getHistoryObjectForInfo(num);
+    function win_open(url,name) {
       window.open(url,name,"fullscreen=yes");
     };
 	</script>
@@ -131,15 +128,15 @@
     <div style="height:60px;"></div>
     <div class="box">
       <div class="list" style=" margin-bottom:20px;" id="historyList0">
-        <button class="right" onclick="win_open('/historyinfo','historyinfo',0);">더보기</button>
+        <button class="right" onclick="win_open('/historyinfo?num=0','historyinfo');">더보기</button>
         <button class="right" onclick="goAssess(0)">평가 하기</button>
       </div>
       <div class="list" style=" margin-bottom:20px;" id="historyList1">
-        <button class="right" onclick="win_open('/historyinfo','historyinfo',1);">더보기</button>
+        <button class="right" onclick="win_open('/historyinfo?num=1','historyinfo');">더보기</button>
         <button class="right" onclick="goAssess(1)">평가 하기</button>
       </div>
       <div class="list" style=" margin-bottom:20px;" id="historyList2">
-        <button class="right" onclick="win_open('/historyinfo','historyinfo',2);">더보기</button>
+        <button class="right" onclick="win_open('/historyinfo?num=2','historyinfo');">더보기</button>
         <button class="right" onclick="goAssess(2)">평가 하기</button>
       </div>
     </div>
@@ -169,13 +166,20 @@
         <p id ="des3"></p>
       </div>
     </div>
-    <a id = "startnameinfo" style="visibility:hidden;">empty</a>
-		<a id = "endnameinfo" style="visibility:hidden;">empty</a>
-		<a id = "routescoreinfo" style="visibility:hidden;">empty</a>
-		<a id = "routelengthinfo" style="visibility:hidden;">empty</a>
-		<a id = "routetimeinfo" style="visibility:hidden;">empty</a>
-    <a id = "realtimeinfo" style="visibility:hidden;">empty</a>
-    <a id = "etcinfo" style="visibility:hidden;">empty</a>
+    <a id = "h0" style="visibility:hidden;">empty</a>
+    <a id = "h1" style="visibility:hidden;">empty</a>
+    <a id = "h2" style="visibility:hidden;">empty</a>
   </main>
+  <script>
+    function storeForHistoryInfo(i,History){//startname,endname,routescore,totalDistance,expectedTime,realTime,위험요소
+      var elapsedTime = History.arrivedTime - History.departureTime; //실제소요시간(ms)
+      var timeData = elapsedTime/1000 - History.expectedTime ; //예상소요시간과차이(s)
+
+      var info = History.dpName+","+History.arrivedName+","+History.score+","+History.totalDistance+","+History.expectedTime+","
+      +timeData+","+History.hasDangerA+","+History.hasDangerB+","+History.hasCrossWalk;
+
+      document.getElementById("h"+i).innerHTML = info;
+    }
+  </script>
 </body>
 </html>

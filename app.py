@@ -5,7 +5,7 @@ app = Flask(__name__)
     
 @app.route('/')
 def welcome():
-    return render_template('ff/login.html')
+    return render_template('innerpages/login.html')
 
 @app.route('/menupage')
 def menupage():
@@ -27,17 +27,33 @@ def webInfo():
 def watchnow():
     return render_template('watchnow.html')
 
+@app.route('/watchinfo')
+def watchinfo():
+    return render_template('innerpages/watchinfo.html')
+
+@app.route('/watchfour')
+def watchfour():
+    return render_template('innerpages/watchfour.html')
+
 @app.route('/history')
 def history():
     return render_template('history.html')
 
+@app.route('/history/assess')
+def assess():
+    return render_template('innerpages/historyassess.html')
+
+@app.route('/historyinfo')
+def historyinfo():
+    return render_template('innerpages/historyinfo.html')
+
+@app.route('/simulation')
+def simulation():
+    return render_template('simulation.html')
+
 @app.route('/analysis')
 def analysis():
     return render_template('analysis.html')
-
-@app.route('/bootmap')
-def boot():
-    return render_template('ex/bootmap.html')
 
 @app.route('/favorites')
 def favorites():
@@ -47,13 +63,15 @@ def favorites():
 def settings():
     return render_template('settings.html')
 
-@app.route('/simulation')
-def simulation():
-    return render_template('simulation.html')
+@app.route('/innerpages/settingshelp')
+def settingshelp():
+    return render_template('settings.html')
 
-@app.route('/assess')
-def assess():
-    return render_template('innerpages/assess.html')
+
+
+@app.route('/bootmap')
+def boot():
+    return render_template('ex/bootmap.html')
 
 @app.route('/feedback')
 def feedback():
@@ -71,17 +89,6 @@ def json():
 def exhistory():
     return render_template('ex/exhistory.html')
 
-@app.route('/watchinfo')
-def watchinfo():
-    return render_template('innerpages/watchinfo.html')
-
-@app.route('/watchfour')
-def watchfour():
-    return render_template('innerpages/watchfour.html')
-
-@app.route('/historyinfo')
-def historyinfo():
-    return render_template('innerpages/historyinfo.html')
 
     
 if __name__ == '__main__':
