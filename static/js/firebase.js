@@ -176,35 +176,6 @@ function getHistoryObjectForAssess(command){
     });
 }
 
-function getHistoryObjectForInfo(num){
-    docRef.collection("History")
-    .withConverter(historyConverter)
-    .get()
-    .then((querySnapshot) => { //History객체 생성
-        var HistoryArr = [];
-        querySnapshot.forEach((doc) => {
-        var history = doc.data();
-        history.setName(doc.id);
-        HistoryArr.push(history);
-        });
-        return HistoryArr;
-    })
-    .then((HistoryArr)=>{
-        if(num == 0){
-            showInfoOnHI(HistoryArr[0]);
-        }
-        else if(num == 1){
-            showInfoOnHI(HistoryArr[1]);
-        }
-        else if(num == 2){
-            showInfoOnHI(HistoryArr[2]);
-        }
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-}
-
 /*-----------가중치-----------*/ 
 function getWeightAndDrawTableFromFirestore(){
     docRef.get()
