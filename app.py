@@ -72,12 +72,17 @@ def exhistory():
     return render_template('ex/exhistory.html')
 
 @app.route('/watchinfo')
-def routeinfo():
+def watchinfo():
     return render_template('ff/watchinfo.html')
 
 @app.route('/watchfour')
-def viewfour():
+def watchfour():
     return render_template('ff/watchfour.html')
+
+@app.route('/historyinfo')
+def historyinfo():
+    return render_template('ff/historyinfo.html')
+
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

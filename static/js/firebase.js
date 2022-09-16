@@ -117,8 +117,6 @@ function setHistoryObjectForHistory(){
             showHistoryOnWeb(i,HistoryArr[i]);
             showForFeedback(i+1,HistoryArr[i]);
         }
-        // drawHistoryBarChartOnWeb(HistoryArr);
-        // drawHistoryDoughnutChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -147,7 +145,7 @@ function setHistoryObjectForAnalysis(){
     });
 }
 
-function setHistoryObjectForPreference(command){
+function setHistoryObjectForAssess(command){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
@@ -162,16 +160,42 @@ function setHistoryObjectForPreference(command){
     })
     .then((HistoryArr)=>{
         if(command == 0){
-            //showRouteName(HistoryArr[0]);
             checkDangerAndShowQuestion(HistoryArr[0]);
         }
         else if(command == 1){
-            //showRouteName(HistoryArr[1]);
             checkDangerAndShowQuestion(HistoryArr[1]);
         }
         else if(command == 2){
-            //showRouteName(HistoryArr[2]);
             checkDangerAndShowQuestion(HistoryArr[2]);
+        }
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function setHistoryObjectForInfo(num){
+    docRef.collection("History")
+    .withConverter(historyConverter)
+    .get()
+    .then((querySnapshot) => { //History객체 생성
+        var HistoryArr = [];
+        querySnapshot.forEach((doc) => {
+        var history = doc.data();
+        history.setName(doc.id);
+        HistoryArr.push(history);
+        });
+        return HistoryArr;
+    })
+    .then((HistoryArr)=>{
+        if(num == 0){
+            showInfoOnHI(HistoryArr[0]);
+        }
+        else if(num == 1){
+            showInfoOnHI(HistoryArr[1]);
+        }
+        else if(num == 2){
+            showInfoOnHI(HistoryArr[2]);
         }
     })
     .catch((error) => {
