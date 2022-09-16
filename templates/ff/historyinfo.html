@@ -56,39 +56,12 @@
         function win_close() {
           window.close();
         };
-
-        const url = window.location.href;
-        const urlStr = new URL(url);
-        const urlParam = urlStr.searchParams;
-        const num = urlParam.get('num');
-        
-        setHistoryObjectForPreference(num);
-
-        function showInfoOnHI(info){
-            var sname = document.getElementById('startname');
-            var ename = document.getElementById('endname');
-            var rscore = document.getElementById('routescore');
-            var rlen = document.getElementById('routelength');
-            var rtime = document.getElementById('routetime');
-            var ltime = document.getElementById('realtime');
-            var etc = document.getElementById('etc');
-
-            sname.innerHTML = info.dpName;
-            ename.innerHTML = info.arrivedName;
-            rscore;
-            rlen.innerHTML = "";
-            rtime.innerHTML = info.expectedTime;
-            ltime.innerHTML = "";
-            
-            
-
-        }
     </script>
     <div style="height:50px; padding-top:20px;">
         <a href="#" class="close" onclick="win_close()">창닫기</a>
     </div>
     <div class="box" style="margin: auto;">
-        최종 경로 정보
+        경로 정보
         <hr class="bar">
         <div class = "info" id="startname"></div>
         <div class = "info" id="endname"></div>

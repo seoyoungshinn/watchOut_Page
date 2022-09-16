@@ -10,7 +10,8 @@ function checkDangerAndShowQuestion(history){
     if(history.hasDanger == true){
         if(history.hasDangerA != null) { //dangerA = 엘베-육교-지하보도-계단(차도분리)
             var dangerAarr = Array.from(history.hasDangerA.toString());
-            for(var i = dangerAarr.length-1 ; i >= 0 ; i--){
+            console.log(dangerAarr);
+            for(var i = 0; i < dangerAarr.length; i++){
                 if(dangerAarr[i] != "0"){
                     makeQuestionDiv("a"+i,dangerAarr[i],number);
                     number++;
@@ -19,7 +20,7 @@ function checkDangerAndShowQuestion(history){
         }
         if(history.hasDangerB != null) { //dangerB = 교량-터널-고가도로-대형시설통로(차도비분리)
             var dangerBarr = Array.from(history.hasDangerB);
-            for(var i = dangerBarr.length-1 ; i >= 0 ; i--){
+            for(var i = 0; i < dangerBarr.length; i++){
                 if(dangerBarr[i] != "0"){
                     makeQuestionDiv("b"+i,dangerBarr[i],number);
                     number++;
