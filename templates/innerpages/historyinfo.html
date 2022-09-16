@@ -5,10 +5,7 @@
 	<title>Watch Out!</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx79d570bd9bf74163a98c47d00783f59f"></script>
 	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="./static/js/firebase.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <style>
         .box {
@@ -72,4 +69,16 @@
         <div class = "info" id="etc"></div>
     </div>
 </body>
+<a id = "h0" style="visibility:hidden;">empty</a>
+<a id = "h1" style="visibility:hidden;">empty</a>
+<a id = "h2" style="visibility:hidden;">empty</a>
+<script>
+    document.getElementById('startname').innerHTML = window.opener.document.getElementById( "startnameinfo" ).textContent;
+    document.getElementById('endname').innerHTML = window.opener.document.getElementById( "endnameinfo" ).textContent;
+    document.getElementById('routescore').innerHTML = window.opener.document.getElementById( "routescoreinfo" ).textContent;
+    document.getElementById('routelength').innerHTML = window.opener.document.getElementById( "routelengthinfo" ).textContent;
+    document.getElementById('routetime').innerHTML = window.opener.document.getElementById( "routetimeinfo" ).textContent;
+    document.getElementById('realtime').innerHTML = window.opener.document.getElementById( "realtimeinfo" ).textContent;
+    document.getElementById('etc').innerHTML = window.opener.document.getElementById( "etcinfo" ).textContent;
+</script>
 </html>

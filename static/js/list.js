@@ -96,12 +96,20 @@ function showForFeedback(index, history){
 }
 
 function showInfoOnHI(info){
-    var sname = document.getElementById('startnameinfo');
-    var ename = document.getElementById('endnameinfo');
-    var rscore = document.getElementById('routescoreinfo');
-    var rlen = document.getElementById('routelengthinfo');
-    var rtime = document.getElementById('routetimeinfo');
-    var ltime = document.getElementById('realtimeinfo');
+    // var sname = document.getElementById('startnameinfo');
+    // var ename = document.getElementById('endnameinfo');
+    // var rscore = document.getElementById('routescoreinfo');
+    // var rlen = document.getElementById('routelengthinfo');
+    // var rtime = document.getElementById('routetimeinfo');
+    // var ltime = document.getElementById('realtimeinfo');
+    // var etc = document.getElementById('etcinfo');
+
+    var sname = document.getElementById('startname');
+    var ename = document.getElementById('endname');
+    var rscore = document.getElementById('routescore');
+    var rlen = document.getElementById('routelength');
+    var rtime = document.getElementById('routetime');
+    var ltime = document.getElementById('realtime');
     var etc = document.getElementById('etcinfo');
 
     sname.innerHTML = info.dpName;
