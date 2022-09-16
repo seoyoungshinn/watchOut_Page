@@ -53,15 +53,15 @@ def simulation():
 
 @app.route('/assess')
 def assess():
-    return render_template('ff/assess.html')
+    return render_template('innerpages/assess.html')
 
 @app.route('/feedback')
 def feedback():
-    return render_template('ff/feedback.html')
+    return render_template('innerpages/feedback.html')
 
 @app.route('/preference')
 def preference():
-    return render_template('ff/preference.html')
+    return render_template('innerpages/preference.html')
 
 @app.route('/json')
 def json():
@@ -73,15 +73,15 @@ def exhistory():
 
 @app.route('/watchinfo')
 def watchinfo():
-    return render_template('ff/watchinfo.html')
+    return render_template('innerpages/watchinfo.html')
 
 @app.route('/watchfour')
 def watchfour():
-    return render_template('ff/watchfour.html')
+    return render_template('innerpages/watchfour.html')
 
 @app.route('/historyinfo')
 def historyinfo():
-    return render_template('ff/historyinfo.html')
+    return render_template('innerpages/historyinfo.html')
 
     
 if __name__ == '__main__':

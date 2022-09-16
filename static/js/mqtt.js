@@ -86,12 +86,15 @@ function onMessageArrived(msg) {
                 document.getElementById("saftyScore").innerHTML = 'empty';
                 document.getElementById("preference").innerHTML = 'empty';
                 document.getElementById("route").innerHTML = 'empty';
+                document.getElementById("route_num").innerHTML = 'empty';
+                document.getElementById("des").innerHTML = '';
 
                 if(msg.payloadString == "out"){
                     document.getElementById("topic").innerHTML += "경로를 이탈하여 목적지를 재검색합니다" + '</span><br/>';
                 }
                 break;
             }
+            
             document.getElementById("route").innerHTML = msg.payloadString;
             break;
 
