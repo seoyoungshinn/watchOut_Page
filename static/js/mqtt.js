@@ -111,7 +111,7 @@ function onMessageArrived(msg) {
 
             drawResMap(lat_res, lon_res);
             addStartEndMarker(lat_res, lon_res);
-            document.getElementById("topic").innerHTML += "알고리즘으로 선택된 길과 현재위치를 볼려면 라디오 버튼을 클릭하세요" + '</span><br/>';
+            document.getElementById("topic").innerHTML += "" + '</span><br/>';
             $('#btn').css('display', 'block');
             break;
 

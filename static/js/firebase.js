@@ -217,6 +217,7 @@ function addDangerWeightToFirestore(turn,cross,dangerA,dangerB){ //assess
     })
     .then(() => {
         alert("평가하기가 완료되었습니다 감사합니다");
+        location.href = '/history';
     })
     .catch((error) => {
         console.error("Error adding dangerWeight document: ", error);

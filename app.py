@@ -53,7 +53,7 @@ def simulation():
 
 @app.route('/assess')
 def assess():
-    return render_template('assess.html')
+    return render_template('ff/assess.html')
 
 @app.route('/feedback')
 def feedback():

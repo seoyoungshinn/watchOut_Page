@@ -15,6 +15,7 @@ firebase.initializeApp(firebaseConfig);
 
 /* ------------------RealTimeDatabase-------------------- */
 var lat_arr,lon_arr,turn_arr,cross_arr,elevator_arr,overpass_arr,underpass_arr;
+var des = "";
 var danger_msg="";
 
 function getAllDataFromRealTimeDatabase(num) {
@@ -24,6 +25,7 @@ function getAllDataFromRealTimeDatabase(num) {
             var value = snapshot.val();
             showdesAndTime(value);
             drawResMap(value.lat,value.lon); //tmap.js내 지도 그리는 함수 
+            des = value.end;
         } else {
             console.log("No data available");
         }
@@ -139,7 +141,7 @@ function startSimulation(){
     var elevator_i = 0;
     var overpass_i = 0;
     var underpass_i = 0;
-    var MsgArr = ["목적지를 입력했습니다.","목적지:동성중학교","길 안내를 시작합니다."];
+    var MsgArr = ["목적지를 입력했습니다.","목적지:"+des,"길 안내를 시작합니다."];
 
     var sen = document.getElementById("sentence");
 
