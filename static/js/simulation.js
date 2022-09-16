@@ -119,7 +119,6 @@ function showdesAndTime(value) {
 }
 
 function showInfos(value){
-    console.log(danger_msg);
     var id = document.getElementById('resinfo');
     id.innerHTML += "경로점수 : "+value.score+"점 <br><br>";
     id.innerHTML += "경로길이 : "+value.length+"m <br>";
