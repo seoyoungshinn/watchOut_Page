@@ -59,7 +59,8 @@ function getFavoritesFromFirestoreAndShow(){
 //History 객체
 class History {
     constructor (arrivedTime, departureTime,arrivedName,dpName,heartRateAverage,heartRateMax,stepNum,expectedTime,
-        expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint,hasDanger,hasDangerA,hasDangerB,hasCrossWalk) {
+        expCrossWalk,expStraightRoad,expNoCar,expWithCar,expTurnPoint,hasDanger,hasDangerA,hasDangerB,hasCrossWalk,
+        score,totalDistance) {
         this.arrivedTime =new Date(arrivedTime);
         this.departureTime = new Date(departureTime);
         this.arrivedName = arrivedName;
@@ -77,6 +78,8 @@ class History {
         this.hasDangerA = hasDangerA;
         this.hasDangerB = hasDangerB;
         this.hasCrossWalk = hasCrossWalk;
+        this.score = score;
+        this.totalDistance = totalDistance;
     }
 
     setName(name){
@@ -95,11 +98,12 @@ var historyConverter = {
             data.arrivedTime, data.departureTime,data.arrivedName,data.dpName,
             data.heartRateAverage,data.heartRateMax,data.stepNum,data.expectedTime,
             data.expCrossWalk,data.expStraightRoad,data.expNoCar,data.expWithCar,data.expTurnPoint,
-            data.hasDanger,data.hasDangerA,data.hasDangerB,data.hasCrossWalk);
+            data.hasDanger,data.hasDangerA,data.hasDangerB,data.hasCrossWalk,
+            data.score,data.totalDistance);
     }
 };
 
-function setHistoryObjectForHistory(){
+function getHistoryObjectForHistory(){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
@@ -123,7 +127,7 @@ function setHistoryObjectForHistory(){
     });
 }
 
-function setHistoryObjectForAnalysis(){
+function getHistoryObjectForAnalysis(){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
@@ -145,7 +149,7 @@ function setHistoryObjectForAnalysis(){
     });
 }
 
-function setHistoryObjectForAssess(command){
+function getHistoryObjectForAssess(command){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
@@ -174,7 +178,7 @@ function setHistoryObjectForAssess(command){
     });
 }
 
-function setHistoryObjectForInfo(num){
+function getHistoryObjectForInfo(num){
     docRef.collection("History")
     .withConverter(historyConverter)
     .get()
