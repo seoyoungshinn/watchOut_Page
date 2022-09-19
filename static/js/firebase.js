@@ -116,7 +116,7 @@ function getHistoryObjectForHistory(){
     .then((HistoryArr)=>{
         for(var i = 0 ; i < 3 ; i++){ 
             showHistoryOnWeb(i,HistoryArr[i]);
-            showForFeedback(i+1,HistoryArr[i]);
+            showForSimulation(i+1,HistoryArr[i]);
             storeForHistoryInfo(i,HistoryArr[i]);
         }
     })

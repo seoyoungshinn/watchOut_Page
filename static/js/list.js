@@ -82,7 +82,7 @@ function showHistoryOnWeb(num,history){
     listDiv.appendChild(centerDiv);
 }
 
-function showForFeedback(index, history){
+function showForSimulation(index, history){
     var dateTagName = "date" + index; //날짜
     
     var dateDiv = document.getElementById(dateTagName);
