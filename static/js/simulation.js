@@ -123,7 +123,6 @@ function showInfos(value){
     id.innerHTML += "경로점수 : "+value.score+"점 <br><br>";
     id.innerHTML += "경로길이 : "+value.length+"m <br>";
     id.innerHTML += danger_msg+"<br><br>";
-    id.innerHTML += "이탈횟수 : 5회<br><br>";
     id.innerHTML += "최대 심박수 : 100 <br>";
     id.innerHTML += "평균 심박수 : 82";
 
@@ -140,7 +139,7 @@ function startSimulation(){
     var elevator_i = 0;
     var overpass_i = 0;
     var underpass_i = 0;
-    var MsgArr = ["목적지를 입력했습니다.","목적지:"+des,"길 안내를 시작합니다."];
+    var MsgArr = ["목적지를 입력했습니다.","목적지 : "+des,"길 안내를 시작합니다."];
 
     var sen = document.getElementById("sentence");
 
@@ -159,27 +158,27 @@ function startSimulation(){
         addCurrentMarker(lat_arr[i],lon_arr[i]);
 
         if(i == lat_arr.length){
-            sen.innerHTML = "목적지에 도착했습니다";
+            sen.innerHTML = "목적지에 도착했습니다.";
             stopTimer(timer2);
         }
         else if(i == parseInt(turn_arr[turn_i])) {
-            sen.innerHTML ="분기점을 만났습니다" + '</span><br/>';
+            sen.innerHTML ="분기점을 만났습니다." + '</span><br/>';
             turn_i ++;
         }
         else if(i == parseInt(cross_arr[cross_i])) {
-            sen.innerHTML = "횡단보도를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "횡단보도를 만났습니다." + '</span><br/>';
             cross_i ++;
         }
         else if(i == parseInt(elevator_arr[elevator_i])) {
-            sen.innerHTML = "엘레베이터를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "엘레베이터를 만났습니다." + '</span><br/>';
             elevator_i ++;
         }
         else if(i == parseInt(overpass_arr[overpass_i])) {
-            sen.innerHTML = "육교를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "육교를 만났습니다." + '</span><br/>';
             overpass_i ++;
         }
         else if(i == parseInt(underpass_arr[underpass_i])) {
-            sen.innerHTML = "지하보도를 만났습니다" + '</span><br/>';
+            sen.innerHTML = "지하보도를 만났습니다." + '</span><br/>';
             underpass_i ++;
         }
         else{
