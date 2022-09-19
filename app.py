@@ -67,29 +67,6 @@ def settings():
 def settingshelp():
     return render_template('settings.html')
 
-
-
-@app.route('/bootmap')
-def boot():
-    return render_template('ex/bootmap.html')
-
-@app.route('/feedback')
-def feedback():
-    return render_template('innerpages/feedback.html')
-
-@app.route('/preference')
-def preference():
-    return render_template('innerpages/preference.html')
-
-@app.route('/json')
-def json():
-    return render_template('ex/json.html')
-
-@app.route('/exhistory')
-def exhistory():
-    return render_template('ex/exhistory.html')
-
-
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0", post="5000")

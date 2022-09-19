@@ -87,10 +87,16 @@ function showForSimulation(index, history){
     
     var dateDiv = document.getElementById(dateTagName);
     dateDiv.textContent = history.departureTime.toLocaleDateString();
+    dateDiv.style.fontSize = "20px";
+    dateDiv.style.fontWeight = "bold";
+    dateDiv.style.color = "white";
 
     var desTagName = "des" + index;
     var desDiv = document.getElementById(desTagName);
-    desDiv.textContent = history.dpName + " -> " + history.arrivedName;
+    desDiv.innerHTML = history.dpName + "<br> ↓ <br>"+ history.arrivedName;
+    desDiv.style.fontSize = "16px";
+    desDiv.style.fontWeight = "bold";
+    desDiv.style.color = "black";
 
     recentHistoryArr.push(history.name);
 }

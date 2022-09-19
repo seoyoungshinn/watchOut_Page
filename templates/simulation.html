@@ -27,30 +27,6 @@
 		   font-size: 20px;
 	   	}
 		
-		.heart {
-   			width: 30px;
-			height: 30px;
-			background: #b0bfff;
-			position: relative;
-			transform: rotate(45deg);
-  		}
-
-  		.heart::before,
-  		.heart::after {
-    		content: "";
-    		width: 30px;
-			height: 30px;
-			position: absolute;
-			border-radius: 50%;
-			background: #b0bfff;
-		}
-		.heart::before {
-			left: -50%;
-		}
-		.heart::after {
-			top: -50%;
-		}
-		
 
 	</style>
 	<link href="./static/css/carousel.css" rel="stylesheet">
@@ -112,7 +88,7 @@
 				<div style="width:800px">
 					<div id="simulname" style="font-size:20px; color:white;font-weight:bold; float: left;"></div>
 					<!--시뮬레이션 시작 버튼-->
-					<button id = "startBtn" onclick="startSimulation()" style="visibility:hidden; float:right;">쏘세요</button>	
+					<button id = "startBtn" onclick="startSimulation()" style="visibility:hidden; float:right;">▶️</button>	
 				</div>
 			</div>
 			<div id="section" style="width:800px; height:430px;float:left; padding:10px;">
