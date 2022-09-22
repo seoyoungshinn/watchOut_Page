@@ -7,7 +7,11 @@
 
 
 ---
-1. menuPage
+*1. menuPage*
 <img width="800" alt="메뉴페이지" src="https://user-images.githubusercontent.com/90150969/191682648-5edf5b32-5ce2-4293-a57b-141208a578b4.png">
 
-2. web소개페이지
+*2. webinfo*
+*3. watchnow*
+*3-1. 최종정보*
+*3-2. 후보경로*
+
