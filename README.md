@@ -4,11 +4,11 @@
 
 보호자는 사용자가 어떤 목적지를 입력하였는지, 어떤 경로가 선택되었는지 등 어플에서 안내되는 주요 알람들 및 심박수 와 같은 생체 정보를 실시간으로 볼 수 있다.  
 또한 사용자의 지난 기록들을 확인할 수 있으며 지난 기록의 분석, 시뮬레이션 등 관련 정보도 조회할 수 있다.
-
-개발환경 : Window 10
-개발언어 : Javascript, HTML
-사용 기술: Flask, Mqtt통신 , Tmap api, Firebase Auth , Firebase Firestore
-
+<span style="color:grey">
+개발환경 : Window 10  
+개발언어 : Javascript, HTML  
+사용 기술: Flask, Mqtt통신 , Tmap api, Firebase Auth , Firebase Firestore  
+.</span>
 ---
 *1. menuPage*  
 
