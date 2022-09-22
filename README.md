@@ -37,11 +37,12 @@
 *4-2. 평가*  
 
 <img width="946" alt="평가" src="https://user-images.githubusercontent.com/90150969/191684613-8f616d80-00ba-4ca0-9a55-0f88fc24f800.png">
+
 *5. Analysis*  
 
 <img width="800" alt="analysis" src="https://user-images.githubusercontent.com/90150969/191683275-a6c52cae-ad64-4052-aad8-17cda3290823.png">  
 
-*6. Favorites*  
+*6. Favorites*   
 
 <img width="800" alt="즐겨찾기" src="https://user-images.githubusercontent.com/90150969/191683239-abdc7964-82be-4c55-b3e9-fb583b29b556.png">  
 
