@@ -12,17 +12,24 @@
 <img width="800" alt="메뉴페이지" src="https://user-images.githubusercontent.com/90150969/191682648-5edf5b32-5ce2-4293-a57b-141208a578b4.png">  
 
 *2. webinfo*  
-<img width="800" alt="웹소개" src="https://user-images.githubusercontent.com/90150969/191683200-1630644b-0da9-499b-a4f5-9a0238805b11.png">
+<img width="800" alt="웹소개" src="https://user-images.githubusercontent.com/90150969/191683200-1630644b-0da9-499b-a4f5-9a0238805b11.png">  
+
 *3. watchnow*  
-<img width="800" alt="watchnow" src="https://user-images.githubusercontent.com/90150969/191683499-55523e86-d8cf-4453-aee4-722a1a77eba3.png">
+<img width="800" alt="watchnow" src="https://user-images.githubusercontent.com/90150969/191683499-55523e86-d8cf-4453-aee4-722a1a77eba3.png">  
+
 *3-1. 최종정보*  
-<img width="440" alt="최종" src="https://user-images.githubusercontent.com/90150969/191683425-23f213d9-ac3f-459d-8b67-b83b6acaf329.png">
+<img width="440" alt="최종" src="https://user-images.githubusercontent.com/90150969/191683425-23f213d9-ac3f-459d-8b67-b83b6acaf329.png">  
+
 *3-2. 후보경로*  
 *4. History*  
-<img width="800" alt="history" src="https://user-images.githubusercontent.com/90150969/191683287-e152f46b-547b-4aee-9ed9-e6c09a85d929.png">
+<img width="800" alt="history" src="https://user-images.githubusercontent.com/90150969/191683287-e152f46b-547b-4aee-9ed9-e6c09a85d929.png">  
+
 *4-1. Simulation*  
+
 *5. Analysis*  
-<img width="800" alt="analysis" src="https://user-images.githubusercontent.com/90150969/191683275-a6c52cae-ad64-4052-aad8-17cda3290823.png">
+<img width="800" alt="analysis" src="https://user-images.githubusercontent.com/90150969/191683275-a6c52cae-ad64-4052-aad8-17cda3290823.png">  
+
 *6. Favorites*  
-<img width="800" alt="즐겨찾기" src="https://user-images.githubusercontent.com/90150969/191683239-abdc7964-82be-4c55-b3e9-fb583b29b556.png">
+<img width="800" alt="즐겨찾기" src="https://user-images.githubusercontent.com/90150969/191683239-abdc7964-82be-4c55-b3e9-fb583b29b556.png">  
+
 
