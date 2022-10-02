@@ -122,7 +122,7 @@ function onMessageArrived(msg) {
             var arr_now = msg.payloadString.split(',');
             //현재위치 갱신
             addCurrentMarker(arr_now[0], arr_now[1]);
-
+            console.log(msg.payloadString);
             //심박수 갱신
             nowHeartRate = arr_now[2];
             if (nowHeartRate != exHeartRate) {
