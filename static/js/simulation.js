@@ -18,6 +18,75 @@ var lat_arr,lon_arr,turn_arr,cross_arr,elevator_arr,overpass_arr,underpass_arr;
 var des = "";
 var danger_msg="";
 
+function getAllDataFromRealTimeDatabaseEnglish(num){
+    const dbRef = firebase.database().ref(num.toString());
+    dbRef.get().then((snapshot) => {
+        if (snapshot.exists()) {
+            var value = snapshot.val();
+            showdesAndTime(value);
+            drawResMap(value.lat,value.lon); //tmap.js내 지도 그리는 함수 
+            des = value.end;
+        } else {
+            console.log("No data available");
+        }
+
+        lat_arr = value.lat;
+        lon_arr = value.lon;
+
+        danger_msg+="<br>This route contains ";
+        if(value.turn[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
+            turn_arr = value.turn;
+            var msg = ""
+            if(turn_arr.length != 1){
+                msg = "s"
+            }
+            danger_msg+=turn_arr.length+ " junction"+msg;
+        }else{
+            turn_arr = 0;
+        }
+       
+        if(value.cross[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
+            cross_arr = value.cross;
+            var msg = ""
+            if(cross_arr.length != 1){
+                msg = "s"
+            }
+            danger_msg+=" and " + cross_arr.length+ " traffic light"+msg ;
+        }else{
+            cross_arr = 0;
+        }
+        
+
+        if(value.elevator[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
+            elevator_arr = value.elevator;
+            danger_msg+=" 엘레베이터 ("+elevator_arr.length+"회)";
+        }else{
+            elevator_arr = 0;
+        }
+
+        if(value.overpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
+            overpass_arr = value.overpass;
+            danger_msg+=" 육교 ("+overpass_arr.length+"회)";
+        }else{
+            overpass_arr = 0;
+        }
+        
+        if(value.underpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
+            underpass_arr = value.underpass;
+            danger_msg+=" 지하보도 ("+underpass_arr.length+"회)";
+        }else{
+            underpass_arr = 0;
+        }
+        showInfos(value);
+
+    })
+    .then(()=>{
+            $('#startBtn').css('visibility','visible');
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 function getAllDataFromRealTimeDatabase(num) {
     const dbRef = firebase.database().ref(num.toString());
     dbRef.get().then((snapshot) => {
@@ -35,62 +104,36 @@ function getAllDataFromRealTimeDatabase(num) {
 
         if(value.turn[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             turn_arr = value.turn;
-            var num = 0;
-            for(i = 0; i < turn_arr.length ; i++){
-                num++;
-            }
-            console.log(num);
-            danger_msg+=" 분기점 ("+num+"회)";
+            danger_msg+=" 분기점 ("+turn_arr.length+"회)";
         }else{
-            console.log("분기점이 없는 길임");
             turn_arr = 0;
         }
        
         if(value.cross[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             cross_arr = value.cross;
-            var num = 0;
-            for(i = 0; i < cross_arr.length ; i++){
-                num++;
-            }
-            console.log(num);
-            danger_msg+=" 횡단보도 ("+num+"회)";
+            danger_msg+=" 횡단보도 ("+cross_arr.length+"회)";
         }else{
-            console.log("횡단보도가 없는 길임");
             cross_arr = 0;
         }
         
 
         if(value.elevator[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             elevator_arr = value.elevator;
-            var num = 0;
-            for(i = 0; i < elevator_arr.length ; i++){
-                num++;
-            }
-            danger_msg+=" 엘레베이터 ("+num+"회)";
+            danger_msg+=" 엘레베이터 ("+elevator_arr.length+"회)";
         }else{
-            console.log("엘베가 없는 길임");
             elevator_arr = 0;
         }
 
         if(value.overpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             overpass_arr = value.overpass;
-            var num = 0;
-            for(i = 0; i < overpass_arr.length ; i++){
-                num++;
-            }
-            console.log(num);
-            danger_msg+=" 육교 ("+num+"회)";
+            danger_msg+=" 육교 ("+overpass_arr.length+"회)";
         }else{
             overpass_arr = 0;
         }
         
         if(value.underpass[0] != "n"){ //turnpoint없으면 첫번째 값이 n임
             underpass_arr = value.underpass;
-            var num = 0;
-            for(i = 0; i < underpass_arr.length ; i++){
-                num++;
-            }
-            danger_msg+=" 지하보도 ("+num+"회)";
+            danger_msg+=" 지하보도 ("+underpass_arr.length+"회)";
         }else{
             underpass_arr = 0;
         }
@@ -110,7 +153,7 @@ function showdesAndTime(value) {
     var id = document.getElementById('simultime');
     var startTime = value.start_time;
     var endTime = value.end_time;
-    id.textContent = startTime+" ~ "+endTime+"의 History";
+    id.textContent = startTime+" ~ "+endTime+" History";
 
     var id2 = document.getElementById('simulname');
     var startName = value.start;
@@ -120,11 +163,11 @@ function showdesAndTime(value) {
 
 function showInfos(value){
     var id = document.getElementById('resinfo');
-    id.innerHTML += "경로점수 : "+value.score+"점 <br><br>";
-    id.innerHTML += "경로길이 : "+value.length+"m <br>";
+    id.innerHTML += "Route Score : "+value.score+" <br><br>";
+    id.innerHTML += "Route Length : "+value.length+"m <br>";
     id.innerHTML += danger_msg+"<br><br>";
-    id.innerHTML += "최대 심박수 : 100 <br>";
-    id.innerHTML += "평균 심박수 : 82";
+    id.innerHTML += "Maximum Heart Rate : 108 <br>";
+    id.innerHTML += "Average Heart Rate : 80";
 
 }
 
@@ -145,7 +188,7 @@ function startSimulation(){
 
 
     function pushMsg(){
-        sen.innerHTML = MsgArr[y] + '</span><br/>';
+        sen.innerHTML = MsgArr[y] + '</span>';
         if(y == 2){
             stopTimer(timer1);
             timer2 = setInterval(pushPoint,500);
@@ -182,7 +225,7 @@ function startSimulation(){
             underpass_i ++;
         }
         else{
-            sen.innerHTML = "이동중입니다." + '</span><br/>';
+            sen.innerHTML = "Pedestrians are on the move" + '</span><br/>';
             underpass_i ++;
         }
 
