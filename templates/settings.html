@@ -63,14 +63,14 @@
         <div style="height:40px"></div>
         <main>
             <div class="left_box">
-                <h2>우선순위 Setting</h2>
+                <div style="color:black;font-size:25px; font-weight: bold; text-align: center; margin-bottom: 5px;">선호도 비율</div>
                 <div class = "priority_name" style="margin-left:60px; float:left;">
                     도로 상태
                 </div>
                 <div class = "priority_name" style="margin-right:60px;float:right;">
                     위험 시설
                 </div>
-                 <div id ="progress_box" style="width: 300px; margin:auto;" >
+                 <div id ="progress_box" style="width: 300px; margin:auto; color: black;" >
                     <p style="float: left; margin-right: 19px;" onclick="updateProgressBar('.priorityTag' ,0);">0</p>
                     <a onclick="updateProgressBar('.priorityTag' ,10);">1</a>
                     <a onclick="updateProgressBar('.priorityTag' ,20);">2</a>
@@ -81,7 +81,7 @@
                     <a onclick="updateProgressBar('.priorityTag' ,70);">7</a>
                     <a onclick="updateProgressBar('.priorityTag' ,80);">8</a>
                     <a onclick="updateProgressBar('.priorityTag' ,90);">9</a>
-                    <p style="float: right;" onclick="updateProgressBar('.priorityTag' ,100);">10</p>
+                    <p style="float: right;color: black;" onclick="updateProgressBar('.priorityTag' ,100);">10</p>
                     <progress id ="progress" class="priorityTag" value="0" max="100" style="width: 300px;">
                     </progress>
                   </div>
@@ -126,9 +126,9 @@
                         <progress id ="progress" class="withCar" value="0" max="100" style="width: 250px;"></progress>
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 15px;">
-                    <button class="btn btn-outline-secondary" type="button" onclick = "reset();" style="margin-right: 100px;">초기화</button>
-                    <button class="btn btn-outline-secondary" type="button" onclick="apply();">적용하기</button>
+                <div style="text-align: center; margin-top: 5px;">
+                    <button class="btn btn-outline-secondary" type="button" onclick = "reset();" style="margin-right: 100px;">Reset</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="apply();">Apply</button>
                 </div>
             </div>
             <div class="right_box">
