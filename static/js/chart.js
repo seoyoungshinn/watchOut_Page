@@ -37,7 +37,7 @@ function drawHistoryBarChartOnWeb(historyArr){
       });
 }
 
-function drawHistoryDoughnutChartOnWeb(historyArr){
+function drawHistoryPieChartOnWeb(historyArr){
     var labels = ["횡단보도" , "직진길", "분기점", "차도 분리 요소","차도 비분리 요소"];
     var crossWalk = 0;
     var straightRoad = 0;
@@ -54,21 +54,28 @@ function drawHistoryDoughnutChartOnWeb(historyArr){
     }
 
     new Chart(document.getElementById("showPie"), {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: labels,
           datasets: [
               {
                 label: "dd (millions)",
-                backgroundColor: ["#25316D", "#5F6F94","#97D2EC","#FEF5AC","#3e95cd"],
+                backgroundColor: ["#D91A1A", "#5F6F94","#5B8C2A","#078C8C","#F257AC"],
                 data: [crossWalk,straightRoad,noCar,withCar,turnPoint]
               }
           ]
         },
         options: {
+          legend: {
+            labels: {
+              fontColor: "black",
+              fontSize: 15
+            }
+          },
           title: {
             display: true,
             text: '경로이탈한 위치의 타입 비율',
+            fontSize: 20,
             fontColor: 'black',
           }
         }

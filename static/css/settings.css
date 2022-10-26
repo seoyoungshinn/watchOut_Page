@@ -1,12 +1,10 @@
 
-        main h2{
-            color: #333489; font-weight: bold; text-align: center;
-        }
+
         .priority_name{
             color: #333489; 
             font-size:20px; 
             height:60px; 
-            padding-top:25px; 
+            padding-top:17px; 
             font-weight: bold;
         }
         #progress {
@@ -14,7 +12,7 @@
             -moz-appearance: none;
             appearance: none;
             display: block;
-            height: 35px;
+            height: 20px;
             border-radius: 1rem;
             color: #005493;
         }
@@ -40,9 +38,8 @@
             border-radius: 0.5rem;
              color : black;
              font-weight: bold;
-             font-style: italic;
-             width: 130px;
-             height: 45px;
+             width: 100px;
+             height: 40px;
              background-color: white;
              opacity: 0.75;
             }
@@ -55,30 +52,31 @@
         .name{
             width:200px;
             color: #333489;
-            font-size: 25px;
+            font-size: 20px;
             font-weight:bold; 
             margin-left:20px; 
             margin-right:20px;
             float: left;
-            padding-top:25px;
+            padding-top:15px;
             text-align: center;
         }
         .score{
             color: black; 
             border-radius: 10px;
             border-style: solid;
-            font-size: 25px;
+            font-size: 20px;
             font-weight: bold;
-            width: 60px; 
-            height:40px;
+            width: 45px; 
+            height:35px;
             float: right;
-            margin-top:20px; 
+            margin-top:15px; 
             margin-right:70px;
             text-align: center; 
-            opacity: 0.75;
+            opacity: 0.5;
         }
         .progress_box{
             width: 250px; float: left;
+            color: black;
         }
 
         #progress_box a {margin-right:14px;}
@@ -106,7 +104,6 @@
            border-radius: 0.5rem;
             color : black;
             font-weight: bold;
-            font-style: italic;
             width: 100px;
             height: 40px;
             margin-left:60px;
@@ -129,6 +126,7 @@
 
         .my
         {
+            color: black;
             font-size:25px; 
             font-weight: bold;
             text-align: center;
@@ -136,7 +134,7 @@
         }
 
         .priority{
-            text-align: center; 
+            margin-left: 15px;
             margin-top:50px;
             font-size: 20px;
             font-weight: bold;
