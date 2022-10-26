@@ -140,7 +140,7 @@ function getHistoryObjectForAnalysis(){
     })
     .then((HistoryArr)=>{
         drawHistoryBarChartOnWeb(HistoryArr);
-        drawHistoryDoughnutChartOnWeb(HistoryArr);
+        drawHistoryPieChartOnWeb(HistoryArr);
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
